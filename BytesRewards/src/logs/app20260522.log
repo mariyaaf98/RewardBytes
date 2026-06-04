@@ -1,0 +1,299 @@
+[11:20:20 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Applying migration '20260518052554_Entitymigration'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Applying migration '20260521091423_InitialUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Applying migration '20260521110811_InitalUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Applying migration '20260521112312_SecondUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Applying migration '20260521112542_InitalUserModuleport'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:20:20 INF] Registered 2 endpoints in 7,320 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:20:21 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:20:21 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:20:22 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:20:22 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:21:15 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:15 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:15 INF] Registered 2 endpoints in 1,398 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:21:15 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:21:15 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:21:15 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:15 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:15 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:15 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:16 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:16 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:16 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:16 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:16 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:21:30 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:30 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:30 INF] Registered 2 endpoints in 1,442 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:21:30 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:21:30 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:21:30 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:30 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:30 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:30 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:31 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:31 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:31 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:31 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:31 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:21:39 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:39 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:21:39 INF] Registered 2 endpoints in 1,312 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:21:39 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:21:39 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:21:39 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:21:40 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:22:07 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:07 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:07 INF] Registered 2 endpoints in 1,229 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:22:07 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:22:07 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:22:08 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:08 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:22:38 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:38 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:38 INF] Registered 2 endpoints in 1,320 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:22:38 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:22:38 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:22:38 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:38 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[11:23:22 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:23:23 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:23:23 INF] Registered 2 endpoints in 1,245 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:23:23 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:23:23 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:23:23 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:23:23 ERR] Hosting failed to start { EventId: { Id: 11, Name: "HostedServiceStartupFaulted" }, SourceContext: "Microsoft.Extensions.Hosting.Internal.Host" }
+
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'SharedComponentDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at AppWeaver.DataStore.EfCore.Hosting.DataStoreMigrationHostedService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[12:04:10 ERR] An error occurred using the connection to database 'bytesrewards-db' on server 'tcp://localhost:64238'. { EventId: { Id: 20004, Name: "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError" }, SourceContext: "Microsoft.EntityFrameworkCore.Database.Connection" }
+
+[12:05:40 ERR] An error occurred using the connection to database 'bytesrewards-db' on server 'tcp://localhost:64238'. { EventId: { Id: 20004, Name: "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError" }, SourceContext: "Microsoft.EntityFrameworkCore.Database.Connection" }
+
+[12:05:47 ERR] An error occurred using the connection to database 'bytesrewards-db' on server 'tcp://localhost:64238'. { EventId: { Id: 20004, Name: "Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError" }, SourceContext: "Microsoft.EntityFrameworkCore.Database.Connection" }
+
+[12:09:41 INF] Applying migration '20260521110811_InitalUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[12:09:41 INF] Applying migration '20260521112312_SecondUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[12:09:41 INF] Applying migration '20260521112542_InitalUserModuleport'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[12:09:41 INF] Registered 2 endpoints in 3,442 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[12:09:42 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[12:09:42 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[12:09:42 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[12:09:42 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[12:09:42 INF] Now listening on: http://localhost:57440 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[12:09:42 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[12:09:42 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[12:09:42 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[12:39:53 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+

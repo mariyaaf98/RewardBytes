@@ -1,0 +1,27 @@
+[10:56:50 WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while scanning assembly 'BytesRewards.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'. { EventId: { Id: 10632, Name: "Microsoft.EntityFrameworkCore.Model.NoEntityTypeConfigurationsWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model" }
+
+[10:56:51 ERR] Failed executing DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; { EventId: { Id: 20102, Name: "Microsoft.EntityFrameworkCore.Database.Command.CommandError" }, SourceContext: "Microsoft.EntityFrameworkCore.Database.Command" }
+
+[10:56:51 INF] Applying migration '20260518052554_Entitymigration'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:56:51 INF] Registered 1 endpoints in 7,037 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:56:52 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:56:52 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:56:53 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:56:54 INF] Applying migration '20260518052045_Initialmigration'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:56:54 INF] Now listening on: http://localhost:58305 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:56:54 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:56:54 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:56:54 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+

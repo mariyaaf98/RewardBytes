@@ -1,0 +1,139 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+
+    <!-- Core Libraries -->
+    <PackageVersion Include="Ardalis.Specification" Version="9.3.1" />
+    <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
+
+    <!-- Microsoft.Extensions -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.0.0" />
+
+    <!-- Entity Framework Core -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Abstractions" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
+
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+
+    <!-- ASP.NET Core -->
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
+
+    <!-- Identity -->
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.71.1" />
+
+    <!-- Third-party -->
+    <PackageVersion Include="DotNetEnv" Version="3.1.1" />
+    <PackageVersion Include="FastEndpoints" Version="7.1.1" />
+    <PackageVersion Include="FastEndpoints.Swagger" Version="7.1.1" />
+    <PackageVersion Include="FluentValidation" Version="12.0.0" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.6" />
+    <PackageVersion Include="Hangfire.MemoryStorage" Version="1.8.1.1" />
+    <PackageVersion Include="System.Interactive.Async" Version="6.0.1" />
+    <PackageVersion Include="MailKit" Version="4.12.1" />
+
+    <!-- AppWeaver -->
+    <PackageVersion Include="AppWeaver.Helpers" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Core" Version="0.1.2" />
+    <PackageVersion Include="AppWeaver.SharedKernel" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.DomainAbstraction" Version="0.1.2" />
+    <PackageVersion Include="AppWeaver.Tenancy" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Tenancy.Data" Version="0.1.2" />
+    <PackageVersion Include="AppWeaver.Mediator" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Mediator.Default" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Mediator.Behaviors" Version="0.1.2" />
+    <PackageVersion Include="AppWeaver.GuardClauses" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Contexts" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Repository" Version="0.1.4" />
+    <PackageVersion Include="AppWeaver.Repository.EfCore" Version="0.1.10" />
+    <PackageVersion Include="AppWeaver.Exceptions" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Results" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Api.Middlewares" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.ProblemDetails" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.ResultMapping" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.FastEndpoint" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.MinimalEndpoint" Version="0.1.2" />
+    <PackageVersion Include="AppWeaver.Web.Security" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Web.Extensions" Version="0.1.1" />
+
+    <PackageVersion Include="AppWeaver.Security" Version="0.1.4" />
+    <PackageVersion Include="AppWeaver.Security.Abstraction" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Identity" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Identity.Custom" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Identity.AzureADB2C" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Authentication" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Authentication.AzureADB2C" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Authentication.JwtBearer" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Authentication.EntraExternalID" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Security.Authorization" Version="0.1.3" />
+    <PackageVersion Include="AppWeaver.Security.Authorization.RBAC" Version="0.1.7" />
+
+    <PackageVersion Include="AppWeaver.EventBus" Version="0.2.1" />
+    <PackageVersion Include="AppWeaver.EventBus.Default" Version="0.2.1" />
+
+    <PackageVersion Include="AppWeaver.DataStore" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.DataStore.EfCore" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Auditing" Version="0.1.1" />
+    <PackageVersion Include="AppWeaver.Auditing.EfCore" Version="0.1.1" />
+
+    <!-- .NET Aspire -->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.1" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.0.1" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.0.1" />
+    <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.0.1" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.0.1" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="13.0.1" />
+
+    <!-- OpenTelemetry -->
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.10.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.10.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.6" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.12" />
+
+    <!-- Health Checks -->
+    <PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Sqlite" Version="9.0.0" />
+
+    <!-- Caching -->
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0" />
+
+    <!-- Testing -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Moq" Version="4.20.72" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+
+    <!-- Value Objects -->
+    <PackageVersion Include="Vogen" Version="8.0.1" />
+
+  </ItemGroup>
+
+</Project>

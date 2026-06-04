@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>aspire-bytesrewards</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="Aspire.Hosting.Redis" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" />
+    <!-- EF Core Design for migrations -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+
+    <PackageReference Include="AppWeaver.Helpers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BytesRewards.Service\BytesRewards.Service.csproj" />
+    <ProjectReference Include="..\BytesRewards.Web\BytesRewards.Web.csproj" />
+    <!-- Infrastructure reference for EF Core tools -->
+    <!--
+    <ProjectReference Include="..\BytesRewards.Infrastructure\BytesRewards.Infrastructure.csproj">
+      <IsAspireProjectResource>false</IsAspireProjectResource>
+    </ProjectReference>
+    -->
+  </ItemGroup>
+
+</Project>

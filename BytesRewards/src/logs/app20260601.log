@@ -1,0 +1,821 @@
+[10:06:59 INF] Applying migration '20260601043454_migrateCreate'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:06:59 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:06:59 INF] Registered 5 endpoints in 4,001 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:07:00 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:07:00 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:07:01 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:07:01 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:07:01 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:07:01 INF] Now listening on: http://localhost:65367 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:07:01 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:07:01 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:07:01 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:07:34 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQP:00000001", RequestPath: "/", ConnectionId: "0HNLVIU04OKQP" }
+
+[10:07:34 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVIU04OKQP:00000001", RequestPath: "/", ConnectionId: "0HNLVIU04OKQP" }
+
+[10:07:34 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQP:00000001", RequestPath: "/", ConnectionId: "0HNLVIU04OKQP" }
+
+[10:07:35 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNLVIU04OKQP:00000004", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNLVIU04OKQP" }
+
+[10:12:06 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:12:06 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQR:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQR" }
+
+[10:16:06 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:16:06 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVIU04OKQS:00000001", RequestPath: "/users", ConnectionId: "0HNLVIU04OKQS" }
+
+[10:37:11 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:38:09 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:09 INF] Applying migration '20260601043454_migrateCreate'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:10 WRN] The migration operation 'PRAGMA foreign_keys = 0;
+' from migration 'migrateCreate' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation. { EventId: { Id: 20410, Name: "Microsoft.EntityFrameworkCore.Migrations.NonTransactionalMigrationOperationWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:10 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:10 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:11 INF] Registered 5 endpoints in 9,354 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:38:12 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:38:12 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:38:13 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:38:13 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:38:13 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:38:13 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:38:13 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:13 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:13 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:38:15 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:38:15 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:38:15 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:38:15 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:40:12 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:40:13 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:40:13 INF] Registered 5 endpoints in 4,587 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:40:13 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:40:13 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:40:14 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:40:14 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:40:14 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:40:14 INF] Now listening on: http://localhost:49237 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:40:14 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:40:14 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:40:14 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:41:06 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNLVJGNBC16L:00000002", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:41 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:41 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:41 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:42 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 147.6723ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[10:41:43 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:43 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:43 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:43 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:43 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16L:00000003", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:41:55 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:55 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:55 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:55 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:56 INF] Registered 5 endpoints in 1,698 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:41:56 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:41:56 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:41:56 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:41:56 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:41:56 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:41:56 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:41:56 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:56 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:56 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:41:56 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:41:56 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:41:56 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:41:56 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:43:02 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:02 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:02 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:02 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:02 INF] Registered 5 endpoints in 1,692 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:43:03 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:43:03 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:43:03 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:43:03 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:43:03 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:43:03 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:43:03 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:03 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:03 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:43:03 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:43:03 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:43:03 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:43:03 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:43:25 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 27.7361ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[10:43:25 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:43:25 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16L:00000004", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16L" }
+
+[10:46:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 34.5636ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[10:46:56 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:46:56 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16N:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16N" }
+
+[10:47:19 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:19 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:19 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:19 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:19 INF] Registered 5 endpoints in 2,056 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[10:47:20 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[10:47:20 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[10:47:20 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:47:20 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:47:20 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:47:20 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[10:47:20 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:20 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:20 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[10:47:20 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:47:20 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:47:20 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[10:47:20 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:22:02 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:03 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:03 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:03 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:03 INF] Registered 5 endpoints in 1,809 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:22:03 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:22:03 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:22:03 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:03 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:03 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:03 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:22:03 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:04 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:04 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:22:04 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:22:04 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:22:04 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:22:04 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:23:52 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 30.5421ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[11:23:52 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:23:52 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVJGNBC16O:00000001", RequestPath: "/users", ConnectionId: "0HNLVJGNBC16O" }
+
+[11:29:32 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:53:09 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:53:09 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:53:10 INF] Registered 5 endpoints in 6,291 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:53:11 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:53:11 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:53:12 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:53:12 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:53:12 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:53:12 INF] Now listening on: http://localhost:51452 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:53:12 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:53:12 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:53:12 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:54:58 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:55:37 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:38 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:38 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:38 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:38 INF] Registered 5 endpoints in 7,164 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[11:55:40 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[11:55:40 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[11:55:40 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:55:40 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:55:40 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:55:40 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[11:55:40 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:40 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:40 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[11:55:40 INF] Now listening on: http://localhost:5000 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:55:40 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:55:40 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[11:55:41 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:55:40 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:40 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:40 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:40 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:40 INF] Registered 5 endpoints in 5,138 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[14:55:41 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[14:55:41 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[14:55:41 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:55:41 WRN] The entity type 'AuditLog' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:55:41 WRN] The entity type 'EntityChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:55:41 WRN] The entity type 'PropertyChange' is configured to use schema 'Auditing', but SQLite does not support schemas. This configuration will be ignored by the SQLite provider. { EventId: { Id: 30000, Name: "Microsoft.EntityFrameworkCore.Model.Validation.SchemaConfiguredWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:55:42 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:42 INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long. { EventId: { Id: 20411, Name: "Microsoft.EntityFrameworkCore.Migrations.AcquiringMigrationLock" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:42 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:55:42 INF] Now listening on: https://localhost:5001 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:55:42 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:55:42 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:55:42 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:56:11 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:59:55 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:59:55 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:59:55 INF] Registered 5 endpoints in 3,841 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[14:59:56 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[14:59:56 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[14:59:56 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:59:56 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:59:56 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:59:56 INF] Now listening on: http://localhost:64756 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:59:56 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:59:56 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:59:56 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:00:43 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOH:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOH" }
+
+[15:00:43 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVO1Q3JOOH:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOH" }
+
+[15:00:43 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOH:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOH" }
+
+[15:00:44 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNLVO1Q3JOOH:00000004", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNLVO1Q3JOOH" }
+
+[15:14:36 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOJ:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:14:36 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVO1Q3JOOJ:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:14:36 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOJ:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:19:01 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVO1Q3JOOJ:00000005", RequestPath: "/users", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:19:01 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOJ:00000005", RequestPath: "/users", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:19:01 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVO1Q3JOOJ:00000005", RequestPath: "/users", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:19:01 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVO1Q3JOOJ:00000005", RequestPath: "/users", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+AppWeaver.Exceptions.ValidationException: One or more validation errors occurred.
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[15:33:55 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOJ:00000005", RequestPath: "/users", ConnectionId: "0HNLVO1Q3JOOJ" }
+
+[15:33:55 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOM:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOM" }
+
+[15:33:55 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOO:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOO" }
+
+[15:33:55 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVO1Q3JOOM:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOM" }
+
+[15:33:55 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVO1Q3JOOO:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOO" }
+
+[15:33:55 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOO:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOO" }
+
+[15:33:55 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOR:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOR" }
+
+[15:33:55 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOM:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOM" }
+
+[15:33:55 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVO1Q3JOOR:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOR" }
+
+[15:33:55 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVO1Q3JOOR:00000001", RequestPath: "/", ConnectionId: "0HNLVO1Q3JOOR" }
+
+[15:35:14 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:35:15 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:35:15 INF] Registered 5 endpoints in 7,203 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[15:35:16 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[15:35:16 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[15:35:16 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[15:35:16 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:35:16 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:35:16 INF] Now listening on: http://localhost:54471 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:35:16 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:35:16 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:35:16 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:36:46 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVOLUEMCUP:00000001", RequestPath: "/", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:36:46 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNLVOLUEMCUP:00000001", RequestPath: "/", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:36:46 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVOLUEMCUP:00000001", RequestPath: "/", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:36:46 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNLVOLUEMCUP:00000004", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:38:11 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:38:12 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:38:12 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:38:37 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 73.2098ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[15:51:19 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:51:43 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:51:54 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:51:54 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[15:51:54 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVOLUEMCUP:00000005", RequestPath: "/users", ConnectionId: "0HNLVOLUEMCUP" }
+
+[17:18:41 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:18:41 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:18:41 INF] Registered 5 endpoints in 5,821 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[17:18:42 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[17:18:42 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[17:18:43 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[17:18:43 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:18:43 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:18:43 INF] Now listening on: http://localhost:64103 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:18:43 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:18:43 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:18:43 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:21:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:21:57 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:21:57 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:21:57 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 99.263ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:22:19 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '201', Handled: 'false', Attempt: '0', Execution Time: 434.7711ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:27:16 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:28:22 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:28:25 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:28:25 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:28:25 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQGN5IQIK:00000001", RequestPath: "/users", ConnectionId: "0HNLVQGN5IQIK" }
+
+[17:42:25 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:43:25 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:43:26 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:43:26 INF] Registered 5 endpoints in 9,047 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[17:43:27 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[17:43:28 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[17:43:28 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[17:43:29 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:43:29 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:43:29 INF] Now listening on: http://localhost:52224 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:43:29 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:43:29 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:43:29 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:45:47 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+[17:45:47 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+[17:45:47 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+[17:45:48 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 105.5181ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:45:48 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '201', Handled: 'false', Attempt: '0', Execution Time: 149.7778ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:45:48 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '403', Handled: 'false', Attempt: '0', Execution Time: 150.0869ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles/employee", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles/employee"] }
+
+[17:45:48 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 403 (Forbidden).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.Json.HttpClientJsonExtensions.<FromJsonAsyncCore>g__Core|12_0[TValue,TJsonOptions](HttpClient client, Task`1 responseTask, Boolean usingResponseHeadersRead, CancellationTokenSource linkedCTS, Func`4 deserializeMethod, TJsonOptions jsonOptions, CancellationToken cancellationToken)
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.AssignRoleAsync(String token, String userId, String roleName, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Infrastructure\Security\Keycloak\KeycloakAdminService.cs:line 107
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 35
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:45:48 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+[17:45:48 INF] Exception occurred: Response status code does not indicate success: 403 (Forbidden). { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNLVQU1FAAHA:00000001", CorrelationId: "0HNLVQU1FAAHA:00000001", TenantId: "", ExceptionType: "HttpRequestException", RequestId: "0HNLVQU1FAAHA:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHA" }
+
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 403 (Forbidden).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.Json.HttpClientJsonExtensions.<FromJsonAsyncCore>g__Core|12_0[TValue,TJsonOptions](HttpClient client, Task`1 responseTask, Boolean usingResponseHeadersRead, CancellationTokenSource linkedCTS, Func`4 deserializeMethod, TJsonOptions jsonOptions, CancellationToken cancellationToken)
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.AssignRoleAsync(String token, String userId, String roleName, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Infrastructure\Security\Keycloak\KeycloakAdminService.cs:line 107
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 35
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:53:15 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:15 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:15 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:15 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 31.8974ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:53:16 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '201', Handled: 'false', Attempt: '0', Execution Time: 85.1991ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:53:16 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 16.7529ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles/employee", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles/employee"] }
+
+[17:53:16 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '204', Handled: 'false', Attempt: '0', Execution Time: 14.4417ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/d9a92c91-2116-474e-9fe1-43dc6b120117/role-mappings/realm", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users/d9a92c91-2116-474e-9fe1-43dc6b120117/role-mappings/realm"] }
+
+[17:53:16 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:16 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:16 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:16 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:53:16 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHB:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHB" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHE:00000001", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHE" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHC:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHD:00000001", RequestPath: "/roles", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHE:00000002", RequestPath: "/roles", ConnectionId: "0HNLVQU1FAAHE" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHC:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Executing endpoint 'HTTP: GET /departments' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHC:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Handling GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHC:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] Handled GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHC:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] Executed endpoint 'HTTP: GET /departments' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHC:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHC" }
+
+[17:57:40 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[17:57:40 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHD:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHD" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHG:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHF:00000001", RequestPath: "/roles", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHH:00000001", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHH" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHH:00000002", RequestPath: "/roles", ConnectionId: "0HNLVQU1FAAHH" }
+
+[18:37:38 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHF:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] Executing endpoint 'HTTP: GET /departments' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHF:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] Handling GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHF:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] Handled GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHF:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:37:38 INF] Executed endpoint 'HTTP: GET /departments' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHF:00000002", RequestPath: "/departments", ConnectionId: "0HNLVQU1FAAHF" }
+
+[18:37:38 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHG:00000002", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHG" }
+
+[18:40:25 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 18.3745ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[18:40:25 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '201', Handled: 'false', Attempt: '0', Execution Time: 49.9891ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[18:40:25 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 8.1725ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles/manager", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles/manager"] }
+
+[18:40:25 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '204', Handled: 'false', Attempt: '0', Execution Time: 9.2631ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/bc70905a-ed5e-480e-a188-7e4e137e9160/role-mappings/realm", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users/bc70905a-ed5e-480e-a188-7e4e137e9160/role-mappings/realm"] }
+
+[18:40:25 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[18:40:25 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHI:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHI" }
+
+[19:49:12 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:49:12 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:49:13 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:49:13 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:49:13 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:49:13 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNLVQU1FAAHJ:00000001", RequestPath: "/users", ConnectionId: "0HNLVQU1FAAHJ" }
+
+[19:54:50 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[19:55:32 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[19:55:32 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[19:55:33 INF] Registered 5 endpoints in 3,529 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[19:55:33 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[19:55:33 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[19:55:33 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[19:55:33 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[19:55:33 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[19:55:33 INF] Now listening on: http://localhost:62405 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[19:55:33 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[19:55:33 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[19:55:33 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+

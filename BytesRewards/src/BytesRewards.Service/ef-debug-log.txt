@@ -1,0 +1,59 @@
+[2026-05-18 05:20:44Z] PostgreSQL Connection For DataStore: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-18 05:25:53Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-18 05:25:53Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 09:13:26Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 09:13:26Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 09:14:22Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 09:14:22Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 09:47:48Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 09:47:48Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 09:48:32Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 09:48:32Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:05:57Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 11:05:57Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:07:38Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 11:07:38Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:08:10Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 11:08:10Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:09:26Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-21 11:09:26Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:23:11Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:23:11Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:23:20Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:23:20Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:25:14Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:25:14Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:25:41Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:25:41Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:25:50Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:25:50Z] Using PostgreSQL (Aspire mode)
+[2026-05-21 11:27:06Z] PostgreSQL Connection: Host=localhost;Port=5433;Database=bytesrewards-db;Username=postgres;Password=******
+[2026-05-21 11:27:06Z] Using PostgreSQL (Aspire mode)
+[2026-05-26 07:20:58Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-26 07:20:58Z] Using PostgreSQL (Aspire mode)
+[2026-05-26 07:28:05Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-26 07:28:05Z] Using PostgreSQL (Aspire mode)
+[2026-05-26 07:30:11Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-26 07:30:11Z] Using PostgreSQL (Aspire mode)
+[2026-05-26 07:31:16Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-05-26 07:31:16Z] Using PostgreSQL (Aspire mode)
+[2026-06-01 04:34:53Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-01 04:34:53Z] Using PostgreSQL (Aspire mode)
+[2026-06-02 10:00:07Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-02 10:00:07Z] Using PostgreSQL (Aspire mode)
+[2026-06-02 10:03:32Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-02 10:03:32Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 04:59:25Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 04:59:25Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 04:59:42Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 04:59:42Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 05:06:17Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 05:06:17Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 05:17:24Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 05:17:24Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 05:31:03Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 05:31:03Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 05:34:27Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 05:34:27Z] Using PostgreSQL (Aspire mode)
+[2026-06-04 05:41:07Z] PostgreSQL Connection: Host=localhost;Port=5432;Database=bytesrewards-db;Username=myuser;Password=********
+[2026-06-04 05:41:07Z] Using PostgreSQL (Aspire mode)

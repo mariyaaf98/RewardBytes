@@ -1,0 +1,22 @@
+[14:49:29 INF] Applying migration '20260521091423_InitialUserModule'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:49:29 INF] Registered 2 endpoints in 7,884 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[14:49:29 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[14:49:30 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[14:49:30 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:49:30 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:49:30 INF] Now listening on: http://localhost:62342 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:49:30 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:49:30 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:49:30 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:17:38 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
