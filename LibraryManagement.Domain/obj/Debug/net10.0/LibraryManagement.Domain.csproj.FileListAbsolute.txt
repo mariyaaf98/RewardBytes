@@ -1,0 +1,11 @@
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\bin\Debug\net10.0\LibraryManagement.Domain.deps.json
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\bin\Debug\net10.0\LibraryManagement.Domain.dll
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\bin\Debug\net10.0\LibraryManagement.Domain.pdb
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.AssemblyInfo.cs
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.dll
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\refint\LibraryManagement.Domain.dll
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\LibraryManagement.Domain.pdb
+C:\Users\MariyaAF\Desktop\Capstone Project\LibraryManagement.Domain\obj\Debug\net10.0\ref\LibraryManagement.Domain.dll

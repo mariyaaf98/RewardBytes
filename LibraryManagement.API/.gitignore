@@ -1,0 +1,18 @@
+# build folders
+bin/
+
+# temporary build files
+obj/
+
+# credentials
+.env
+
+# local editor settings
+.vscode/
+
+# user files
+*.user
+*.suo
+
+# log files
+*.log

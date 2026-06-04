@@ -1,0 +1,188 @@
+<!-- admin/users/users.html -->
+<!-- Users Page — Add, Edit, Delete -->
+
+<!-- ═══════════════════════════════════════
+     TOAST NOTIFICATION
+════════════════════════════════════════ -->
+@if (toastMessage) {
+  <div class="toast"
+       [class.toast-success]="toastType === 'success'"
+       [class.toast-error]="toastType === 'error'">
+    {{ toastType === 'success' ? '✅' : '🗑️' }} {{ toastMessage }}
+  </div>
+}
+
+<!-- ═══════════════════════════════════════
+     PAGE HEADER
+════════════════════════════════════════ -->
+<div class="page-header">
+  <div>
+    <h2 class="page-title">Users Management</h2>
+    <p class="page-sub">Manage all registered users in the system.</p>
+  </div>
+  <button class="btn-primary" (click)="openAddModal()">
+    ＋ Add New User
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SUMMARY BADGES
+════════════════════════════════════════ -->
+<div class="summary-row">
+  <div class="summary-badge">
+    <span>👥</span>
+    <span>Total: <strong>{{ users.length }}</strong></span>
+  </div>
+  <div class="summary-badge">
+    <span>✅</span>
+    <span>Active: <strong>{{ activeCount }}</strong></span>
+  </div>
+  <div class="summary-badge">
+    <span>❌</span>
+    <span>Inactive: <strong>{{ users.length - activeCount }}</strong></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     USERS TABLE
+════════════════════════════════════════ -->
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @for (user of users; track user.id; let i = $index) {
+        <tr>
+
+          <!-- Row number -->
+          <td class="row-num">{{ i + 1 }}</td>
+
+          <!-- Name with avatar -->
+          <td>
+            <div class="name-cell">
+              <div class="avatar">{{ getInitial(user.name) }}</div>
+              <span class="user-name">{{ user.name }}</span>
+            </div>
+          </td>
+
+          <!-- Email -->
+          <td class="text-sub">{{ user.email }}</td>
+
+          <!-- Phone -->
+          <td class="text-sub">{{ user.phone || '—' }}</td>
+
+          <!-- Status badge -->
+          <td>
+            <span [class]="user.status === 'Active' ? 'badge-active' : 'badge-inactive'">
+              {{ user.status }}
+            </span>
+          </td>
+
+          <!-- ✅ Edit + Delete buttons -->
+          <td>
+            <div class="action-buttons">
+
+              <!-- Edit button — opens modal with user data filled in -->
+              <button class="btn-edit" (click)="openEditModal(user)">
+                ✏️ Edit
+              </button>
+
+              <!-- Delete button -->
+              <button class="btn-danger" (click)="deleteUser(user.id)">
+                🗑️ Delete
+              </button>
+
+            </div>
+          </td>
+
+        </tr>
+      }
+
+      <!-- Empty state -->
+      @if (users.length === 0) {
+        <tr>
+          <td colspan="6" class="empty-msg">No users found.</td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ADD / EDIT MODAL
+     Same modal is used for both Add and Edit
+     Title changes based on isEditMode
+════════════════════════════════════════ -->
+@if (showModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+
+      <!-- Title changes: Add or Edit -->
+      <div class="modal-title">
+        {{ isEditMode ? '✏️ Edit User' : '👤 Add New User' }}
+      </div>
+
+      <!-- Name -->
+      <div class="form-group">
+        <label class="form-label">
+          Full Name <span class="required">*</span>
+        </label>
+        <input
+          class="form-input"
+          [(ngModel)]="form.name"
+          placeholder="Enter full name" />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="form-label">
+          Email Address <span class="required">*</span>
+        </label>
+        <input
+          class="form-input"
+          type="email"
+          [(ngModel)]="form.email"
+          placeholder="Enter email address" />
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input
+          class="form-input"
+          [(ngModel)]="form.phone"
+          placeholder="Enter phone number" />
+      </div>
+
+      <!-- Status -->
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-input" [(ngModel)]="form.status">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Buttons — text changes based on mode -->
+      <div class="modal-buttons">
+        <button class="btn-secondary" (click)="closeModal()">
+          Cancel
+        </button>
+        <button class="btn-primary" (click)="saveUser()">
+          {{ isEditMode ? 'Update User' : 'Create User' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+}
