@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UvseHI4/uC4=",
+  "dgSpecHash": "bKhoqb3GsEc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
+  "projectFilePath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MariyaAF\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\MariyaAF\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
@@ -64,5 +64,15 @@
     "C:\\Users\\MariyaAF\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "C:\\Users\\MariyaAF\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json.",
+      "projectPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

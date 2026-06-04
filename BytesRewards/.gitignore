@@ -1,0 +1,14 @@
+# .NET
+bin/
+obj/
+
+# Logs
+*.log
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/

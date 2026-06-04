@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Domain\\LibraryManagement.Domain.csproj",
+      "projectUniqueName": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Domain\\LibraryManagement.Domain.csproj",
       "projectName": "LibraryManagement.Domain",
-      "projectPath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Domain\\LibraryManagement.Domain.csproj",
+      "projectPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Domain\\LibraryManagement.Domain.csproj",
       "packagesPath": "C:\\Users\\MariyaAF\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Domain\\obj\\",
+      "outputPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MariyaAF\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,7 +26,8 @@
         "net10.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {

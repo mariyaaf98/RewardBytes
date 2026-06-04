@@ -3767,11 +3767,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
+      "projectUniqueName": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
       "projectName": "LibraryManagement.Infrastructure",
-      "projectPath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
+      "projectPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\MariyaAF\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Infrastructure\\obj\\",
+      "outputPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MariyaAF\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3780,14 +3780,15 @@
         "net10.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Application\\LibraryManagement.Application.csproj": {
-              "projectPath": "C:\\Users\\MariyaAF\\Desktop\\Capstone Project\\LibraryManagement.Application\\LibraryManagement.Application.csproj"
+            "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Application\\LibraryManagement.Application.csproj": {
+              "projectPath": "c:\\Users\\MariyaAF\\Desktop\\BytesRewards\\LibraryManagement.Application\\LibraryManagement.Application.csproj"
             }
           }
         }
@@ -4120,5 +4121,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json."
+    }
+  ]
 }
