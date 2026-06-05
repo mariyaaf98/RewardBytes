@@ -2510,3 +2510,610 @@ AppWeaver.Exceptions.ValidationException: One or more validation errors occurred
 
 [12:53:23 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM218KA6JGL:00000002", RequestPath: "/users", ConnectionId: "0HNM218KA6JGL" }
 
+[14:30:11 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:40:00 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:40:00 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:40:01 INF] Registered 7 endpoints in 8,401 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[14:40:02 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[14:40:02 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[14:40:03 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[14:40:03 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:40:03 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[14:40:03 INF] Now listening on: http://localhost:60172 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:40:03 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:40:03 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[14:40:03 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:19:24 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:20:45 INF] Applying migration '20260604095001_AppreciationMigration'. { EventId: { Id: 20402, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationApplying" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:20:45 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:20:45 INF] Registered 7 endpoints in 8,539 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[15:20:46 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[15:20:46 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[15:20:47 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[15:20:47 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:20:47 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:20:47 INF] Now listening on: http://localhost:50724 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:20:47 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:20:47 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:20:47 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:26:51 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:27:09 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:27:09 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:27:09 INF] Registered 7 endpoints in 3,568 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[15:27:09 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[15:27:09 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[15:27:09 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[15:27:09 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:27:09 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[15:27:10 INF] Now listening on: http://localhost:56964 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:27:10 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:27:10 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:27:10 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[15:28:28 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM23V9Q4QM6:00000001", RequestPath: "/", ConnectionId: "0HNM23V9Q4QM6" }
+
+[15:28:28 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNM23V9Q4QM6:00000001", RequestPath: "/", ConnectionId: "0HNM23V9Q4QM6" }
+
+[15:28:28 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM23V9Q4QM6:00000001", RequestPath: "/", ConnectionId: "0HNM23V9Q4QM6" }
+
+[15:28:29 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNM23V9Q4QM6:00000004", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNM23V9Q4QM6" }
+
+[17:21:48 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:22:50 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:22:50 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:22:50 INF] Registered 8 endpoints in 8,291 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[17:22:51 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[17:22:51 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[17:22:52 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[17:22:52 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:22:52 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[17:22:52 INF] Now listening on: http://localhost:56821 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:22:52 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:22:52 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:22:52 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[17:23:54 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNM25VPOEA12:00000002", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNM25VPOEA12" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA15:00000001", RequestPath: "/users", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA16:00000001", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA14:00000001", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA15:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:03 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:04 INF] Executing endpoint 'HTTP: GET /roles' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:04 INF] Executing endpoint 'HTTP: GET /departments' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA15:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:04 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:04 INF] Handling GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:04 INF] Handling GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA15:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:04 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:04 INF] Handled GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA15:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:04 INF] Executed endpoint 'HTTP: GET /departments' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA15:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA15" }
+
+[17:28:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 105.6894ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:28:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 38.9224ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles"] }
+
+[17:28:04 INF] Handled GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:04 INF] Executed endpoint 'HTTP: GET /roles' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA16:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA16" }
+
+[17:28:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 14.6385ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:28:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 14.2735ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm"] }
+
+[17:28:04 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:04 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:04 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:28:04 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA14:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA14" }
+
+[17:30:27 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000001", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:27 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:27 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:27 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:27 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 65.4905ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:30:27 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '409', Handled: 'false', Attempt: '0', Execution Time: 82.2775ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:30:27 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:30:27 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:27 INF] Exception occurred: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"} { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNM25VPOEA17:00000002", CorrelationId: "0HNM25VPOEA17:00000002", TenantId: "", ExceptionType: "Exception", RequestId: "0HNM25VPOEA17:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:30:43 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000003", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:43 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:43 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:43 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:43 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 15.5436ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:30:43 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '409', Handled: 'false', Attempt: '0', Execution Time: 12.2615ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:30:43 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:30:43 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:43 INF] Exception occurred: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"} { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNM25VPOEA17:00000004", CorrelationId: "0HNM25VPOEA17:00000004", TenantId: "", ExceptionType: "Exception", RequestId: "0HNM25VPOEA17:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:30:44 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 12.8254ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:30:44 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '409', Handled: 'false', Attempt: '0', Execution Time: 11.7108ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:30:44 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:30:44 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Exception occurred: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"} { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNM25VPOEA17:00000005", CorrelationId: "0HNM25VPOEA17:00000005", TenantId: "", ExceptionType: "Exception", RequestId: "0HNM25VPOEA17:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:30:44 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 18.2722ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:30:44 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '409', Handled: 'false', Attempt: '0', Execution Time: 39.0454ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:30:44 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:30:44 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+[17:30:44 INF] Exception occurred: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"} { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNM25VPOEA17:00000006", CorrelationId: "0HNM25VPOEA17:00000006", TenantId: "", ExceptionType: "Exception", RequestId: "0HNM25VPOEA17:00000006", RequestPath: "/users", ConnectionId: "0HNM25VPOEA17" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:34:04 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA18:00000001", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:04 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:04 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:04 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 75.1069ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:34:04 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '409', Handled: 'false', Attempt: '0', Execution Time: 29.6463ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:34:04 ERR] Error handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+[17:34:04 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:04 INF] Exception occurred: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"} { SourceContext: "MiddlewareLibrary.ExceptionHandling.ExceptionLogHandler", Environment: "Development", TraceId: "0HNM25VPOEA18:00000002", CorrelationId: "0HNM25VPOEA18:00000002", TenantId: "", ExceptionType: "Exception", RequestId: "0HNM25VPOEA18:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+System.Exception: Keycloak Error: Conflict - {"errorMessage":"User exists with same email"}
+   at BytesRewards.Service.Infrastructure.Security.Keycloak.KeycloakAdminService.CreateUserAsync(String token, String firstName, String lastName, String email, String password, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Common\Security\Keycloak\KeycloakAdminService.cs:line 85
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserCommandHandler.Handle(CreateUserCommand request, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserCommandHandler.cs:line 25
+   at AppWeaver.Mediator.Behaviors.FluentValidationBehavior`2.Handle(TCommand request, CancellationToken ct, Next`1 next)
+   at AppWeaver.Mediator.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken ct, Next`1 next)
+   at BytesRewards.Service.Features.Users.CreateUser.CreateUserEndpoint.ExecuteAsync(CreateUserRequest req, CancellationToken ct) in C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\Users\Features\AddUser\CreateUserEndpoint.cs:line 36
+   at AppWeaver.FastEndpoint.SecureFastEndpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[17:34:32 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA18:00000003", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:32 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:32 INF] Executing endpoint 'HTTP: POST /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:32 INF] Handling CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:32 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 17.5563ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:34:32 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '201', Handled: 'false', Attempt: '0', Execution Time: 160.1103ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users"] }
+
+[17:34:32 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 9.3029ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles/employee", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles/employee"] }
+
+[17:34:32 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '204', Handled: 'false', Attempt: '0', Execution Time: 29.8462ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm"] }
+
+[17:34:33 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Handled CreateUserCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Executed endpoint 'HTTP: POST /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000004", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 21.8078ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:34:33 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 14.3274ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm"] }
+
+[17:34:33 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 12.3791ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm"] }
+
+[17:34:33 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:34:33 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA18:00000005", RequestPath: "/users", ConnectionId: "0HNM25VPOEA18" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1A:00000001", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA19:00000001", RequestPath: "/users", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1B:00000001", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA19:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] Executing endpoint 'HTTP: GET /roles' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] Executing endpoint 'HTTP: GET /departments' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA19:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] Handling GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA19:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] Handling GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 23.9085ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:44:12 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 9.4397ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles"] }
+
+[17:44:12 INF] Handled GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] Executed endpoint 'HTTP: GET /roles' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1A:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1A" }
+
+[17:44:12 INF] Handled GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA19:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] Executed endpoint 'HTTP: GET /departments' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA19:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA19" }
+
+[17:44:12 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 12.0877ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:44:12 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 6.5094ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm"] }
+
+[17:44:12 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 6.3334ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm"] }
+
+[17:44:12 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:44:12 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1B:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1B" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1C:00000001", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1D:00000001", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1E:00000001", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1C:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] Executing endpoint 'HTTP: GET /users' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] Handling GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] Executing endpoint 'HTTP: GET /departments' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1C:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] Executing endpoint 'HTTP: GET /roles' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] Handling GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1C:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] Handling GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 13.1535ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:58:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 6.0996ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/roles", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/roles"] }
+
+[17:58:56 INF] Handled GetRolesQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] Executed endpoint 'HTTP: GET /roles' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1D:00000002", RequestPath: "/roles", ConnectionId: "0HNM25VPOEA1D" }
+
+[17:58:56 INF] Handled GetDepartmentsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1C:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] Executed endpoint 'HTTP: GET /departments' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1C:00000002", RequestPath: "/departments", ConnectionId: "0HNM25VPOEA1C" }
+
+[17:58:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 5.8001ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "POST", Uri: "http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E", Scope: ["HTTP POST http://localhost:8080/realms/bytes-rewards/protocol/openid-connect/token"] }
+
+[17:58:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 5.2107ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/2f19fccb-9792-4bcf-b9ea-f9b6d5f6de06/role-mappings/realm"] }
+
+[17:58:56 INF] Execution attempt. Source: '-standard//Standard-Retry', Operation Key: 'null', Result: '200', Handled: 'false', Attempt: '0', Execution Time: 4.3674ms { EventId: { Id: 3, Name: "ExecutionAttempt" }, SourceContext: "Polly", HttpMethod: "GET", Uri: "http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E", Scope: ["HTTP GET http://localhost:8080/admin/realms/bytes-rewards/users/3bc843e9-3710-4b04-a027-4b469035825c/role-mappings/realm"] }
+
+[17:58:56 INF] Handled GetUsersQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] Writing value of type 'List`1' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[17:58:56 INF] Executed endpoint 'HTTP: GET /users' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1E:00000002", RequestPath: "/users", ConnectionId: "0HNM25VPOEA1E" }
+
+[18:07:36 INF] CORS policy execution successful. { EventId: { Id: 4, Name: "PolicySuccess" }, SourceContext: "Microsoft.AspNetCore.Cors.Infrastructure.CorsService", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Executing endpoint 'HTTP: POST /appreciations' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Handling CreateAppreciationCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Handled CreateAppreciationCommand { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Setting HTTP status code 200. { EventId: { Id: 1, Name: "WritingResultAsStatusCode" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Writing value of type 'Guid' as Json. { EventId: { Id: 3, Name: "WritingResultAsJson" }, SourceContext: "Microsoft.AspNetCore.Http.Result.OkObjectResult", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:07:36 INF] Executed endpoint 'HTTP: POST /appreciations' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM25VPOEA1F:00000001", RequestPath: "/appreciations", ConnectionId: "0HNM25VPOEA1F" }
+
+[18:13:25 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:13:46 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:13:46 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:13:46 INF] Registered 8 endpoints in 3,742 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[18:13:46 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[18:13:47 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[18:13:47 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[18:13:47 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:13:47 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:13:47 INF] Now listening on: http://localhost:64326 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:13:47 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:13:47 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:13:47 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:16:27 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:16:43 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:16:43 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:16:43 INF] Registered 9 endpoints in 3,839 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[18:16:43 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[18:16:43 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[18:16:44 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[18:16:44 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:16:44 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:16:44 INF] Now listening on: http://localhost:57440 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:16:44 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:16:44 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:16:44 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:17:40 INF] Executing endpoint 'HTTP: GET /' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM26TR7EPTP:00000001", RequestPath: "/", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:40 INF] Executing RedirectResult, redirecting to /swagger. { EventId: { Id: 1, Name: "RedirectResultExecuting" }, SourceContext: "Microsoft.AspNetCore.Http.Result.RedirectResult", RequestId: "0HNM26TR7EPTP:00000001", RequestPath: "/", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:40 INF] Executed endpoint 'HTTP: GET /' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM26TR7EPTP:00000001", RequestPath: "/", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:41 INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts { EventId: { Id: 1, Name: "NoActionDescriptors" }, SourceContext: "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider", RequestId: "0HNM26TR7EPTP:00000004", RequestPath: "/swagger/v1/swagger.json", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:48 INF] Executing endpoint 'HTTP: GET /appreciations' { EventId: { Name: "ExecutingEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM26TR7EPTP:00000005", RequestPath: "/appreciations", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:48 INF] Handling GetAppreciationsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM26TR7EPTP:00000005", RequestPath: "/appreciations", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:48 INF] Handled GetAppreciationsQuery { SourceContext: "AppWeaver.Mediator.Behaviors.LoggingBehavior", RequestId: "0HNM26TR7EPTP:00000005", RequestPath: "/appreciations", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:17:49 INF] Executed endpoint 'HTTP: GET /appreciations' { EventId: { Id: 1, Name: "ExecutedEndpoint" }, SourceContext: "Microsoft.AspNetCore.Routing.EndpointMiddleware", RequestId: "0HNM26TR7EPTP:00000005", RequestPath: "/appreciations", ConnectionId: "0HNM26TR7EPTP" }
+
+[18:20:16 INF] Application is shutting down... { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:20:34 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:20:34 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:20:35 INF] Registered 9 endpoints in 4,230 milliseconds. { EventId: { Id: 1, Name: "EndpointsRegistered" }, SourceContext: "FastEndpoints.StartupTimer" }
+
+[18:20:35 INF] No validators found in the system! { EventId: { Id: 1, Name: "NoValidatorsFound" }, SourceContext: "FastEndpoints.Swagger.ValidationSchemaProcessor" }
+
+[18:20:35 INF] User profile is available. Using 'C:\Users\MariyaAF\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. { EventId: { Id: 63, Name: "UsingProfileAsKeyRepositoryWithDPAPI" }, SourceContext: "Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager" }
+
+[18:20:35 WRN] The property 'AuditLog.Metadata' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. { EventId: { Id: 10620, Name: "Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }
+
+[18:20:36 INF] No migrations were found in assembly 'BytesRewards.Service'. A migration needs to be added before the database can be updated. { EventId: { Id: 20406, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotFound" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:20:36 INF] No migrations were applied. The database is already up to date. { EventId: { Id: 20405, Name: "Microsoft.EntityFrameworkCore.Migrations.MigrationsNotApplied" }, SourceContext: "Microsoft.EntityFrameworkCore.Migrations" }
+
+[18:20:36 INF] Now listening on: http://localhost:61980 { EventId: { Id: 14, Name: "ListeningOnAddress" }, SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:20:36 INF] Application started. Press Ctrl+C to shut down. { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:20:36 INF] Hosting environment: Development { SourceContext: "Microsoft.Hosting.Lifetime" }
+
+[18:20:36 INF] Content root path: C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service { SourceContext: "Microsoft.Hosting.Lifetime" }
+

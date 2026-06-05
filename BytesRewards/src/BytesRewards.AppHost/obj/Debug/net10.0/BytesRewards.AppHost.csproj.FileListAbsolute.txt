@@ -285,3 +285,4 @@ C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost\obj
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost\obj\Debug\net10.0\BytesRewards.AppHost.pdb
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost\obj\Debug\net10.0\BytesRewards.AppHost.genruntimeconfig.cache
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost\obj\Debug\net10.0\ref\BytesRewards.AppHost.dll
+C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost\obj\Debug\net10.0\BytesRewards.AppHost.sourcelink.json

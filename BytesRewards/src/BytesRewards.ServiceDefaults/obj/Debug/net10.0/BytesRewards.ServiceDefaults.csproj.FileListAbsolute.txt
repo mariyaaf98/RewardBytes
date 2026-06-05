@@ -10,3 +10,4 @@ C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.ServiceDefa
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.ServiceDefaults\obj\Debug\net10.0\refint\BytesRewards.ServiceDefaults.dll
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.ServiceDefaults\obj\Debug\net10.0\BytesRewards.ServiceDefaults.pdb
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.ServiceDefaults\obj\Debug\net10.0\ref\BytesRewards.ServiceDefaults.dll
+C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.ServiceDefaults\obj\Debug\net10.0\BytesRewards.ServiceDefaults.sourcelink.json

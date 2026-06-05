@@ -340,3 +340,4 @@ C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\obj
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\obj\Debug\net10.0\BytesRewards.Service.pdb
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\obj\Debug\net10.0\BytesRewards.Service.genruntimeconfig.cache
 C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\obj\Debug\net10.0\ref\BytesRewards.Service.dll
+C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\obj\Debug\net10.0\BytesRewards.Service.sourcelink.json
