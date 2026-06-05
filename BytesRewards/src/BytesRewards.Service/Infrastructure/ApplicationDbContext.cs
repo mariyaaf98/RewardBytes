@@ -5,6 +5,7 @@ using AppWeaver.DomainAbstraction.Entities;
 using  BytesRewards.Service.Users.Domain;
 using  BytesRewards.Service.Departments.Domain;
 using BytesRewards.Service.Appreciations.Domain;
+using BytesRewards.Service.RewardCategories.Domain;
 
 
 namespace BytesRewards.Service.Infrastructure;
@@ -19,6 +20,8 @@ public class ApplicationDbContext(
     public DbSet<Department> Departments => Set<Department>();
 
     public DbSet<Appreciation> Appreciations => Set<Appreciation>();
+
+    public DbSet<RewardCategory> RewardCategories => Set<RewardCategory>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -15,7 +15,7 @@ public sealed class GetAppreciationHistoryEndpoint(
 {
     public override void Configure()
     {
-        Get("/users/{userId}/appreciationHistory");
+        Get("/users/{userId}/appreciation-history");
 
         Roles(
             "employee",
