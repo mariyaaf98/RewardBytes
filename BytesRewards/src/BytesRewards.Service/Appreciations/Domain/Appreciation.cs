@@ -11,4 +11,6 @@ public class Appreciation : BaseEntity, IAggregateRoot
     public Guid ToUserId { get; set; }
 
     public string Message { get; set; } = string.Empty;
+
+    public ICollection<AppreciationLike> Likes { get; set; } = [];
 }

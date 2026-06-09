@@ -14,6 +14,12 @@ public sealed class CreateAppreciationCommandHandler(
         CreateAppreciationCommand request,
         CancellationToken ct)
     {
+        if (request.FromUserId == request.ToUserId)
+        {
+            throw new Exception(
+                "You cannot appreciate yourself.");
+        }
+
         var appreciation = new Appreciation
         {
             Id = Guid.NewGuid(),

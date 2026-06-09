@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2025")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3577f2cab0cb0ea324cd4c9fede3c929ca9e933")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d64a01e5cc3c95d07a8754c936fef0622c7981e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BytesRewards.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BytesRewards.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

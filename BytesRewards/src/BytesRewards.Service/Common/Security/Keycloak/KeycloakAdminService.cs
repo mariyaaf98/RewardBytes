@@ -15,7 +15,7 @@ public class KeycloakAdminService(
         options.Value;
 
     public async Task<string> GetAdminTokenAsync(
-        CancellationToken ct)
+    CancellationToken ct)
     {
         var formData =
             new Dictionary<string, string>
@@ -31,7 +31,14 @@ public class KeycloakAdminService(
                 new FormUrlEncodedContent(formData),
                 ct);
 
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            var error =
+                await response.Content.ReadAsStringAsync(ct);
+
+            throw new Exception(
+                $"GetAdminToken Error: {response.StatusCode} - {error}");
+        }
 
         var token =
             await response.Content.ReadFromJsonAsync<
@@ -105,10 +112,23 @@ public class KeycloakAdminService(
                 "Bearer",
                 token);
 
-        var role =
-            await httpClient.GetFromJsonAsync<RoleRepresentation>(
+        var roleResponse =
+            await httpClient.GetAsync(
                 $"{_options.ServerUrl}/admin/realms/{_options.Realm}/roles/{roleName}",
                 ct);
+
+        if (!roleResponse.IsSuccessStatusCode)
+        {
+            var error =
+                await roleResponse.Content.ReadAsStringAsync(ct);
+
+            throw new Exception(
+                $"Get Role Error: {roleResponse.StatusCode} - {error}");
+        }
+
+        var role =
+            await roleResponse.Content
+                .ReadFromJsonAsync<RoleRepresentation>(ct);
 
         if (role is null)
         {
@@ -119,15 +139,18 @@ public class KeycloakAdminService(
         var response =
             await httpClient.PostAsJsonAsync(
                 $"{_options.ServerUrl}/admin/realms/{_options.Realm}/users/{userId}/role-mappings/realm",
-                new[]
-                {
-                role
-                },
+                new[] { role },
                 ct);
 
-        response.EnsureSuccessStatusCode();
-    }
+        if (!response.IsSuccessStatusCode)
+        {
+            var error =
+                await response.Content.ReadAsStringAsync(ct);
 
+            throw new Exception(
+                $"AssignRole Error: {response.StatusCode} - {error}");
+        }
+    }
     public async Task<string> GetUserRoleAsync(
     string token,
     string userId,
@@ -181,7 +204,6 @@ public class KeycloakAdminService(
                 request,
                 ct);
 
-        // response.EnsureSuccessStatusCode();
         if (!response.IsSuccessStatusCode)
         {
             var error =
@@ -230,7 +252,14 @@ public class KeycloakAdminService(
                 request,
                 ct);
 
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            var error =
+                await response.Content.ReadAsStringAsync(ct);
+
+            throw new Exception(
+    $"RemoveRole Error: {response.StatusCode} - {error}");
+        }
     }
 
 
@@ -285,7 +314,14 @@ public class KeycloakAdminService(
                 request,
                 ct);
 
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            var error =
+                await response.Content.ReadAsStringAsync(ct);
+
+            throw new Exception(
+                $"DisableUser Error: {response.StatusCode} - {error}");
+        }
     }
 
     public async Task<List<string>> GetRolesAsync(

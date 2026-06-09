@@ -17,26 +17,46 @@ public sealed class GetAppreciationsQueryHandler(
         CancellationToken ct)
     {
         return await context.Appreciations
+            // .Select(x => new AppreciationResponse
+            // {
+            //     Id = x.Id,
+
+            //     FromUserName =
+            //         context.Users
+            //             .Where(u => u.Id == x.FromUserId)
+            //             .Select(u => u.FirstName + " " + u.LastName)
+            //             .FirstOrDefault() ?? string.Empty,
+
+            //     ToUserName =
+            //         context.Users
+            //             .Where(u => u.Id == x.ToUserId)
+            //             .Select(u => u.FirstName + " " + u.LastName)
+            //             .FirstOrDefault() ?? string.Empty,
+
+            //     Message = x.Message,
+
+            //     CreatedAt = x.CreatedAt,
+
+            //     LikesCount = x.Likes.Count(),
+            // })
+            // .ToListAsync(ct);
+
             .Select(x => new AppreciationResponse
             {
                 Id = x.Id,
 
-                FromUserName =
-                    context.Users
-                        .Where(u => u.Id == x.FromUserId)
-                        .Select(u => u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
+                FromUserName = x.FromUser.FirstName + " " + x.FromUser.LastName,
 
-                ToUserName =
-                    context.Users
-                        .Where(u => u.Id == x.ToUserId)
-                        .Select(u => u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
+                ToUserName = x.ToUser.FirstName + " " + x.ToUser.LastName,
 
                 Message = x.Message,
 
-                CreatedAt = x.CreatedAt
-            })
-            .ToListAsync(ct);
+                CreatedAt = x.CreatedAt,
+
+                LikesCount = x.Likes.Count(),
+
+                IsLiked = x.Likes.Any(
+        l => l.UserId == currentUserId)
+            }).ToList();
     }
 }

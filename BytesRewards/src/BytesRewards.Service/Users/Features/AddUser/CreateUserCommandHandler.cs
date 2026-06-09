@@ -1,13 +1,11 @@
 using AppWeaver.Mediator.Interfaces;
-using AppWeaver.Repository.Abstractions;
 using BytesRewards.Service.Infrastructure;
 using AppWeaver.Results;
 using BytesRewards.Service.Infrastructure.Security.Keycloak;
-
 using BytesRewards.Service.Users.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace BytesRewards.Service.Features.Users.CreateUser;
-
 
 public class CreateUserCommandHandler(
     ApplicationDbContext _context,
@@ -16,61 +14,70 @@ public class CreateUserCommandHandler(
     : ICommandHandler<CreateUserCommand, Result<Guid>>
 {
     public async ValueTask<Result<Guid>> Handle(
-    CreateUserCommand request,
-    CancellationToken ct)
+        CreateUserCommand request,
+        CancellationToken ct)
     {
-        var token =
-            await _keycloakAdminService.GetAdminTokenAsync(ct);
+        var existingUser =
+            await _context.Users
+                .FirstOrDefaultAsync(
+                    x => x.Email == request.Email,
+                    ct);
 
-        var keycloakUserId =
-            await _keycloakAdminService.CreateUserAsync(
+        if (existingUser is not null)
+        {
+            throw new Exception(
+                "User with this email already exists.");
+        }
+
+        try
+        {
+            var token =
+                await _keycloakAdminService.GetAdminTokenAsync(ct);
+
+            var keycloakUserId =
+                await _keycloakAdminService.CreateUserAsync(
+                    token,
+                    request.FirstName,
+                    request.LastName,
+                    request.Email,
+                    request.TemporaryPassword,
+                    ct);
+
+            await _keycloakAdminService.AssignRoleAsync(
                 token,
-                request.FirstName,
-                request.LastName,
-                request.Email,
-                request.TemporaryPassword,
+                keycloakUserId,
+                request.Role.Trim().ToLowerInvariant(),
                 ct);
 
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                EmployeeId = $"EMP-{Random.Shared.Next(1000, 9999)}",
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber,
+                Designation = request.Designation,
+                DepartmentId = request.DepartmentId,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                ProfileImageUrl = string.Empty,
+                KeycloakUserId = keycloakUserId
+            };
 
-        await _keycloakAdminService.AssignRoleAsync(
-            token,
-            keycloakUserId,
-            request.Role.Trim().ToLowerInvariant(),
-            ct);
+            _context.Users.Add(user);
 
+            await _context.SaveChangesAsync(ct);
 
-        var user = new User
+            return Result<Guid>.Ok(user.Id);
+        }
+        catch (Exception ex)
         {
-            Id = Guid.NewGuid(),
+            Console.WriteLine("================================");
+            Console.WriteLine(ex.ToString());
+            Console.WriteLine("================================");
 
-            EmployeeId =
-                $"EMP-{Random.Shared.Next(1000, 9999)}",
-
-            FirstName = request.FirstName,
-
-            LastName = request.LastName,
-
-            Email = request.Email,
-
-            PhoneNumber = request.PhoneNumber,
-
-            Designation = request.Designation,
-
-            DepartmentId = request.DepartmentId,
-
-            IsActive = true,
-
-            CreatedAt = DateTime.UtcNow,
-
-            ProfileImageUrl = string.Empty,
-
-            KeycloakUserId = keycloakUserId
-        };
-
-        _context.Users.Add(user);
-
-        await _context.SaveChangesAsync(ct);
-
-        return Result<Guid>.Ok(user.Id);
+            throw;
+        }
     }
 }

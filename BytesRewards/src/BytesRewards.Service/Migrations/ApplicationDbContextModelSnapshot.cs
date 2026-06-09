@@ -111,6 +111,37 @@ namespace BytesRewards.Service.Migrations
                     b.ToTable("RewardCategories", (string)null);
                 });
 
+            modelBuilder.Entity("BytesRewards.Service.Rewards.Domain.Reward", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("FromUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("RewardCategoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ToUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rewards", (string)null);
+                });
+
             modelBuilder.Entity("BytesRewards.Service.Users.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")

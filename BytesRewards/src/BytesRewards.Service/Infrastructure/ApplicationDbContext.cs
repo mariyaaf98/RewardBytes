@@ -6,6 +6,7 @@ using  BytesRewards.Service.Users.Domain;
 using  BytesRewards.Service.Departments.Domain;
 using BytesRewards.Service.Appreciations.Domain;
 using BytesRewards.Service.RewardCategories.Domain;
+using BytesRewards.Service.Rewards.Domain;
 
 
 namespace BytesRewards.Service.Infrastructure;
@@ -22,6 +23,8 @@ public class ApplicationDbContext(
     public DbSet<Appreciation> Appreciations => Set<Appreciation>();
 
     public DbSet<RewardCategory> RewardCategories => Set<RewardCategory>();
+
+    public DbSet<Reward> Rewards => Set<Reward>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
