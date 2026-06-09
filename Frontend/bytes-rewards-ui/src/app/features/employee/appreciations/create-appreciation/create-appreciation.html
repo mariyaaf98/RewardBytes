@@ -1,0 +1,333 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Employee Workspace" [menuItems]="employeeMenu">
+  </app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- TOPBAR -->
+    <div class="h-[82px] border-b border-slate-200 bg-white px-8 flex items-center">
+
+      <app-topbar></app-topbar>
+
+    </div>
+
+    <!-- PAGE -->
+    <div class="p-8">
+
+      <!-- HEADER -->
+      <div class="mb-8">
+
+        <h1 class="text-4xl font-bold text-slate-900">
+          Create Appreciation
+        </h1>
+
+        <p class="text-slate-500 text-lg mt-2">
+          Recognize a colleague for their outstanding contribution.
+        </p>
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="grid grid-cols-12 gap-6">
+
+        <!-- LEFT -->
+        <div class="col-span-8">
+
+          <div class="bg-white rounded-[30px] overflow-hidden border border-slate-100 shadow-sm">
+
+            <!-- CARD HEADER -->
+            <div class="bg-gradient-to-r from-[#041C3C] to-[#123A67] px-8 py-7">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">
+
+                  ✨
+
+                </div>
+
+                <div>
+
+                  <h2 class="text-3xl font-bold text-white">
+                    Send Appreciation
+                  </h2>
+
+                  <p class="text-slate-300 mt-1">
+                    A few thoughtful words can change someone's week.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- FORM BODY -->
+            <div class="p-8">
+
+              <!-- EMPLOYEE -->
+              <div>
+
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">
+
+                  Employee
+
+                </label>
+                <div class="relative">
+
+                  <input type="text" [(ngModel)]="searchText" (input)="filterUsers()" placeholder="Search employee..."
+                    class="form-input">
+
+                  @if (filteredUsers.length > 0 && searchText) {
+
+                  <div
+                    class="absolute z-50 mt-2 w-full bg-white border border-slate-200 rounded-2xl shadow-lg max-h-60 overflow-y-auto">
+
+                    @for (user of filteredUsers; track user.id) {
+
+                    <button type="button" (click)="selectUser(user)"
+                      class="w-full text-left px-4 py-3 hover:bg-slate-100">
+
+                      {{ user.fullName }}
+
+                    </button>
+
+                    }
+
+                  </div>
+
+                  }
+
+                </div>
+              </div>
+
+              <!-- MESSAGE -->
+              <div class="mt-8">
+
+                <div class="flex justify-between items-center mb-3">
+
+                  <label class="text-xs font-bold uppercase tracking-wider text-slate-600">
+
+                    Appreciation Message
+
+                  </label>
+
+                  <span class="text-xs text-slate-400">
+
+                    {{ message.length }}/300
+
+                  </span>
+
+                </div>
+
+                <textarea [(ngModel)]="message" maxlength="300" rows="6"
+                  placeholder="Be specific about the impact they made. What did they do? Who did it help?"
+                  class="w-full rounded-3xl border border-slate-200 p-5 text-lg resize-none outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200">
+                                </textarea>
+
+              </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="border-t border-slate-100 px-8 py-5 flex items-center justify-between">
+
+              <p class="text-sm text-slate-500">
+                Appreciation will be visible to your manager.
+              </p>
+
+              <div class="flex gap-3">
+
+                <button type="button"
+                  class="h-12 px-6 rounded-2xl border border-slate-200 font-medium text-slate-700 hover:bg-slate-50 transition">
+
+                  Cancel
+
+                </button>
+
+
+                <button type="button" (click)="submit()" [disabled]="!selectedUserId || !message.trim()"
+                  class="h-12 px-8 rounded-2xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+
+                  Send Appreciation
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        
+
+
+        
+
+        <!-- RIGHT -->
+        <div class="col-span-4">
+
+          <div class="bg-white rounded-[30px] border border-slate-100 shadow-sm p-6 sticky top-6">
+
+            <div class="flex items-center justify-between mb-5">
+
+              <h3 class="text-xs uppercase tracking-widest font-bold text-slate-500">
+
+                Live Preview
+
+              </h3>
+
+              <span class="px-2 py-1 text-[10px] rounded-full bg-amber-100 text-amber-700 font-semibold">
+
+                Draft
+
+              </span>
+
+            </div>
+
+            @if (showSuccess) {
+
+            <div class="mb-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+
+              <p class="font-semibold text-emerald-700">
+
+                ✓ Appreciation Sent Successfully
+
+              </p>
+
+            </div>
+
+            }
+
+            <!-- PREVIEW CARD -->
+            <div class="border border-slate-100 rounded-3xl p-5">
+
+              <!-- USER -->
+              <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 rounded-full bg-[#041C3C] text-white flex items-center justify-center font-bold">
+
+                  {{ selectedUserInitials }}
+
+                </div>
+
+                <div class="flex-1">
+
+                  <h4 class="font-semibold text-slate-900">
+
+                    {{ selectedUserName }}
+
+                  </h4>
+
+                  <p class="text-xs text-slate-400">
+
+                    appreciated a teammate
+
+                  </p>
+
+                  <p class="text-xs text-slate-300 mt-1">
+
+                    {{ today | date:'dd MMM yyyy' }}
+
+                  </p>
+
+                </div>
+
+              </div>
+
+              <!-- BADGE -->
+              <div
+                class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mt-4">
+
+                Appreciation Draft
+
+              </div>
+
+              <!-- MESSAGE -->
+              <div class="mt-5">
+
+                <p class="italic text-slate-500 leading-relaxed">
+
+                  {{
+                  message ||
+                  'Your appreciation message will appear here...'
+                  }}
+
+                </p>
+
+              </div>
+
+              <!-- FOOTER -->
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+
+                <span class="text-xs text-slate-400">
+
+                  Live Preview
+
+                </span>
+
+                <span class="text-xs text-slate-400">
+
+                  {{ message.length }}/300
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+@if (showErrorModal) {
+
+<div
+  class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+  <div class="bg-white rounded-3xl w-[450px] p-6 shadow-xl">
+
+    <h3 class="text-xl font-bold text-red-600">
+
+      Error
+
+    </h3>
+
+    <p class="mt-4 text-slate-600">
+
+      {{ errorMessage }}
+
+    </p>
+
+    <div class="mt-6 flex justify-end">
+
+      <button
+        (click)="closeErrorModal()"
+        class="px-5 py-2 rounded-xl bg-red-500 text-white">
+
+        OK
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+}

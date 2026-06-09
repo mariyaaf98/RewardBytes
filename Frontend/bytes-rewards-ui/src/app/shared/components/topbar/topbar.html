@@ -1,0 +1,78 @@
+<div class="w-full flex items-center gap-10">
+
+  <!-- LEFT SECTION -->
+  <div class="flex-1 flex justify-center">
+
+    <!-- SEARCH -->
+    <div class="flex items-center gap-3 bg-white h-14 px-5 rounded-2xl border border-slate-200 w-[520px] shadow-sm">
+
+      <!-- Icon -->
+      <lucide-icon [img]="Search" class="w-5 h-5 text-slate-400 shrink-0"></lucide-icon>
+
+      <!-- Input -->
+      <input type="text" placeholder="Search people, rewards, recognitions..."
+        class="flex-1 bg-transparent outline-none text-slate-700 placeholder:text-slate-400" />
+
+      <!-- Shortcut -->
+      <div class="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-medium text-slate-500 shrink-0">
+        ⌘K
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT SECTION -->
+  <div class="flex items-center gap-5 shrink-0">
+
+    <!-- Notification -->
+    <div class="relative">
+
+      <button
+        class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shadow-sm hover:bg-slate-50 transition">
+
+        <lucide-icon [img]="Bell" class="w-5 h-5 text-slate-700"></lucide-icon>
+
+      </button>
+
+      <!-- Badge -->
+      <div
+        class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-pink-500 text-white text-xs flex items-center justify-center font-semibold">
+        3
+      </div>
+
+    </div>
+
+    <!-- Profile -->
+    <div class="flex items-center gap-4 pl-2">
+
+      <!-- Avatar -->
+      <div
+        class="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+
+        {{ initials }}
+
+      </div>
+
+      <!-- User Info -->
+      <div class="leading-tight">
+
+        <h3 class="font-semibold text-slate-900 text-lg">
+
+          {{ userName }}
+
+        </h3>
+
+        <p class="text-slate-500 text-sm mt-1">
+
+          {{ userEmail }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

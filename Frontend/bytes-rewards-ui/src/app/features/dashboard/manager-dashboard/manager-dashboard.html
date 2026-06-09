@@ -1,0 +1,365 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar
+    workspaceTitle="Manager Workspace"
+    [menuItems]="managerMenu"
+  ></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- TOPBAR -->
+    <div
+      class="h-[82px] border-b border-slate-200 bg-white px-8 flex items-center"
+    >
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE -->
+    <div class="px-7 py-6">
+
+      <!-- HERO -->
+      <div class="flex items-start justify-between">
+
+        <div>
+
+          <h1 class="text-5xl font-bold tracking-tight text-slate-900">
+            Team performance
+          </h1>
+
+          <p class="text-slate-500 text-lg mt-2">
+            Insights to spot top contributors and decide who to recognize next.
+          </p>
+
+        </div>
+
+        <div class="flex gap-3">
+
+          <button
+            class="h-14 px-6 bg-white border border-slate-200 rounded-2xl font-semibold"
+          >
+            Export report
+          </button>
+
+          <button
+            class="h-14 px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md"
+          >
+            Recommend award
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="grid grid-cols-4 gap-6 mt-8">
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 border border-slate-100 shadow-sm">
+
+          <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+            Team Members
+          </p>
+
+          <h2 class="text-5xl font-bold mt-5">
+            24
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 4%
+            <span class="text-slate-500">
+              2 joined
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 border border-slate-100 shadow-sm">
+
+          <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+            Recognitions Sent
+          </p>
+
+          <h2 class="text-5xl font-bold mt-5">
+            342
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 18%
+            <span class="text-slate-500">
+              this month
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 border border-slate-100 shadow-sm">
+
+          <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+            Avg. Engagement
+          </p>
+
+          <h2 class="text-5xl font-bold mt-5">
+            87%
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 6%
+            <span class="text-slate-500">
+              vs last mo.
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 border border-slate-100 shadow-sm">
+
+          <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+            Budget Used
+          </p>
+
+          <h2 class="text-5xl font-bold mt-5">
+            62%
+          </h2>
+
+          <p class="text-rose-500 text-lg mt-3">
+            ↘ 3%
+            <span class="text-slate-500">
+              $3.1k of $5k
+            </span>
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="grid grid-cols-12 gap-6 mt-7">
+
+        <!-- TABLE -->
+        <div
+          class="col-span-8 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <div>
+
+              <h2 class="text-3xl font-bold text-slate-900">
+                Employee appreciation insights
+              </h2>
+
+              <p class="text-slate-500 mt-2">
+                Use this to recommend awards and recognize top contributors.
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- TABLE -->
+          <div class="mt-8">
+
+            <!-- HEADER -->
+            <div
+              class="grid grid-cols-6 pb-4 border-b border-slate-200 text-slate-500 uppercase text-sm tracking-wide"
+            >
+              <div>Employee</div>
+              <div>Received</div>
+              <div>Sent</div>
+              <div>Rank</div>
+              <div>Performance</div>
+              <div>Recommend</div>
+            </div>
+
+            <!-- ROW -->
+            @for (employee of [
+              {name:'Priya Shah', role:'Engineering', received:38, sent:22, rank:'#1', score:'76%'},
+              {name:'Marcus Lee', role:'Sales', received:31, sent:19, rank:'#2', score:'62%'},
+              {name:'Elena Rossi', role:'Marketing', received:27, sent:33, rank:'#3', score:'54%'},
+              {name:'Daniel Park', role:'Engineering', received:25, sent:14, rank:'#4', score:'50%'},
+              {name:'Aisha Khan', role:'Customer Success', received:22, sent:28, rank:'#5', score:'44%'}
+            ]; track employee.name) {
+
+              <div
+                class="grid grid-cols-6 items-center py-6 border-b border-slate-100"
+              >
+
+                <div>
+
+                  <h3 class="text-2xl font-semibold">
+                    {{ employee.name }}
+                  </h3>
+
+                  <p class="text-slate-500 mt-1">
+                    {{ employee.role }}
+                  </p>
+
+                </div>
+
+                <div class="text-2xl font-semibold">
+                  {{ employee.received }}
+                </div>
+
+                <div class="text-2xl font-semibold">
+                  {{ employee.sent }}
+                </div>
+
+                <div class="text-2xl font-semibold">
+                  {{ employee.rank }}
+                </div>
+
+                <div>
+
+                  <div class="flex items-center gap-3">
+
+                    <div class="w-28 h-3 rounded-full bg-slate-200 overflow-hidden">
+
+                      <div
+                        class="h-full bg-emerald-500 rounded-full"
+                        [style.width]="employee.score"
+                      ></div>
+
+                    </div>
+
+                    <span class="text-slate-500">
+                      {{ employee.score }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <div>
+
+                  <button
+                    class="px-5 py-2 rounded-full bg-amber-100 text-slate-900 font-semibold"
+                  >
+                    Recommended
+                  </button>
+
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-span-4 space-y-6">
+
+          <!-- APPROVAL -->
+          <div
+            class="bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+          >
+
+            <h2 class="text-3xl font-bold text-slate-900">
+              Approval queue
+            </h2>
+
+            <p class="text-slate-500 mt-2">
+              3 requests pending
+            </p>
+
+            <div class="mt-7 space-y-5">
+
+              <div class="border border-slate-200 rounded-3xl p-5">
+
+                <div class="flex justify-between">
+
+                  <div>
+
+                    <h3 class="font-semibold text-lg">
+                      Daniel Park → Aisha Khan
+                    </h3>
+
+                    <p class="text-slate-500 mt-1">
+                      Teamwork · 1h ago
+                    </p>
+
+                  </div>
+
+                  <div class="text-emerald-500 font-bold text-xl">
+                    +500
+                  </div>
+
+                </div>
+
+                <button
+                  class="mt-5 w-full h-12 rounded-2xl bg-emerald-500 text-white font-semibold"
+                >
+                  Approve
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- TOP -->
+          <div
+            class="bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+          >
+
+            <h2 class="text-3xl font-bold text-slate-900">
+              Top recognizers
+            </h2>
+
+            <div class="space-y-5 mt-8">
+
+              @for (item of [
+                {name:'Priya', score:'76%'},
+                {name:'Marcus', score:'62%'},
+                {name:'Elena', score:'54%'},
+                {name:'Daniel', score:'50%'},
+                {name:'Aisha', score:'44%'}
+              ]; track item.name) {
+
+                <div>
+
+                  <div class="flex justify-between mb-2">
+
+                    <span class="font-medium">
+                      {{ item.name }}
+                    </span>
+
+                    <span class="text-slate-500">
+                      {{ item.score }}
+                    </span>
+
+                  </div>
+
+                  <div class="h-3 rounded-full bg-slate-200 overflow-hidden">
+
+                    <div
+                      class="h-full bg-emerald-500 rounded-full"
+                      [style.width]="item.score"
+                    ></div>
+
+                  </div>
+
+                </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

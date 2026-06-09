@@ -1,0 +1,341 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+<app-sidebar
+  workspaceTitle="Admin Workspace"
+  [menuItems]="adminMenu"
+></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- TOPBAR -->
+    <div
+      class="h-[82px] border-b border-slate-200 bg-white px-8 flex items-center"
+    >
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE -->
+    <div class="px-7 py-6">
+
+      <!-- HERO -->
+      <div class="flex items-start justify-between">
+
+        <!-- LEFT -->
+        <div>
+
+          <h1 class="text-5xl font-bold tracking-tight text-slate-900">
+            Admin overview
+          </h1>
+
+          <p class="text-slate-500 text-lg mt-2">
+            Monitor platform engagement, recognition velocity and budget across the organization.
+          </p>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex gap-3">
+
+          <button
+            class="h-14 px-6 bg-white border border-slate-200 rounded-2xl font-semibold"
+          >
+            Export
+          </button>
+
+          <button
+            class="h-14 px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md"
+          >
+            Add employee
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="grid grid-cols-4 gap-6 mt-8">
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+
+          <div class="flex items-start justify-between">
+
+            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+              Total Employees
+            </p>
+
+            <div
+              class="w-14 h-14 rounded-full bg-[#102C57] text-white flex items-center justify-center"
+            >
+              👥
+            </div>
+
+          </div>
+
+          <h2 class="text-5xl font-bold mt-5">
+            1,284
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 6%
+            <span class="text-slate-500">
+              +74 this Q
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+
+          <div class="flex items-start justify-between">
+
+            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+              Active Users (30d)
+            </p>
+
+            <div
+              class="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center"
+            >
+              📈
+            </div>
+
+          </div>
+
+          <h2 class="text-5xl font-bold mt-5">
+            1,051
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 11%
+            <span class="text-slate-500">
+              82% of org
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+
+          <div class="flex items-start justify-between">
+
+            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+              Recognitions Sent
+            </p>
+
+            <div
+              class="w-14 h-14 rounded-full bg-yellow-400 text-black flex items-center justify-center"
+            >
+              🏅
+            </div>
+
+          </div>
+
+          <h2 class="text-5xl font-bold mt-5">
+            9,420
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 24%
+            <span class="text-slate-500">
+              this month
+            </span>
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+
+          <div class="flex items-start justify-between">
+
+            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
+              Rewards Redeemed
+            </p>
+
+            <div
+              class="w-14 h-14 rounded-full bg-pink-500 text-white flex items-center justify-center"
+            >
+              🎁
+            </div>
+
+          </div>
+
+          <h2 class="text-5xl font-bold mt-5">
+            2,318
+          </h2>
+
+          <p class="text-emerald-500 text-lg mt-3">
+            ↗ 9%
+            <span class="text-slate-500">
+              $48.2k value
+            </span>
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CHARTS -->
+      <div class="grid grid-cols-12 gap-6 mt-7">
+
+        <!-- TREND -->
+        <div
+          class="col-span-8 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+        >
+
+          <h2 class="text-3xl font-bold text-slate-900">
+            Engagement trend
+          </h2>
+
+          <p class="text-slate-500 mt-2">
+            Monthly recognitions vs. reward redemptions
+          </p>
+
+          <!-- Fake Chart -->
+          <div class="mt-10 h-[340px] relative">
+
+            <div
+              class="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-emerald-100 to-transparent rounded-2xl"
+            ></div>
+
+            <div
+              class="absolute bottom-0 left-0 right-0 border-b border-dashed border-slate-300"
+            ></div>
+
+            <div
+              class="absolute bottom-[80px] left-0 right-0 border-b border-dashed border-slate-300"
+            ></div>
+
+            <div
+              class="absolute bottom-[160px] left-0 right-0 border-b border-dashed border-slate-300"
+            ></div>
+
+            <div
+              class="absolute bottom-[240px] left-0 right-0 border-b border-dashed border-slate-300"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <!-- DONUT -->
+        <div
+          class="col-span-4 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+        >
+
+          <h2 class="text-3xl font-bold text-slate-900">
+            Department engagement
+          </h2>
+
+          <p class="text-slate-500 mt-2">
+            Share of recognitions sent
+          </p>
+
+          <!-- Circle -->
+          <div class="flex justify-center mt-10">
+
+            <div
+              class="w-64 h-64 rounded-full border-[28px] border-[#041C3C] relative"
+            >
+
+              <div
+                class="absolute inset-0 border-[28px] border-transparent border-t-emerald-400 rounded-full rotate-[130deg]"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTTOM -->
+      <div class="grid grid-cols-12 gap-6 mt-7">
+
+        <!-- HEATMAP -->
+        <div
+          class="col-span-8 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+        >
+
+          <h2 class="text-3xl font-bold text-slate-900">
+            Recognition activity heatmap
+          </h2>
+
+          <div class="mt-8 grid grid-cols-20 gap-2">
+
+            @for (item of [].constructor(120); track $index) {
+
+              <div
+                class="w-5 h-5 rounded-full bg-emerald-300"
+              ></div>
+
+            }
+
+          </div>
+
+        </div>
+
+        <!-- TOP EMPLOYEES -->
+        <div
+          class="col-span-4 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
+        >
+
+          <h2 class="text-3xl font-bold text-slate-900">
+            Top performing employees
+          </h2>
+
+          <div class="space-y-6 mt-8">
+
+            <!-- ITEM -->
+            <div class="flex items-center justify-between">
+
+              <div class="flex items-center gap-4">
+
+                <div
+                  class="w-12 h-12 rounded-full bg-yellow-300 flex items-center justify-center font-bold"
+                >
+                  1
+                </div>
+
+                <div
+                  class="w-14 h-14 rounded-full bg-[#102C57] text-white flex items-center justify-center font-bold"
+                >
+                  PS
+                </div>
+
+                <div>
+
+                  <h3 class="text-2xl font-semibold">
+                    Priya Shah
+                  </h3>
+
+                  <p class="text-slate-500">
+                    Engineering
+                  </p>
+
+                </div>
+
+              </div>
+
+              <div class="text-emerald-500 font-bold text-3xl">
+                38
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
