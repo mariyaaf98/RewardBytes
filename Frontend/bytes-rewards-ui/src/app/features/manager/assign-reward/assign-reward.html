@@ -1,0 +1,257 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Manager Workspace" [menuItems]="managerMenu"></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE -->
+    <div class="px-4 sm:px-8 py-7 flex-1">
+
+      <!-- HEADER -->
+      <div class="mb-8">
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Assign Reward</h1>
+        <p class="text-slate-500 text-lg mt-2">
+          Recognize an employee by assigning a reward category and bytes.
+        </p>
+      </div>
+
+      <!-- SUCCESS BANNER -->
+      @if (showSuccess()) {
+        <div class="mb-6 flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium">
+          <span class="text-xl">✓</span>
+          <span>Reward assigned successfully!</span>
+        </div>
+      }
+
+      <!-- CONTENT GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- ── FORM ──────────────────────────────────────── -->
+        <div class="lg:col-span-7">
+          <div class="bg-white rounded-[30px] overflow-hidden border border-slate-100 shadow-sm">
+
+            <!-- Card header -->
+            <div class="bg-gradient-to-r from-[#041C3C] to-[#123A67] px-8 py-7">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">
+                  🏅
+                </div>
+                <div>
+                  <h2 class="text-3xl font-bold text-white">Assign a Reward</h2>
+                  <p class="text-slate-300 mt-1">Choose an employee and a reward category.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form body -->
+            <div class="p-6 sm:p-8 space-y-6">
+
+              <!-- ── Step 1: Employee ── -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">
+                  Employee <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    [value]="userSearchText()"
+                    (input)="onUserSearchInput($any($event.target).value)"
+                    placeholder="Search employee…"
+                    class="form-input"
+                    autocomplete="off" />
+
+                  <!-- Dropdown -->
+                  @if (showUserDropdown()) {
+                    <div class="absolute z-50 mt-2 w-full bg-white border border-slate-200 rounded-2xl shadow-lg max-h-56 overflow-y-auto">
+                      @for (user of filteredUsers(); track user.id) {
+                        <button
+                          type="button"
+                          (click)="selectUser(user)"
+                          class="w-full text-left px-4 py-3 hover:bg-slate-50 text-base transition-colors">
+                          {{ user.fullName }}
+                        </button>
+                      }
+                    </div>
+                  }
+                </div>
+                @if (userError()) {
+                  <p class="text-red-500 text-sm mt-1.5">{{ userError() }}</p>
+                }
+              </div>
+
+              <!-- ── Step 2: Reward Category ── -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">
+                  Reward Category <span class="text-red-500">*</span>
+                </label>
+
+                @if (selectedCategory()) {
+                  <!-- Selected category card -->
+                  <app-reward-category-card
+                    [category]="selectedCategory()!"
+                    (change)="openPicker()">
+                  </app-reward-category-card>
+                } @else {
+                  <!-- Trigger button -->
+                  <button
+                    type="button"
+                    (click)="openPicker()"
+                    class="w-full flex items-center justify-between px-5 py-4 rounded-2xl border-2 border-dashed border-slate-300
+                           bg-white hover:border-emerald-400 hover:bg-emerald-50 transition-colors group">
+                    <div class="flex items-center gap-3 text-slate-500 group-hover:text-emerald-700">
+                      <div class="w-10 h-10 rounded-xl bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                      </div>
+                      <div class="text-left">
+                        <p class="font-semibold text-sm">Select Reward Category</p>
+                        <p class="text-xs mt-0.5 text-slate-400 group-hover:text-emerald-600">
+                          {{ activeCategories().length }} categories available
+                        </p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:text-emerald-500 transition-colors"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                }
+
+                @if (categoryError()) {
+                  <p class="text-red-500 text-sm mt-1.5">{{ categoryError() }}</p>
+                }
+              </div>
+
+              <!-- ── Step 3: Reason ── -->
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    Reason <span class="text-red-500">*</span>
+                  </label>
+                  <span class="text-xs text-slate-400">{{ reason().length }}/500</span>
+                </div>
+                <textarea
+                  [value]="reason()"
+                  (input)="reason.set($any($event.target).value)"
+                  maxlength="500"
+                  rows="5"
+                  placeholder="Describe specifically what this employee did and the impact it had…"
+                  class="w-full rounded-3xl border border-slate-200 p-5 text-base resize-none outline-none transition
+                         focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"></textarea>
+                @if (reasonError()) {
+                  <p class="text-red-500 text-sm mt-1.5">{{ reasonError() }}</p>
+                }
+              </div>
+
+            </div>
+
+            <!-- Form footer -->
+            <div class="border-t border-slate-100 px-6 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p class="text-sm text-slate-500">
+                @if (selectedCategory()) {
+                  This will award
+                  <strong class="text-amber-600">✦ {{ selectedCategory()!.bytes }} bytes</strong>
+                  to the employee.
+                } @else {
+                  Select a category to see the bytes value.
+                }
+              </p>
+              <div class="flex gap-3 w-full sm:w-auto">
+                <button
+                  type="button"
+                  (click)="resetForm()"
+                  class="flex-1 sm:flex-none h-12 px-6 rounded-2xl border border-slate-200 font-medium
+                         text-slate-700 hover:bg-slate-50 transition">
+                  Clear
+                </button>
+                <button
+                  type="button"
+                  (click)="submit()"
+                  [disabled]="isSubmitting()"
+                  class="flex-1 sm:flex-none h-12 px-8 rounded-2xl bg-emerald-500 text-white font-semibold
+                         hover:bg-emerald-600 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                  {{ isSubmitting() ? 'Assigning…' : 'Assign Reward' }}
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── RIGHT PANEL ────────────────────────────────── -->
+        <div class="lg:col-span-5 space-y-6">
+      
+          <!-- Recent rewards -->
+          <div class="bg-white rounded-[30px] border border-slate-100 shadow-sm p-6">
+            <h3 class="text-xl font-bold text-slate-900 mb-5">Recent Rewards</h3>
+
+            @if (isLoadingHistory()) {
+              <div class="flex items-center justify-center py-8 text-slate-400 text-sm gap-2">
+                <div class="w-5 h-5 border-2 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
+                Loading…
+              </div>
+            } @else if (recentRewards().length === 0) {
+              <div class="py-8 text-center text-slate-400 text-sm">No rewards assigned yet.</div>
+            } @else {
+              <div class="space-y-4">
+                @for (reward of recentRewards(); track reward.id) {
+                  <div class="flex items-start gap-3 pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                    <div class="w-9 h-9 rounded-full bg-[#041C3C] text-white flex items-center
+                                justify-center font-bold text-xs shrink-0 mt-0.5">
+                      {{ getInitials(reward.toUserName) }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <p class="font-semibold text-slate-900 text-sm truncate">{{ reward.toUserName }}</p>
+                      <p class="text-xs text-slate-500 truncate">{{ reward.rewardCategoryName }}</p>
+                    </div>
+                    <div class="text-right shrink-0">
+                      <p class="text-amber-600 font-bold text-sm">✦ {{ reward.bytes }}</p>
+                      <p class="text-xs text-slate-400 mt-0.5">{{ reward.createdAt | date:'dd MMM' }}</p>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Category picker modal ─────────────────────────────── -->
+@if (showPickerModal()) {
+  <app-reward-category-picker-modal
+    [categories]="activeCategories()"
+    [selectedId]="selectedCategory()?.id ?? ''"
+    (categorySelected)="onCategorySelected($event)"
+    (closed)="onPickerClosed()">
+  </app-reward-category-picker-modal>
+}
+
+<!-- ── Error modal ────────────────────────────────────────── -->
+@if (showErrorModal()) {
+  <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
+    <div class="bg-white rounded-3xl w-full max-w-md p-6 shadow-xl">
+      <h3 class="text-xl font-bold text-red-600">Error</h3>
+      <p class="mt-4 text-slate-600">{{ errorMessage() }}</p>
+      <div class="mt-6 flex justify-end">
+        <button
+          (click)="closeErrorModal()"
+          class="px-6 py-2.5 rounded-xl bg-red-500 text-white font-semibold">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+}

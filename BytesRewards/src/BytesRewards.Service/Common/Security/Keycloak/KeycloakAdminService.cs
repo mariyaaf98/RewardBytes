@@ -324,6 +324,36 @@ public class KeycloakAdminService(
         }
     }
 
+    public async Task EnableUserAsync(
+    string token,
+    string userId,
+    CancellationToken ct)
+    {
+        httpClient.DefaultRequestHeaders.Clear();
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                token);
+
+        var request = new { enabled = true };
+
+        var response =
+            await httpClient.PutAsJsonAsync(
+                $"{_options.ServerUrl}/admin/realms/{_options.Realm}/users/{userId}",
+                request,
+                ct);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error =
+                await response.Content.ReadAsStringAsync(ct);
+
+            throw new Exception(
+                $"EnableUser Error: {response.StatusCode} - {error}");
+        }
+    }
+
     public async Task<List<string>> GetRolesAsync(
     string token,
     CancellationToken ct)

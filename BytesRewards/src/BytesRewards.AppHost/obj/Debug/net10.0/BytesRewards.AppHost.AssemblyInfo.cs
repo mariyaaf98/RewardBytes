@@ -11,22 +11,22 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspire-bytesrewards")]
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("C:\\Users\\MariyaAF\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.0.1\\too" +
-    "ls\\dcp.exe"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("C:\\Users\\MariyaAF\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.0.1\\too" +
-    "ls\\ext\\"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("C:\\Users\\MariyaAF\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.0.1\\too" +
-    "ls\\ext\\bin\\"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.AppHost")]
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/mariya.af/.nuget/packages/aspire.hosting.orchestration.osx-arm64/13.0.1/to" +
+    "ols/dcp"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/mariya.af/.nuget/packages/aspire.hosting.orchestration.osx-arm64/13.0.1/to" +
+    "ols/ext/"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/mariya.af/.nuget/packages/aspire.hosting.orchestration.osx-arm64/13.0.1/to" +
+    "ols/ext/bin/"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "BytesRewards.AppHost.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("C:\\Users\\MariyaAF\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.0.1\\tools\\Aspir" +
-    "e.Dashboard.exe"))]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.AppHost\\obj\\")]
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/mariya.af/.nuget/packages/aspire.dashboard.sdk.osx-arm64/13.0.1/tools/Aspi" +
+    "re.Dashboard.dll"))]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.AppHost/obj/")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bytestrone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2025")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d64a01e5cc3c95d07a8754c936fef0622c7981e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2dfc2077e0e2e452a4434f2e4e0bc0e3bb4ca4a")]
 [assembly: System.Reflection.AssemblyProductAttribute("BytesRewards.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BytesRewards.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

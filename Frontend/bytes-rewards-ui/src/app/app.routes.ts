@@ -134,11 +134,62 @@ export const routes: Routes = [
     canActivate: [adminGuard]
   },
 
+  {
+    path: 'admin/departments',
+    loadComponent: () =>
+      import('./features/admin/department-management/department-management')
+        .then(m => m.DepartmentManagementComponent),
+    canActivate: [adminGuard]
+  },
+
+  {
+    path: 'admin/reward-categories',
+    loadComponent: () =>
+      import('./features/admin/reward-category-management/reward-category-management')
+        .then(m => m.RewardCategoryManagementComponent),
+    canActivate: [adminGuard]
+  },
+
   // MANAGER
   {
     path: 'manager',
     component: ManagerDashboardComponent,
     canActivate: [managerGuard]
+  },
+
+  {
+    path: 'manager/recognize',
+    loadComponent: () =>
+      import('./features/manager/assign-reward/assign-reward')
+        .then(m => m.AssignRewardComponent),
+    canActivate: [managerGuard]
+  },
+
+  // EMPLOYEE — WALLET
+  {
+    path: 'wallet',
+    loadComponent: () =>
+      import('./features/employee/wallet/wallet')
+        .then(m => m.WalletComponent),
+    canActivate: [authGuard]
+  },
+
+  // EMPLOYEE — LEADERBOARD
+  {
+    path: 'leaderboard',
+    loadComponent: () =>
+      import('./features/employee/leaderboard/leaderboard')
+        .then(m => m.LeaderboardComponent),
+    canActivate: [authGuard]
+  },
+
+  // EMPLOYEE — PROFILE
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./features/employee/profile/profile')
+        .then(m => m.ProfileComponent),
+    canActivate: [authGuard]
   },
 
   // FALLBACK

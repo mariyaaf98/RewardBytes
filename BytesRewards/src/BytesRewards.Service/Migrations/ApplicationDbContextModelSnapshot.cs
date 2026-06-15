@@ -206,6 +206,29 @@ namespace BytesRewards.Service.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("BytesRewards.Service.Wallets.Domain.Wallet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AvailableBytes")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Wallets", (string)null);
+                });
+
             modelBuilder.Entity("BytesRewards.Service.Users.Domain.User", b =>
                 {
                     b.HasOne("BytesRewards.Service.Departments.Domain.Department", "Department")

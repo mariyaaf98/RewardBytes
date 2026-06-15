@@ -24,6 +24,10 @@ export interface Department {
 
   name: string;
 
+  description: string;
+
+  isActive: boolean;
+
 }
 
 

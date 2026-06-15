@@ -4,7 +4,8 @@ import {
   Gift,
   Wallet,
   Trophy,
-  Bell
+  Bell,
+  UserCircle
 } from 'lucide-angular';
 
 export const EMPLOYEE_MENU = [
@@ -13,11 +14,6 @@ export const EMPLOYEE_MENU = [
     icon: LayoutDashboard,
     route: '/'
   },
-  // {
-  //   label: 'Recognize',
-  //   icon: BadgePlus,
-  //   route: '/recognize'
-  // },
   {
     label: 'Recognize',
     icon: BadgePlus,
@@ -46,6 +42,11 @@ export const EMPLOYEE_MENU = [
     label: 'Leaderboard',
     icon: Trophy,
     route: '/leaderboard'
+  },
+  {
+    label: 'My Profile',
+    icon: UserCircle,
+    route: '/profile'
   },
   {
     label: 'Notifications',

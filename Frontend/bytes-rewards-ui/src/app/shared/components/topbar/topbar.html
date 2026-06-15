@@ -1,75 +1,81 @@
-<div class="w-full flex items-center gap-10">
+<div class="w-full flex items-center gap-4">
 
-  <!-- LEFT SECTION -->
-  <div class="flex-1 flex justify-center">
-
-    <!-- SEARCH -->
-    <div class="flex items-center gap-3 bg-white h-14 px-5 rounded-2xl border border-slate-200 w-[520px] shadow-sm">
-
-      <!-- Icon -->
-      <lucide-icon [img]="Search" class="w-5 h-5 text-slate-400 shrink-0"></lucide-icon>
-
-      <!-- Input -->
-      <input type="text" placeholder="Search people, rewards, recognitions..."
-        class="flex-1 bg-transparent outline-none text-slate-700 placeholder:text-slate-400" />
-
-      <!-- Shortcut -->
-      <div class="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-medium text-slate-500 shrink-0">
-        ⌘K
-      </div>
-
-    </div>
-
+  <!-- LEFT: SEARCH -->
+  <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 h-10 px-4 rounded-xl w-72 shrink-0">
+    <lucide-icon [img]="Search" class="w-4 h-4 text-slate-400 shrink-0"></lucide-icon>
+    <input
+      type="text"
+      placeholder="Search..."
+      class="flex-1 bg-transparent outline-none text-sm text-slate-700 placeholder:text-slate-400 min-w-0" />
+    <span class="text-[10px] font-medium text-slate-400 bg-slate-200 px-1.5 py-0.5 rounded shrink-0">⌘K</span>
   </div>
 
-  <!-- RIGHT SECTION -->
-  <div class="flex items-center gap-5 shrink-0">
+  <!-- SPACER -->
+  <div class="flex-1"></div>
 
-    <!-- Notification -->
+  <!-- RIGHT: BELL + DIVIDER + PROFILE -->
+  <div class="flex items-center gap-3 shrink-0">
+
+    <!-- BELL -->
+    <div class="relative">
+      <button class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:bg-slate-200 transition">
+        <lucide-icon [img]="Bell" class="w-[18px] h-[18px] text-slate-600"></lucide-icon>
+      </button>
+      <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center leading-none">3</span>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="w-px h-8 bg-slate-200 shrink-0"></div>
+
+    <!-- PROFILE + DROPDOWN -->
     <div class="relative">
 
       <button
-        class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shadow-sm hover:bg-slate-50 transition">
+        (click)="toggleDropdown()"
+        class="flex items-center gap-3 rounded-xl px-2 py-1.5 hover:bg-slate-100 transition outline-none">
 
-        <lucide-icon [img]="Bell" class="w-5 h-5 text-slate-700"></lucide-icon>
+        <div class="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+          {{ initials }}
+        </div>
+
+        <div class="text-left leading-tight">
+          <p class="text-sm font-semibold text-slate-900 whitespace-nowrap">{{ userName }}</p>
+          <p class="text-xs text-slate-400 whitespace-nowrap">{{ userDesignation || userEmail }}</p>
+        </div>
 
       </button>
 
-      <!-- Badge -->
-      <div
-        class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-pink-500 text-white text-xs flex items-center justify-center font-semibold">
-        3
-      </div>
+      <!-- DROPDOWN -->
+      @if (dropdownOpen) {
+        <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden z-50">
 
-    </div>
+          <div class="px-5 py-4 border-b border-slate-100">
+            <p class="text-[15px] font-bold text-slate-900">My Account</p>
+          </div>
 
-    <!-- Profile -->
-    <div class="flex items-center gap-4 pl-2">
+          <div class="py-2">
+            <button (click)="navigate('/profile')"
+              class="w-full text-left px-5 py-3 text-[15px] text-slate-700 hover:bg-slate-50 transition">
+              Profile
+            </button>
+            <button (click)="navigate('/wallet')"
+              class="w-full text-left px-5 py-3 text-[15px] text-slate-700 hover:bg-slate-50 transition">
+              Wallet &amp; Bytes
+            </button>
+            <button class="w-full text-left px-5 py-3 text-[15px] text-slate-700 hover:bg-slate-50 transition">
+              Preferences
+            </button>
+          </div>
 
-      <!-- Avatar -->
-      <div
-        class="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+          <div class="border-t border-slate-100 py-2">
+            <button (click)="signOut()"
+              class="w-full text-left px-5 py-3 text-[15px] text-red-500 hover:bg-red-50 transition font-medium">
+              Sign out
+            </button>
+          </div>
 
-        {{ initials }}
-
-      </div>
-
-      <!-- User Info -->
-      <div class="leading-tight">
-
-        <h3 class="font-semibold text-slate-900 text-lg">
-
-          {{ userName }}
-
-        </h3>
-
-        <p class="text-slate-500 text-sm mt-1">
-
-          {{ userEmail }}
-
-        </p>
-
-      </div>
+        </div>
+      }
 
     </div>
 

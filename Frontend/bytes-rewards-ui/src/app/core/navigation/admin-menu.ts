@@ -4,7 +4,9 @@ import {
   Gift,
   ChartColumn,
   ShieldCheck,
-  Settings
+  Settings,
+  Building2,
+  Tag
 } from 'lucide-angular';
 
 export const ADMIN_MENU = [
@@ -17,6 +19,16 @@ export const ADMIN_MENU = [
     label: 'Employees',
     icon: Users,
     route: '/admin/employees'
+  },
+  {
+    label: 'Departments',
+    icon: Building2,
+    route: '/admin/departments'
+  },
+  {
+    label: 'Reward Categories',
+    icon: Tag,
+    route: '/admin/reward-categories'
   },
   {
     label: 'Roles',
@@ -32,11 +44,6 @@ export const ADMIN_MENU = [
     label: 'Analytics',
     icon: ChartColumn,
     route: '/analytics'
-  },
-  {
-    label: 'Roles & Access',
-    icon: ShieldCheck,
-    route: '/roles'
   },
   {
     label: 'Settings',

@@ -1,0 +1,37 @@
+<div class="flex items-center gap-4 p-5 rounded-2xl border-2 border-emerald-400 bg-emerald-50 relative">
+
+  <!-- Avatar -->
+  <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl shrink-0">
+    {{ getInitial(category().name) }}
+  </div>
+
+  <!-- Info -->
+  <div class="flex-1 min-w-0">
+    <p class="font-bold text-slate-900 text-base leading-tight truncate">{{ category().name }}</p>
+    @if (category().description) {
+      <p class="text-slate-500 text-sm mt-0.5 truncate">{{ category().description }}</p>
+    }
+    <!-- Bytes badge -->
+    <div class="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200">
+      <span class="text-amber-600 font-bold text-sm">✦</span>
+      <span class="text-amber-700 font-bold text-sm">{{ category().bytes }}</span>
+      <span class="text-amber-500 text-xs font-medium">bytes</span>
+    </div>
+  </div>
+
+  <!-- Change button -->
+  <button
+    type="button"
+    (click)="change.emit()"
+    class="shrink-0 h-9 px-4 rounded-xl border border-slate-200 bg-white text-slate-600 text-sm font-medium hover:bg-slate-50 transition">
+    Change
+  </button>
+
+  <!-- Selected indicator -->
+  <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shadow">
+    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+    </svg>
+  </div>
+
+</div>

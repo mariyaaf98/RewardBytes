@@ -1,0 +1,407 @@
+@page "/admin/departments"
+@attribute [StreamRendering(false)]
+@rendermode InteractiveServer
+
+@inject DepartmentsApiClient DeptApi
+
+<PageTitle>Departments — BytesRewards</PageTitle>
+
+<div class="dept-page">
+
+    <!-- Page Header -->
+    <div class="dept-header">
+        <div class="dept-header__title">
+            <span class="dept-header__icon bi bi-building" aria-hidden="true"></span>
+            <div>
+                <h1 class="dept-header__h1">Departments</h1>
+                <p class="dept-header__sub">Manage organisation departments</p>
+            </div>
+        </div>
+        <button class="btn-add" @onclick="OpenAddModal" disabled="@isLoading">
+            <span class="bi bi-plus-lg" aria-hidden="true"></span>
+            Add Department
+        </button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="dept-toolbar">
+        <div class="dept-search">
+            <span class="bi bi-search dept-search__icon" aria-hidden="true"></span>
+            <input class="dept-search__input"
+                   type="text"
+                   placeholder="Search departments…"
+                   @bind="searchQuery"
+                   @bind:event="oninput" />
+        </div>
+        <span class="dept-count">@FilteredDepartments.Count department@(FilteredDepartments.Count != 1 ? "s" : "")</span>
+    </div>
+
+    <!-- Alert -->
+    @if (!string.IsNullOrEmpty(alertMessage))
+    {
+        <div class="dept-alert @(alertIsError ? "dept-alert--error" : "dept-alert--success")" role="alert">
+            <span class="bi @(alertIsError ? "bi-exclamation-circle" : "bi-check-circle")" aria-hidden="true"></span>
+            @alertMessage
+            <button class="dept-alert__close" @onclick="ClearAlert" aria-label="Close">&times;</button>
+        </div>
+    }
+
+    <!-- Content -->
+    @if (isLoading)
+    {
+        <div class="dept-loading">
+            <div class="dept-spinner" role="status" aria-label="Loading"></div>
+            <span>Loading departments…</span>
+        </div>
+    }
+    else if (departments.Count == 0)
+    {
+        <div class="dept-empty">
+            <span class="bi bi-building dept-empty__icon" aria-hidden="true"></span>
+            <h3>No departments yet</h3>
+            <p>Get started by adding your first department.</p>
+            <button class="btn-add" @onclick="OpenAddModal">
+                <span class="bi bi-plus-lg" aria-hidden="true"></span>
+                Add Department
+            </button>
+        </div>
+    }
+    else if (FilteredDepartments.Count == 0)
+    {
+        <div class="dept-empty">
+            <span class="bi bi-search dept-empty__icon" aria-hidden="true"></span>
+            <h3>No results found</h3>
+            <p>Try adjusting your search query.</p>
+        </div>
+    }
+    else
+    {
+        <!-- Table -->
+        <div class="dept-table-wrap">
+            <table class="dept-table" aria-label="Departments table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="dept-table__actions-col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var (dept, idx) in FilteredDepartments.Select((d, i) => (d, i)))
+                    {
+                        <tr>
+                            <td class="dept-table__num">@(idx + 1)</td>
+                            <td class="dept-table__name">
+                                <span class="dept-avatar">@dept.Name[0]</span>
+                                @dept.Name
+                            </td>
+                            <td class="dept-table__desc">
+                                @(string.IsNullOrWhiteSpace(dept.Description) ? "—" : dept.Description)
+                            </td>
+                            <td>
+                                <span class="dept-badge @(dept.IsActive ? "dept-badge--active" : "dept-badge--inactive")">
+                                    @(dept.IsActive ? "Active" : "Inactive")
+                                </span>
+                            </td>
+                            <td class="dept-table__actions">
+                                <button class="btn-icon btn-icon--edit"
+                                        @onclick="() => OpenEditModal(dept)"
+                                        title="Edit department"
+                                        aria-label="Edit @dept.Name">
+                                    <span class="bi bi-pencil" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn-icon btn-icon--delete"
+                                        @onclick="() => OpenDeleteModal(dept)"
+                                        title="Delete department"
+                                        aria-label="Delete @dept.Name">
+                                    <span class="bi bi-trash" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<!-- ── Add / Edit Modal ───────────────────────────────────────── -->
+@if (showFormModal)
+{
+    <div class="modal-backdrop" @onclick="CloseFormModal">
+        <div class="modal-card" @onclick:stopPropagation="true" role="dialog"
+             aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-card__header">
+                <h2 id="modal-title" class="modal-card__title">
+                    @(isEditing ? "Edit Department" : "Add Department")
+                </h2>
+                <button class="modal-card__close" @onclick="CloseFormModal" aria-label="Close modal">
+                    &times;
+                </button>
+            </div>
+
+            <div class="modal-card__body">
+                <div class="form-group">
+                    <label class="form-label" for="dept-name">Department Name <span class="form-required">*</span></label>
+                    <input id="dept-name"
+                           class="form-input @(nameError ? "form-input--error" : "")"
+                           type="text"
+                           placeholder="e.g. Engineering"
+                           @bind="formName"
+                           @bind:event="oninput"
+                           maxlength="100"
+                           autocomplete="off" />
+                    @if (nameError)
+                    {
+                        <span class="form-error-msg">Department name is required.</span>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="dept-desc">Description</label>
+                    <textarea id="dept-desc"
+                              class="form-input form-textarea"
+                              placeholder="Brief description of this department…"
+                              @bind="formDescription"
+                              @bind:event="oninput"
+                              maxlength="500"
+                              rows="3"></textarea>
+                    <span class="form-char-count">@formDescription.Length / 500</span>
+                </div>
+            </div>
+
+            <div class="modal-card__footer">
+                <button class="btn-cancel" @onclick="CloseFormModal" disabled="@isSaving">
+                    Cancel
+                </button>
+                <button class="btn-save" @onclick="SaveDepartment" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                        <span>Saving…</span>
+                    }
+                    else
+                    {
+                        <span>@(isEditing ? "Save Changes" : "Create Department")</span>
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- ── Delete Confirm Modal ───────────────────────────────────── -->
+@if (showDeleteModal && departmentToDelete is not null)
+{
+    <div class="modal-backdrop" @onclick="CloseDeleteModal">
+        <div class="modal-card modal-card--sm" @onclick:stopPropagation="true"
+             role="alertdialog" aria-modal="true" aria-labelledby="delete-title">
+            <div class="modal-card__header modal-card__header--danger">
+                <h2 id="delete-title" class="modal-card__title">Delete Department</h2>
+                <button class="modal-card__close" @onclick="CloseDeleteModal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-card__body">
+                <div class="delete-confirm">
+                    <span class="bi bi-exclamation-triangle-fill delete-confirm__icon" aria-hidden="true"></span>
+                    <p>Are you sure you want to delete <strong>@departmentToDelete.Name</strong>?</p>
+                    <p class="delete-confirm__sub">This action cannot be undone.</p>
+                </div>
+            </div>
+            <div class="modal-card__footer">
+                <button class="btn-cancel" @onclick="CloseDeleteModal" disabled="@isSaving">
+                    Cancel
+                </button>
+                <button class="btn-delete" @onclick="ConfirmDelete" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                        <span>Deleting…</span>
+                    }
+                    else
+                    {
+                        <span>Delete</span>
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    // ── State ─────────────────────────────────────────────────────
+    private List<DepartmentDto> departments = [];
+    private string searchQuery = string.Empty;
+    private bool isLoading = true;
+    private bool isSaving = false;
+
+    // Alert
+    private string alertMessage = string.Empty;
+    private bool alertIsError = false;
+
+    // Form modal
+    private bool showFormModal = false;
+    private bool isEditing = false;
+    private Guid editingId = Guid.Empty;
+    private string formName = string.Empty;
+    private string formDescription = string.Empty;
+    private bool nameError = false;
+
+    // Delete modal
+    private bool showDeleteModal = false;
+    private DepartmentDto? departmentToDelete;
+
+    // ── Computed ──────────────────────────────────────────────────
+    private List<DepartmentDto> FilteredDepartments =>
+        string.IsNullOrWhiteSpace(searchQuery)
+            ? departments
+            : departments
+                .Where(d =>
+                    d.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    (d.Description?.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ?? false))
+                .ToList();
+
+    // ── Lifecycle ─────────────────────────────────────────────────
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDepartmentsAsync();
+    }
+
+    private async Task LoadDepartmentsAsync()
+    {
+        isLoading = true;
+        try
+        {
+            departments = await DeptApi.GetDepartmentsAsync();
+        }
+        catch (Exception ex)
+        {
+            ShowAlert($"Failed to load departments: {ex.Message}", isError: true);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    // ── Add Modal ─────────────────────────────────────────────────
+    private void OpenAddModal()
+    {
+        isEditing = false;
+        editingId = Guid.Empty;
+        formName = string.Empty;
+        formDescription = string.Empty;
+        nameError = false;
+        showFormModal = true;
+    }
+
+    // ── Edit Modal ────────────────────────────────────────────────
+    private void OpenEditModal(DepartmentDto dept)
+    {
+        isEditing = true;
+        editingId = dept.Id;
+        formName = dept.Name;
+        formDescription = dept.Description ?? string.Empty;
+        nameError = false;
+        showFormModal = true;
+    }
+
+    private void CloseFormModal()
+    {
+        if (!isSaving)
+            showFormModal = false;
+    }
+
+    // ── Save (Create / Update) ────────────────────────────────────
+    private async Task SaveDepartment()
+    {
+        nameError = string.IsNullOrWhiteSpace(formName);
+        if (nameError) return;
+
+        isSaving = true;
+        try
+        {
+            var dto = new CreateDepartmentDto
+            {
+                Name = formName.Trim(),
+                Description = formDescription.Trim()
+            };
+
+            if (isEditing)
+            {
+                await DeptApi.UpdateDepartmentAsync(editingId, dto);
+                ShowAlert($"Department \"{dto.Name}\" updated successfully.", isError: false);
+            }
+            else
+            {
+                await DeptApi.CreateDepartmentAsync(dto);
+                ShowAlert($"Department \"{dto.Name}\" created successfully.", isError: false);
+            }
+
+            showFormModal = false;
+            await LoadDepartmentsAsync();
+        }
+        catch (Exception ex)
+        {
+            ShowAlert($"Operation failed: {ex.Message}", isError: true);
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    // ── Delete Modal ──────────────────────────────────────────────
+    private void OpenDeleteModal(DepartmentDto dept)
+    {
+        departmentToDelete = dept;
+        showDeleteModal = true;
+    }
+
+    private void CloseDeleteModal()
+    {
+        if (!isSaving)
+        {
+            showDeleteModal = false;
+            departmentToDelete = null;
+        }
+    }
+
+    private async Task ConfirmDelete()
+    {
+        if (departmentToDelete is null) return;
+
+        isSaving = true;
+        try
+        {
+            await DeptApi.DeleteDepartmentAsync(departmentToDelete.Id);
+            ShowAlert($"Department \"{departmentToDelete.Name}\" deleted.", isError: false);
+            showDeleteModal = false;
+            departmentToDelete = null;
+            await LoadDepartmentsAsync();
+        }
+        catch (Exception ex)
+        {
+            ShowAlert($"Delete failed: {ex.Message}", isError: true);
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    // ── Alert helpers ─────────────────────────────────────────────
+    private void ShowAlert(string message, bool isError)
+    {
+        alertMessage = message;
+        alertIsError = isError;
+    }
+
+    private void ClearAlert()
+    {
+        alertMessage = string.Empty;
+    }
+}

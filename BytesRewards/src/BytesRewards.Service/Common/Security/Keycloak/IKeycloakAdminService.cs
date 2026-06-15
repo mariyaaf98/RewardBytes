@@ -50,6 +50,11 @@ public interface IKeycloakAdminService
         string userId,
         CancellationToken ct);
 
+    Task EnableUserAsync(
+        string token,
+        string userId,
+        CancellationToken ct);
+
     Task<List<string>> GetRolesAsync(
         string token,
         CancellationToken ct);

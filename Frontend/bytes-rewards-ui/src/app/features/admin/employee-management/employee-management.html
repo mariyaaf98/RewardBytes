@@ -1,514 +1,419 @@
 <div class="flex min-h-screen bg-[#F4F7FB]">
 
     <!-- SIDEBAR -->
-    <app-sidebar workspaceTitle="Admin Workspace" [menuItems]="adminMenu">
-    </app-sidebar>
+    <app-sidebar workspaceTitle="Admin Workspace" [menuItems]="adminMenu"></app-sidebar>
 
     <!-- MAIN -->
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col min-w-0">
 
         <!-- TOPBAR -->
-        <div class="h-[82px] border-b border-slate-200 bg-white px-8 flex items-center">
-
+        <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
             <app-topbar></app-topbar>
-
         </div>
 
         <!-- PAGE -->
-        <div class="px-8 py-7">
+        <div class="px-4 sm:px-6 lg:px-8 py-6 flex-1">
 
             <!-- HERO -->
-            <div class="flex items-start justify-between">
-
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                 <div>
-
-                    <h1 class="text-5xl font-bold tracking-tight text-slate-900">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
                         Employee management
                     </h1>
-
-                    <p class="text-slate-500 text-xl mt-2">
+                    <p class="text-slate-500 text-base sm:text-lg mt-2">
                         Add, manage and assign award managers across your organization.
                     </p>
-
                 </div>
 
-                <button (click)="isAddEmployeeModalOpen = true"
-                    class="h-14 px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md hover:bg-emerald-600 transition">
-
+                <button
+                    (click)="isAddEmployeeModalOpen = true"
+                    class="shrink-0 h-12 sm:h-14 px-6 sm:px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md hover:bg-emerald-600 transition text-sm sm:text-base w-full sm:w-auto">
                     + Add employee
-
                 </button>
-
             </div>
 
             <!-- TABLE CARD -->
-            <div class="mt-8 bg-white rounded-[34px] border border-slate-100 shadow-sm p-7">
+            <div class="mt-6 bg-white rounded-[24px] sm:rounded-[34px] border border-slate-100 shadow-sm p-4 sm:p-6 lg:p-7">
 
                 <!-- FILTERS -->
-                <div class="flex items-center gap-4">
+                <div class="flex flex-col sm:flex-row gap-3">
 
                     <!-- SEARCH -->
-                    <div class="flex-1 h-14 rounded-2xl bg-slate-100 px-5 flex items-center">
-
-                        <input type="text" placeholder="Search employees..."
-                            class="w-full bg-transparent outline-none text-lg" [(ngModel)]="searchText" />
-
+                    <div class="flex items-center gap-3 h-12 sm:h-14 rounded-2xl bg-slate-100 px-4 sm:px-5 flex-1">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input
+                            type="text"
+                            placeholder="Search employees..."
+                            class="w-full bg-transparent outline-none text-base sm:text-lg"
+                            [(ngModel)]="searchText" />
                     </div>
 
-                    <!-- FILTER -->
-                    <select class="h-14 px-6 rounded-2xl border border-slate-200 font-medium"
-                        [(ngModel)]="selectedDepartment">
+                    <!-- SELECTS ROW -->
+                    <div class="flex gap-3">
+                        <select
+                            class="flex-1 sm:flex-none h-12 sm:h-14 px-3 sm:px-5 rounded-2xl border border-slate-200 font-medium text-sm sm:text-base bg-white min-w-0"
+                            [(ngModel)]="selectedDepartment">
+                            <option value="all">All departments</option>
+                            @for (department of departments; track department.id) {
+                                <option [value]="department.name">{{ department.name }}</option>
+                            }
+                        </select>
 
-                        <option value="all">
-                            All departments
-                        </option>
-
-                        @for (department of departments; track department.id) {
-
-                        <option [value]="department.name">
-                            {{ department.name }}
-                        </option>
-
-                        }
-
-                    </select>
-
-                    <select class="h-14 px-6 rounded-2xl border border-slate-200 font-medium"
-                        [(ngModel)]="selectedStatus">
-
-                        <option value="all">
-                            All statuses
-                        </option>
-
-                        <option value="active">
-                            Active
-                        </option>
-
-                        <option value="inactive">
-                            Inactive
-                        </option>
-
-                    </select>
+                        <select
+                            class="flex-1 sm:flex-none h-12 sm:h-14 px-3 sm:px-5 rounded-2xl border border-slate-200 font-medium text-sm sm:text-base bg-white min-w-0"
+                            [(ngModel)]="selectedStatus">
+                            <option value="all">All statuses</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
 
                 </div>
 
-
-                <!-- TABLE -->
-                <div class="mt-8 overflow-x-auto">
-
-                    <!-- HEADER -->
-                    <div
-                        class="grid grid-cols-[2.5fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-6 pb-5 border-b border-slate-200 text-slate-500 uppercase tracking-wide text-sm min-w-[1200px]">
-
-                        <div>Employee</div>
-
-                        <div>ID</div>
-
-                        <div>Department</div>
-
-                        <div>Role</div>
-
-                        <div>Total Bytes</div>
-
-                        <div>Status</div>
-
-                        <div class="text-right">
-                            Actions
+                <!-- EMPTY STATE -->
+                @if (filteredEmployees.length === 0) {
+                    <div class="flex flex-col items-center justify-center py-16 text-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-3xl">
+                            👥
                         </div>
+                        <h3 class="text-xl font-semibold text-slate-700">No employees found</h3>
+                        <p class="text-slate-400 text-sm">Try adjusting your search or filters.</p>
+                    </div>
+                }
+
+                @else {
+                <!-- TABLE SCROLL WRAPPER -->
+                <div class="mt-6 -mx-4 sm:-mx-6 lg:-mx-7 overflow-x-auto">
+                    <div class="px-4 sm:px-6 lg:px-7">
+
+                        <!-- TABLE -->
+                        <table class="w-full border-collapse" style="min-width: 700px;">
+                            <thead>
+                                <tr class="border-b border-slate-200">
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider pr-4">
+                                        Employee
+                                    </th>
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 hidden md:table-cell">
+                                        ID
+                                    </th>
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 hidden lg:table-cell">
+                                        Department
+                                    </th>
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 hidden lg:table-cell">
+                                        Role
+                                    </th>
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 hidden xl:table-cell">
+                                        Total Bytes
+                                    </th>
+                                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4">
+                                        Status
+                                    </th>
+                                    <th class="pb-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider pl-4">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @for (employee of filteredEmployees; track employee.id) {
+                                    <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+
+                                        <!-- EMPLOYEE -->
+                                        <td class="py-4 pr-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0">
+                                                    <img src="https://i.pravatar.cc/150" alt="employee"
+                                                        class="w-full h-full object-cover" />
+                                                </div>
+                                                <div class="min-w-0">
+                                                    <p class="text-sm sm:text-base font-semibold text-slate-900 truncate">
+                                                        {{ employee.firstName }} {{ employee.lastName }}
+                                                    </p>
+                                                    <p class="text-xs sm:text-sm text-slate-500 truncate mt-0.5">
+                                                        {{ employee.email }}
+                                                    </p>
+                                                    <!-- Mobile-only badges -->
+                                                    <div class="flex flex-wrap gap-1.5 mt-1.5 lg:hidden">
+                                                        <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-lg">
+                                                            {{ employee.departmentName }}
+                                                        </span>
+                                                        <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-lg">
+                                                            {{ employee.roleName }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- ID -->
+                                        <td class="py-4 px-4 hidden md:table-cell">
+                                            <span class="text-sm text-slate-600 font-mono">
+                                                {{ employee.employeeId }}
+                                            </span>
+                                        </td>
+
+                                        <!-- DEPARTMENT -->
+                                        <td class="py-4 px-4 hidden lg:table-cell">
+                                            <span class="text-sm text-slate-900">
+                                                {{ employee.departmentName }}
+                                            </span>
+                                        </td>
+
+                                        <!-- ROLE -->
+                                        <td class="py-4 px-4 hidden lg:table-cell">
+                                            <span class="text-sm text-slate-900">
+                                                {{ employee.roleName }}
+                                            </span>
+                                        </td>
+
+                                        <!-- BYTES -->
+                                        <td class="py-4 px-4 hidden xl:table-cell">
+                                            <span class="text-sm font-semibold text-slate-900">
+                                                {{ employee.totalBytes }}
+                                            </span>
+                                        </td>
+
+                                        <!-- STATUS -->
+                                        <td class="py-4 px-4">
+                                            <span
+                                                class="inline-flex px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap"
+                                                [class]="employee.isActive
+                                                    ? 'bg-emerald-100 text-emerald-700'
+                                                    : 'bg-amber-100 text-amber-700'">
+                                                {{ employee.isActive ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </td>
+
+                                        <!-- ACTIONS -->
+                                        <td class="py-4 pl-4">
+                                            <div class="flex items-center gap-2 justify-end">
+                                                <button
+                                                    (click)="editUser(employee)"
+                                                    class="h-9 px-3 sm:px-4 rounded-xl bg-slate-100 text-slate-700 text-sm font-medium hover:bg-slate-200 transition whitespace-nowrap">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    (click)="openToggleModal(employee)"
+                                                    class="h-9 px-3 sm:px-4 rounded-xl text-sm font-medium transition whitespace-nowrap"
+                                                    [class]="employee.isActive
+                                                        ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                                                        : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'">
+                                                    {{ employee.isActive ? 'Block' : 'Unblock' }}
+                                                </button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
 
                     </div>
-
-                    <!-- ROWS -->
-                    @for (
-                    employee of filteredEmployees;
-                    track employee.id
-                    ) {
-
-                    <div
-                        class="grid grid-cols-[2.5fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-6 items-center py-5 border-b border-slate-100 min-w-[1200px]">
-
-                        <!-- EMPLOYEE -->
-                        <div class="flex items-center gap-4 min-w-0">
-
-                            <!-- IMAGE -->
-                            <div class="w-14 h-14 min-w-14 min-h-14 rounded-full overflow-hidden shrink-0">
-
-                                <img src="https://i.pravatar.cc/150" alt="employee"
-                                    class="w-full h-full object-cover" />
-
-                            </div>
-
-                            <!-- INFO -->
-                            <div class="min-w-0">
-
-                                <h3 class="text-2xl font-semibold text-slate-900 truncate">
-
-                                    {{ employee.firstName }}
-                                    {{ employee.lastName }}
-
-                                </h3>
-
-                                <p class="text-slate-500 mt-1 truncate">
-
-                                    {{ employee.email }}
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                        <!-- ID -->
-                        <div class="text-slate-600 text-xl truncate">
-
-                            {{ employee.employeeId }}
-
-                        </div>
-
-                        <!-- DEPARTMENT -->
-                        <div class="text-slate-900 text-xl truncate">
-
-                            {{ employee.departmentName }}
-
-                        </div>
-
-                        <!-- ROLE -->
-                        <div class="text-slate-900 text-xl truncate">
-
-                            {{ employee.roleName }}
-
-                        </div>
-
-                        <!-- BYTES -->
-                        <div class="text-2xl font-semibold">
-
-                            {{ employee.totalBytes }}
-
-                        </div>
-
-                        <!-- STATUS -->
-                        <div>
-
-                            <span class="px-4 py-2 rounded-full text-sm font-semibold" [class]="
-                    employee.isActive
-                    ? 'bg-emerald-100 text-emerald-600'
-                    : 'bg-amber-100 text-amber-700'
-                ">
-
-                                {{
-                                employee.isActive
-                                ? 'Active'
-                                : 'Inactive'
-                                }}
-
-                            </span>
-
-                        </div>
-
-                        <!-- ACTIONS -->
-                        <div class="flex items-center gap-2 justify-end">
-
-                            <button class="h-10 px-4 rounded-xl bg-slate-100 text-slate-700"
-                                (click)="editUser(employee)">
-                                Edit
-                            </button>
-
-                            <button type="button" (click)="deleteUser(employee.id)"
-                                class="h-10 px-4 rounded-xl bg-red-100 text-red-700">
-
-                                Delete
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    }
-
                 </div>
+                }
 
             </div>
 
         </div>
-
     </div>
-
 </div>
 
-<!-- MODAL -->
+
+<!-- ADD / EDIT MODAL -->
 <app-modal [isOpen]="isAddEmployeeModalOpen" (close)="isAddEmployeeModalOpen = false">
 
-    <!-- HEADER -->
     <div>
-
-        <h2 class="text-4xl font-bold text-slate-900">
-
-            Add a new employee
-
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">
+            {{ isEditMode ? 'Edit employee' : 'Add a new employee' }}
         </h2>
-
-        <p class="text-slate-500 text-lg mt-2">
-
+        <p class="text-slate-500 text-base sm:text-lg mt-2">
             They'll receive an email invite to sign in.
-
         </p>
-
     </div>
 
-    <!-- FORM -->
-    <div class="mt-8 space-y-6">
+    <div class="mt-6 sm:mt-8 space-y-5">
 
-        <!-- FIRST NAME -->
-        <div>
+        <!-- FIRST + LAST NAME -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
+            <div>
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    First name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" placeholder="First name" class="form-input"
+                    [(ngModel)]="firstName"
+                    (ngModelChange)="updateTemporaryPassword()" />
+                @if (firstNameError) {
+                    <p class="text-red-500 text-sm mt-1.5">{{ firstNameError }}</p>
+                }
+            </div>
 
-                First name
-
-            </label>
-
-            <input type="text" placeholder="Enter your first name" class="form-input" [(ngModel)]="firstName"
-                (ngModelChange)="updateTemporaryPassword()" />
-
-            @if (firstNameError) {
-
-            <p class="text-red-500 text-sm mt-2">
-
-                {{ firstNameError }}
-
-            </p>
-
-            }
-
-        </div>
-
-        <!-- LAST NAME -->
-        <div>
-
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                Last name
-
-            </label>
-
-            <input type="text" placeholder="Enter your last name" class="form-input" [(ngModel)]="lastName" />
+            <div>
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    Last name
+                </label>
+                <input type="text" placeholder="Last name" class="form-input" [(ngModel)]="lastName" />
+            </div>
 
         </div>
 
         <!-- EMAIL -->
         <div>
-
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                Work email
-
+            <label class="block text-base font-semibold text-slate-900 mb-2">
+                Work email <span class="text-red-500">*</span>
             </label>
-
-            <input type="email" placeholder="name@test.com" class="form-input" [(ngModel)]="email" />
-
+            <input type="email" placeholder="name@company.com" class="form-input" [(ngModel)]="email" />
             @if (emailError) {
-
-            <p class="text-red-500 text-sm mt-2">
-
-                {{ emailError }}
-
-            </p>
-
+                <p class="text-red-500 text-sm mt-1.5">{{ emailError }}</p>
             }
-
         </div>
 
-        <!-- PHONE -->
-        <div>
+        <!-- PHONE + DESIGNATION -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                Phone number
-
-            </label>
-
-            <input type="text" placeholder="9876543210" class="form-input" [(ngModel)]="phoneNumber" />
-
-            @if (phoneNumberError) {
-
-            <p class="text-red-500 text-sm mt-2">
-
-                {{ phoneNumberError }}
-
-            </p>
-
-            }
-
-        </div>
-
-        <!-- DESIGNATION -->
-        <div>
-
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                Designation
-
-            </label>
-
-            <input type="text" placeholder="Backend Intern" class="form-input" [(ngModel)]="designation" />
-
-            @if (designationError) {
-
-            <p class="text-red-500 text-sm mt-2">
-
-                {{ designationError }}
-
-            </p>
-
-            }
-
-        </div>
-
-        <!-- GRID -->
-        <div class="grid grid-cols-2 gap-5">
-
-            <!-- DEPARTMENT -->
             <div>
-
-                <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                    Department
-
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    Phone number <span class="text-red-500">*</span>
                 </label>
+                <input type="text" placeholder="9876543210" class="form-input" [(ngModel)]="phoneNumber" />
+                @if (phoneNumberError) {
+                    <p class="text-red-500 text-sm mt-1.5">{{ phoneNumberError }}</p>
+                }
+            </div>
 
+            <div>
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    Designation <span class="text-red-500">*</span>
+                </label>
+                <input type="text" placeholder="e.g. Backend Intern" class="form-input" [(ngModel)]="designation" />
+                @if (designationError) {
+                    <p class="text-red-500 text-sm mt-1.5">{{ designationError }}</p>
+                }
+            </div>
+
+        </div>
+
+        <!-- DEPARTMENT + ROLE -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            <div>
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    Department <span class="text-red-500">*</span>
+                </label>
                 <select class="form-select" [(ngModel)]="departmentId">
-
-                    <option value="">
-                        Select department
-                    </option>
-
+                    <option value="">Select department</option>
                     @for (department of departments; track department.id) {
-
-                    <option [value]="department.id">
-
-                        {{ department.name }}
-
-                    </option>
-
+                        <option [value]="department.id">{{ department.name }}</option>
                     }
-
                 </select>
-
                 @if (departmentError) {
-
-                <p class="text-red-500 text-sm mt-2">
-
-                    {{ departmentError }}
-
-                </p>
-
+                    <p class="text-red-500 text-sm mt-1.5">{{ departmentError }}</p>
                 }
-
             </div>
 
-            <!-- ROLE -->
             <div>
-
-                <label class="block text-lg font-semibold text-slate-900 mb-3">
-
-                    Role
-
+                <label class="block text-base font-semibold text-slate-900 mb-2">
+                    Role <span class="text-red-500">*</span>
                 </label>
-
-
                 <select class="form-select" [(ngModel)]="role">
-
-                    <option value="">
-                        Select role
-                    </option>
-
+                    <option value="">Select role</option>
                     @for (role of roles; track role.name) {
-
-                    <option [value]="role.name">
-
-                        {{ role.name }}
-
-                    </option>
-
+                        <option [value]="role.name">{{ role.name }}</option>
                     }
-
                 </select>
-
                 @if (roleError) {
-
-                <p class="text-red-500 text-sm mt-2">
-
-                    {{ roleError }}
-
-                </p>
-
+                    <p class="text-red-500 text-sm mt-1.5">{{ roleError }}</p>
                 }
-
             </div>
 
         </div>
 
-        <!-- PASSWORD -->
+        <!-- TEMP PASSWORD -->
         <div>
-
-            <label class="block text-lg font-semibold text-slate-900 mb-3">
-
+            <label class="block text-base font-semibold text-slate-900 mb-2">
                 Temporary password
-
             </label>
-
             <input type="text" class="form-input" [(ngModel)]="temporaryPassword" readonly />
-
         </div>
 
     </div>
 
     <!-- FOOTER -->
-    <div class="flex justify-end gap-4 mt-10">
-
-        <button (click)="isAddEmployeeModalOpen = false"
-            class="h-14 px-8 rounded-2xl border border-slate-200 font-semibold hover:bg-slate-50 transition">
-
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 mt-8">
+        <button
+            (click)="isAddEmployeeModalOpen = false"
+            class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl border border-slate-200 font-semibold hover:bg-slate-50 transition text-sm sm:text-base">
             Cancel
-
         </button>
-
-        <button (click)="isEditMode ? updateUser() : createUser()"
-            class="h-14 px-8 rounded-2xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition">
-
-
-            @if (isEditMode) {
-
-            Update employee
-
-            }
-            @else {
-
-            Invite employee
-
-            }
-
-
+        <button
+            (click)="isEditMode ? updateUser() : createUser()"
+            class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition text-sm sm:text-base">
+            {{ isEditMode ? 'Update employee' : 'Invite employee' }}
         </button>
-
     </div>
 
 </app-modal>
 
+
+<!-- BLOCK / UNBLOCK CONFIRM MODAL -->
+<app-modal [isOpen]="showToggleModal" (close)="closeToggleModal()">
+
+    <div class="text-center py-2">
+
+        <!-- Icon -->
+        <div class="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-5"
+            [class]="employeeToToggle?.isActive ? 'bg-red-100' : 'bg-emerald-100'">
+            {{ employeeToToggle?.isActive ? '🚫' : '✅' }}
+        </div>
+
+        <h2 class="text-3xl font-bold text-slate-900">
+            {{ employeeToToggle?.isActive ? 'Block employee' : 'Unblock employee' }}
+        </h2>
+
+        <p class="text-slate-500 text-lg mt-3">
+            Are you sure you want to
+            <strong class="text-slate-900">
+                {{ employeeToToggle?.isActive ? 'block' : 'unblock' }}
+            </strong>
+            <strong class="text-slate-900">
+                {{ employeeToToggle?.firstName }} {{ employeeToToggle?.lastName }}
+            </strong>?
+        </p>
+
+        <p class="text-slate-400 text-sm mt-2">
+            @if (employeeToToggle?.isActive) {
+                They will lose access to the platform immediately.
+            } @else {
+                They will regain access to the platform.
+            }
+        </p>
+
+    </div>
+
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 mt-8">
+        <button
+            (click)="closeToggleModal()"
+            class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl border border-slate-200 font-semibold hover:bg-slate-50 transition text-sm sm:text-base">
+            Cancel
+        </button>
+        <button
+            (click)="confirmToggle()"
+            class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl font-semibold transition text-white text-sm sm:text-base"
+            [class]="employeeToToggle?.isActive ? 'bg-red-500 hover:bg-red-600' : 'bg-emerald-500 hover:bg-emerald-600'">
+            {{ employeeToToggle?.isActive ? 'Yes, block' : 'Yes, unblock' }}
+        </button>
+    </div>
+
+</app-modal>
+
+
 <!-- ERROR MODAL -->
 <app-modal [isOpen]="showErrorModal" (close)="closeErrorModal()">
-
-    <h2 class="text-2xl font-bold mb-4">
-
-        Error
-
-    </h2>
-
-    <p class="text-red-600 whitespace-pre-line">
-
-        {{ errorMessage }}
-
-    </p>
-
+    <h2 class="text-2xl font-bold mb-4">Error</h2>
+    <p class="text-red-600 whitespace-pre-line">{{ errorMessage }}</p>
 </app-modal>

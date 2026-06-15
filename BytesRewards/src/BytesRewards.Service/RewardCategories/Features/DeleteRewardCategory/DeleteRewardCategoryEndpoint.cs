@@ -15,7 +15,7 @@ public sealed class DeleteRewardCategoryEndpoint(
     {
         Delete("/reward-categories/{id}");
 
-        Roles("manager");
+        Roles("admin", "manager");
 
         Options(option =>
             option.WithTags("05 - Reward Categories"));

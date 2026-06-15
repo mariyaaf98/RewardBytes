@@ -17,5 +17,5 @@ public class BytesRewards_AppHost
     /// <summary>
     /// The path to the Aspire Host project.
     /// </summary>
-    public static string ProjectPath => """C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.AppHost""";
+    public static string ProjectPath => """/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.AppHost""";
 }

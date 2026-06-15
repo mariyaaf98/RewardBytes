@@ -38,6 +38,10 @@ export class EmployeeManagementComponent
 
   adminMenu = ADMIN_MENU;
 
+  // BLOCK / UNBLOCK CONFIRM MODAL
+  showToggleModal = false;
+  employeeToToggle: User | null = null;
+
   // FORM VALUES
   firstName = '';
 
@@ -241,6 +245,32 @@ export class EmployeeManagementComponent
 
       });
 
+  }
+
+  openToggleModal(employee: User): void {
+    this.employeeToToggle = employee;
+    this.showToggleModal = true;
+  }
+
+  closeToggleModal(): void {
+    this.showToggleModal = false;
+    this.employeeToToggle = null;
+  }
+
+  confirmToggle(): void {
+    if (!this.employeeToToggle) return;
+
+    this.userService.toggleUserStatus(this.employeeToToggle.id)
+      .subscribe({
+        next: () => {
+          this.closeToggleModal();
+          this.loadUsers();
+        },
+        error: (error) => {
+          this.closeToggleModal();
+          this.handleError(error);
+        }
+      });
   }
 
 

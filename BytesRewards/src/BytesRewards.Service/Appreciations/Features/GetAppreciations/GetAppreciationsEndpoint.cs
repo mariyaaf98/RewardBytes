@@ -11,7 +11,10 @@ public sealed class GetAppreciationsEndpoint(
     {
         Get("/appreciations");
 
-        AllowAnonymous();
+        Roles(
+            "employee",
+            "manager",
+            "admin");
 
         Options(option =>
             option.WithTags("04 - Appreciations"));

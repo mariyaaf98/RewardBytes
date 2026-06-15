@@ -1,14 +1,67 @@
-# .NET
+# Build output
 bin/
 obj/
 
-# Logs
-*.log
+# .NET publish output
+publish/
+out/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+.nuget/
+packages/
 
 # Visual Studio
 .vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
-# Rider
+# Rider / JetBrains
 .idea/
+*.DotSettings.user
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# SQLite databases (local dev data — do not commit)
+*.db
+*.db-shm
+*.db-wal
+
+# Environment / secrets
+.env
+.env.local
+appsettings.Development.json
+appsettings.Local.json
+
+# EF Core migration bundles
+efbundle
+efbundle.exe
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Temp & cache
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+*~
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+
+
+**/NuGet.config

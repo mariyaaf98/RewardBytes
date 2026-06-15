@@ -6,38 +6,71 @@
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<div class="weather-page">
+    <div class="weather-header">
+        <div class="weather-header__icon" aria-hidden="true"></div>
+        <div>
+            <h1 class="weather-header__title">Weather</h1>
+            <p class="weather-header__sub">Live forecast data loaded from the backend API.</p>
+        </div>
+    </div>
 
-<p>This component demonstrates showing data loaded from a backend API service.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
+    @if (forecasts == null)
+    {
+        <div class="weather-loading">
+            <div class="weather-spinner" role="status" aria-label="Loading"></div>
+            <span>Loading forecasts…</span>
+        </div>
+    }
+    else if (forecasts.Length == 0)
+    {
+        <div class="weather-empty">
+            <p>No forecast data available.</p>
+        </div>
+    }
+    else
+    {
+        <!-- Summary cards (first 4 items) -->
+        <div class="weather-cards">
+            @foreach (var forecast in forecasts.Take(4))
             {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
+                <div class="weather-card">
+                    <span class="weather-card__date">@forecast.Date.ToString("MMM d")</span>
+                    <span class="weather-card__temp">@forecast.TemperatureC°<small>C</small></span>
+                    <span class="weather-card__tempf">@forecast.TemperatureF°F</span>
+                    <span class="weather-card__summary">@forecast.Summary</span>
+                </div>
             }
-        </tbody>
-    </table>
-}
+        </div>
+
+        <!-- Full table -->
+        <div class="weather-table-wrap">
+            <table class="weather-table" aria-label="Weather forecast table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Temp (°C)</th>
+                        <th scope="col">Temp (°F)</th>
+                        <th scope="col">Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var forecast in forecasts)
+                    {
+                        <tr>
+                            <td>@forecast.Date.ToShortDateString()</td>
+                            <td><strong>@forecast.TemperatureC°C</strong></td>
+                            <td class="weather-table__muted">@forecast.TemperatureF°F</td>
+                            <td>
+                                <span class="weather-badge">@forecast.Summary</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
 @code {
     private WeatherForecast[]? forecasts;

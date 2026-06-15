@@ -63,3 +63,29 @@ export interface UpdateUserRequest {
   departmentId: string;
 
 }
+
+export interface CurrentUser {
+
+  id: string;
+
+  employeeId: string;
+
+  firstName: string;
+
+  lastName: string;
+
+  email: string;
+
+  phoneNumber: string;
+
+  designation: string;
+
+  profileImageUrl: string;
+
+  isActive: boolean;
+
+  departmentId: string;
+
+  departmentName: string;
+
+}

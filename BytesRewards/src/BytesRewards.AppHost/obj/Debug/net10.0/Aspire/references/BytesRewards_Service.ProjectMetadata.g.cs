@@ -15,7 +15,7 @@ public class BytesRewards_Service : global::Aspire.Hosting.IProjectMetadata
     /// <summary>
     /// The path to the BytesRewards_Service project.
     /// </summary>
-    public string ProjectPath => """C:\Users\MariyaAF\Desktop\BytesRewards\BytesRewards\src\BytesRewards.Service\BytesRewards.Service.csproj""";
+    public string ProjectPath => """/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.Service/BytesRewards.Service.csproj""";
 
     /// <summary>
     /// Gets a value indicating whether building the project before running it should be suppressed.

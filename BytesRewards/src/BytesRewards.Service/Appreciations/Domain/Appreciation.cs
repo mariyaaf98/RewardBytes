@@ -12,5 +12,5 @@ public class Appreciation : BaseEntity, IAggregateRoot
 
     public string Message { get; set; } = string.Empty;
 
-    public ICollection<AppreciationLike> Likes { get; set; } = [];
+    // public ICollection<AppreciationLike> Likes { get; set; } = [];
 }

@@ -3,17 +3,32 @@
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<div class="counter-page">
+    <div class="counter-header">
+        <h1 class="counter-header__title">Counter</h1>
+        <p class="counter-header__sub">A simple interactive counter demonstration.</p>
+    </div>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    <div class="counter-card">
+        <div class="counter-display" role="status" aria-live="polite" aria-label="Current count">
+            @currentCount
+        </div>
+        <p class="counter-label">Current Count</p>
+        <div class="counter-actions">
+            <button class="counter-btn counter-btn--reset" @onclick="ResetCount" disabled="@(currentCount == 0)">
+                Reset
+            </button>
+            <button class="counter-btn counter-btn--increment" @onclick="IncrementCount">
+                + Increment
+            </button>
+        </div>
+    </div>
+</div>
 
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+    private void IncrementCount() => currentCount++;
+
+    private void ResetCount() => currentCount = 0;
 }

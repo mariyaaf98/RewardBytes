@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CreateUserRequest, UpdateUserRequest, User } from '../models/user.model';
+import { CreateUserRequest, CurrentUser, UpdateUserRequest, User } from '../models/user.model';
 import { Department } from '../models/lookup';
 
 @Injectable({
@@ -60,6 +60,21 @@ export class UserService {
       request
     );
 
+  }
+
+  toggleUserStatus(id: string): Observable<boolean> {
+
+    return this.http.patch<boolean>(
+      `${this.apiUrl}/${id}/toggle-status`,
+      {}
+    );
+
+  }
+
+  getCurrentUser(): Observable<CurrentUser> {
+    return this.http.get<CurrentUser>(
+      `${this.apiUrl}/me`
+    );
   }
 
   getUserLookup(): Observable<

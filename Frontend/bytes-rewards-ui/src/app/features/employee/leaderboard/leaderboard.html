@@ -1,0 +1,213 @@
+<div class="flex min-h-screen bg-[#F0F2F5]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Employee Workspace" [menuItems]="employeeMenu"></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="px-8 py-8 flex-1">
+
+      <!-- PAGE HEADER -->
+      <div class="mb-6">
+        <h1 class="text-[28px] font-bold text-slate-900 leading-tight">Leaderboard</h1>
+        <p class="text-slate-400 text-sm mt-1">The most appreciated teammates this month.</p>
+      </div>
+
+      <!-- ── LOADING ── -->
+      @if (isLoading()) {
+        <div class="flex items-center justify-center py-40">
+          <div class="w-10 h-10 border-4 border-slate-200 border-t-[#1e3a5f] rounded-full animate-spin"></div>
+        </div>
+      }
+
+      <!-- ── ERROR ── -->
+      @else if (error()) {
+        <div class="flex flex-col items-center justify-center py-40 gap-4 text-center">
+          <p class="text-lg font-semibold text-slate-700">Something went wrong</p>
+          <p class="text-slate-400 text-sm max-w-sm">{{ error() }}</p>
+          <button (click)="load()"
+            class="h-10 px-5 rounded-xl bg-[#1e3a5f] text-white text-sm font-semibold hover:bg-[#162f4f] transition">
+            Try again
+          </button>
+        </div>
+      }
+
+      <!-- ── EMPTY ── -->
+      @else if (entries().length === 0) {
+        <div class="flex flex-col items-center justify-center py-40 gap-3 text-center">
+          <p class="text-4xl">🏆</p>
+          <p class="text-lg font-semibold text-slate-700">No data yet</p>
+          <p class="text-slate-400 text-sm">Rankings appear once rewards have been given.</p>
+        </div>
+      }
+
+      @else {
+
+        <!-- ══════════════════════════════════════════
+             TOP 3 PODIUM
+             Layout: rank2 | rank1(centre) | rank3
+        ══════════════════════════════════════════ -->
+        @if (topThree().length >= 3) {
+          <div class="grid grid-cols-3 gap-3 mb-5">
+
+            <!-- ── RANK 2 ── -->
+            <div class="bg-white rounded-2xl border border-slate-200 flex flex-col items-center py-8 px-6 text-center">
+
+              <!-- trophy/medal icon — grey -->
+              <svg class="text-slate-400 mb-5" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
+                <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/>
+                <path d="M12 17c-3.31 0-6-2.69-6-6V3h12v8c0 3.31-2.69 6-6 6z"/>
+                <path d="M8 21h8"/>
+                <path d="M12 17v4"/>
+              </svg>
+
+              <!-- avatar -->
+              <div class="w-[58px] h-[58px] rounded-full text-white flex items-center justify-center font-bold text-[18px] mb-4"
+                   [style.background-color]="avatarColor(1)">
+                {{ getInitials(topThree()[1].employeeName) }}
+              </div>
+
+              <p class="font-bold text-slate-900 text-[15px] leading-snug">{{ topThree()[1].employeeName }}</p>
+              <p class="text-slate-400 text-xs mt-0.5">Bytes</p>
+
+              <p class="text-[36px] font-bold text-emerald-500 mt-3 leading-none">
+                {{ topThree()[1].totalEarnedBytes | number }}
+              </p>
+              <p class="text-slate-400 text-xs mt-1">bytes earned</p>
+
+            </div>
+
+            <!-- ── RANK 1 (centre, warm yellow bg) ── -->
+            <div class="bg-[#fffbeb] rounded-2xl border border-[#fde68a] flex flex-col items-center py-8 px-6 text-center">
+
+              <!-- crown icon — gold -->
+              <svg class="text-amber-400 mb-5" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20h20"/>
+                <path d="M5 20V10l7-7 7 7v10"/>
+                <path d="M9 20v-5h6v5"/>
+              </svg>
+
+              <!-- avatar -->
+              <div class="w-[58px] h-[58px] rounded-full text-white flex items-center justify-center font-bold text-[18px] mb-4"
+                   [style.background-color]="avatarColor(0)">
+                {{ getInitials(topThree()[0].employeeName) }}
+              </div>
+
+              <p class="font-bold text-slate-900 text-[15px] leading-snug">{{ topThree()[0].employeeName }}</p>
+              <p class="text-slate-400 text-xs mt-0.5">Bytes</p>
+
+              <p class="text-[36px] font-bold text-emerald-500 mt-3 leading-none">
+                {{ topThree()[0].totalEarnedBytes | number }}
+              </p>
+              <p class="text-slate-400 text-xs mt-1">bytes earned</p>
+
+            </div>
+
+            <!-- ── RANK 3 ── -->
+            <div class="bg-white rounded-2xl border border-slate-200 flex flex-col items-center py-8 px-6 text-center">
+
+              <!-- trophy/medal icon — grey -->
+              <svg class="text-slate-400 mb-5" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
+                <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/>
+                <path d="M12 17c-3.31 0-6-2.69-6-6V3h12v8c0 3.31-2.69 6-6 6z"/>
+                <path d="M8 21h8"/>
+                <path d="M12 17v4"/>
+              </svg>
+
+              <!-- avatar -->
+              <div class="w-[58px] h-[58px] rounded-full text-white flex items-center justify-center font-bold text-[18px] mb-4"
+                   [style.background-color]="avatarColor(2)">
+                {{ getInitials(topThree()[2].employeeName) }}
+              </div>
+
+              <p class="font-bold text-slate-900 text-[15px] leading-snug">{{ topThree()[2].employeeName }}</p>
+              <p class="text-slate-400 text-xs mt-0.5">Bytes</p>
+
+              <p class="text-[36px] font-bold text-emerald-500 mt-3 leading-none">
+                {{ topThree()[2].totalEarnedBytes | number }}
+              </p>
+              <p class="text-slate-400 text-xs mt-1">bytes earned</p>
+
+            </div>
+
+          </div>
+        }
+
+        <!-- ══════════════════════════════════════════
+             FULL RANKING CARD
+        ══════════════════════════════════════════ -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+
+          <!-- card header -->
+          <div class="px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-[#d4a017] text-lg">🏆</span>
+              <h3 class="text-[16px] font-bold text-slate-900">Full ranking</h3>
+            </div>
+            <!-- search -->
+            <input
+              type="text"
+              placeholder="Search by name…"
+              [value]="searchText()"
+              (input)="onSearch($any($event.target).value)"
+              class="h-9 w-44 rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm outline-none focus:border-slate-400 transition" />
+          </div>
+
+          <!-- empty search state -->
+          @if (restOfRanking().length === 0 && searchText()) {
+            <div class="py-10 text-center border-t border-slate-100">
+              <p class="text-slate-500 text-sm font-medium">No results for "{{ searchText() }}"</p>
+            </div>
+          }
+
+          <!-- ranking rows -->
+          @for (entry of restOfRanking(); track entry.userId; let i = $index) {
+            <div
+              class="flex items-center gap-4 px-6 py-[14px] border-t border-slate-100 transition-colors"
+              [class]="isCurrentUser(entry.employeeName) ? 'bg-emerald-50' : 'hover:bg-slate-50'">
+
+              <!-- rank -->
+              <span class="text-[13px] font-semibold text-slate-400 w-7 shrink-0 text-right">#{{ entry.rank }}</span>
+
+              <!-- avatar with unique color -->
+              <div
+                class="w-[38px] h-[38px] rounded-full flex items-center justify-center font-bold text-sm shrink-0 text-white"
+                [style.background-color]="isCurrentUser(entry.employeeName) ? '#10b981' : avatarColor(entry.rank - 1)">
+                {{ getInitials(entry.employeeName) }}
+              </div>
+
+              <!-- name + dept label -->
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-slate-900 text-[14px] leading-tight">
+                  {{ entry.employeeName }}
+                  @if (isCurrentUser(entry.employeeName)) {
+                    <span class="ml-2 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-600 text-[10px] font-bold align-middle">You</span>
+                  }
+                </p>
+                <p class="text-[11px] text-slate-400 mt-0.5">Bytes</p>
+              </div>
+
+              <!-- bytes value — green -->
+              <span class="text-emerald-500 font-bold text-[15px] shrink-0">
+                {{ entry.totalEarnedBytes | number }}
+              </span>
+
+            </div>
+          }
+
+        </div>
+
+      }
+
+    </div>
+  </div>
+</div>

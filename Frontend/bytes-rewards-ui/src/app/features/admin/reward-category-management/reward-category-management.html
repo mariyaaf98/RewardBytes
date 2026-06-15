@@ -1,0 +1,328 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Admin Workspace" [menuItems]="adminMenu"></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE -->
+    <div class="px-4 sm:px-6 lg:px-8 py-7 flex-1">
+
+      <!-- HERO -->
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div>
+          <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
+            Reward Categories
+          </h1>
+          <p class="text-slate-500 text-lg mt-2">
+            Define reward categories and their byte values.
+          </p>
+        </div>
+        <button
+          (click)="openAddModal()"
+          class="shrink-0 h-14 px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md hover:bg-emerald-600 transition w-full sm:w-auto">
+          + Add category
+        </button>
+      </div>
+
+      <!-- ALERT -->
+      @if (showAlert) {
+        <div
+          class="mt-6 flex items-center gap-3 px-5 py-4 rounded-2xl text-base font-medium"
+          [class]="alertType === 'success'
+            ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
+            : 'bg-red-50 border border-red-200 text-red-700'">
+          <span>{{ alertType === 'success' ? '✓' : '✕' }}</span>
+          <span>{{ alertMessage }}</span>
+        </div>
+      }
+
+      <!-- TABLE CARD -->
+      <div class="mt-8 bg-white rounded-[34px] border border-slate-100 shadow-sm p-5 sm:p-7">
+
+        <!-- SEARCH + STATUS + COUNT -->
+        <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+
+          <div class="flex flex-col sm:flex-row gap-3 flex-1">
+
+            <!-- SEARCH -->
+            <div class="flex items-center gap-3 h-12 sm:h-14 rounded-2xl bg-slate-100 px-5 w-full sm:max-w-sm">
+              <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              <input
+                type="text"
+                placeholder="Search categories..."
+                class="w-full bg-transparent outline-none text-base sm:text-lg"
+                [(ngModel)]="searchText" />
+            </div>
+
+            <!-- STATUS FILTER -->
+            <select
+              class="h-12 sm:h-14 px-4 sm:px-5 rounded-2xl border border-slate-200 font-medium text-sm sm:text-base bg-white"
+              [(ngModel)]="selectedStatus">
+              <option value="all">All statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+          </div>
+
+          <!-- COUNT -->
+          <span class="text-slate-500 text-base shrink-0">
+            {{ filteredCategories.length }}
+            categor{{ filteredCategories.length !== 1 ? 'ies' : 'y' }}
+          </span>
+
+        </div>
+
+        <!-- EMPTY STATE -->
+        @if (categories.length === 0) {
+          <div class="flex flex-col items-center justify-center py-20 text-center gap-3">
+            <div class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center text-4xl">
+              🏷️
+            </div>
+            <h3 class="text-2xl font-semibold text-slate-700">No categories yet</h3>
+            <p class="text-slate-400 text-base">Get started by adding your first reward category.</p>
+            <button
+              (click)="openAddModal()"
+              class="mt-2 h-12 px-6 bg-emerald-500 text-white rounded-2xl font-semibold hover:bg-emerald-600 transition">
+              + Add category
+            </button>
+          </div>
+        }
+
+        @else if (filteredCategories.length === 0) {
+          <div class="flex flex-col items-center justify-center py-20 text-center gap-3">
+            <div class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center text-4xl">
+              🔍
+            </div>
+            <h3 class="text-2xl font-semibold text-slate-700">No results found</h3>
+            <p class="text-slate-400 text-base">Try a different search term.</p>
+          </div>
+        }
+
+        @else {
+          <!-- TABLE -->
+          <div class="mt-8 -mx-4 sm:-mx-6 lg:-mx-7 overflow-x-auto">
+            <div class="px-4 sm:px-6 lg:px-7">
+              <table class="w-full border-collapse" style="min-width: 600px;">
+                <thead>
+                  <tr class="border-b border-slate-200">
+                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider w-10">#</th>
+                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4">Category</th>
+                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4">Bytes</th>
+                    <th class="pb-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-4 hidden sm:table-cell">Status</th>
+                    <th class="pb-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider pl-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (cat of filteredCategories; track cat.id; let i = $index) {
+                    <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+
+                      <!-- # -->
+                      <td class="py-4 text-slate-400 text-sm">{{ i + 1 }}</td>
+
+                      <!-- CATEGORY -->
+                      <td class="py-4 px-4">
+                        <div class="flex items-center gap-4 min-w-0">
+                          <div class="w-12 h-12 rounded-2xl bg-[#041C3C] text-white flex items-center
+                                      justify-center font-bold text-xl shrink-0">
+                            {{ getInitial(cat.name) }}
+                          </div>
+                          <div class="min-w-0">
+                            <p class="text-base font-semibold text-slate-900 truncate">{{ cat.name }}</p>
+                            @if (cat.description) {
+                              <p class="text-sm text-slate-400 truncate mt-0.5">{{ cat.description }}</p>
+                            }
+                          </div>
+                        </div>
+                      </td>
+
+                      <!-- BYTES -->
+                      <td class="py-4 px-4">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-50 border border-amber-200">
+                          <span class="text-amber-600 font-bold text-lg">✦</span>
+                          <span class="text-amber-700 font-bold text-base">{{ cat.bytes }}</span>
+                          <span class="text-amber-500 text-sm font-medium">bytes</span>
+                        </div>
+                      </td>
+
+                      <!-- STATUS -->
+                      <td class="py-4 px-4 hidden sm:table-cell">
+                        <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold"
+                          [class]="cat.isActive
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : 'bg-amber-100 text-amber-700'">
+                          {{ cat.isActive ? 'Active' : 'Inactive' }}
+                        </span>
+                      </td>
+
+                      <!-- ACTIONS -->
+                      <td class="py-4 pl-4">
+                        <div class="flex items-center gap-2 justify-end">
+                          <button
+                            (click)="openEditModal(cat)"
+                            class="h-9 px-4 rounded-xl bg-slate-100 text-slate-700 text-sm font-medium hover:bg-slate-200 transition">
+                            Edit
+                          </button>
+                          <button
+                            (click)="openDeleteModal(cat)"
+                            class="h-9 px-4 rounded-xl bg-red-100 text-red-700 text-sm font-medium hover:bg-red-200 transition">
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ADD / EDIT MODAL -->
+<app-modal [isOpen]="isModalOpen" (close)="isModalOpen = false">
+
+  <div>
+    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">
+      {{ isEditMode ? 'Edit category' : 'Add a new category' }}
+    </h2>
+    <p class="text-slate-500 text-base sm:text-lg mt-2">
+      {{ isEditMode ? 'Update the category details below.' : 'Fill in the details to create a new reward category.' }}
+    </p>
+  </div>
+
+  <div class="mt-6 sm:mt-8 space-y-5">
+
+    <!-- NAME -->
+    <div>
+      <label class="block text-base font-semibold text-slate-900 mb-2">
+        Category name <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        placeholder="e.g. Performance Excellence"
+        class="form-input"
+        [(ngModel)]="name"
+        maxlength="100" />
+      @if (nameError) {
+        <p class="text-red-500 text-sm mt-1.5">{{ nameError }}</p>
+      }
+    </div>
+
+    <!-- BYTES -->
+    <div>
+      <label class="block text-base font-semibold text-slate-900 mb-2">
+        Bytes value <span class="text-red-500">*</span>
+      </label>
+      <div class="relative">
+        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-lg pointer-events-none">
+          ✦
+        </span>
+        <input
+          type="number"
+          placeholder="e.g. 500"
+          class="form-input pl-11"
+          [(ngModel)]="bytes"
+          min="1" />
+      </div>
+      @if (bytesError) {
+        <p class="text-red-500 text-sm mt-1.5">{{ bytesError }}</p>
+      }
+      <p class="text-slate-400 text-sm mt-1">
+        Number of bytes awarded when this category is used.
+      </p>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div>
+      <label class="block text-base font-semibold text-slate-900 mb-2">
+        Description <span class="text-red-500">*</span>
+      </label>
+      <textarea
+        placeholder="Brief description of this reward category..."
+        class="form-input !h-auto py-4 resize-none"
+        rows="3"
+        [(ngModel)]="description"
+        maxlength="500"></textarea>
+      <div class="flex items-center justify-between mt-1">
+        @if (descriptionError) {
+          <p class="text-red-500 text-sm">{{ descriptionError }}</p>
+        } @else {
+          <span></span>
+        }
+        <p class="text-slate-400 text-sm text-right shrink-0">{{ description.length }}/500</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 mt-8">
+    <button
+      (click)="isModalOpen = false"
+      class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl border border-slate-200 font-semibold hover:bg-slate-50 transition text-sm sm:text-base">
+      Cancel
+    </button>
+    <button
+      (click)="save()"
+      class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition text-sm sm:text-base">
+      {{ isEditMode ? 'Save changes' : 'Create category' }}
+    </button>
+  </div>
+
+</app-modal>
+
+
+<!-- DELETE CONFIRM MODAL -->
+<app-modal [isOpen]="showDeleteModal" (close)="closeDeleteModal()">
+
+  <div class="text-center py-2">
+    <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center text-4xl mx-auto mb-5">
+      🗑️
+    </div>
+    <h2 class="text-3xl font-bold text-slate-900">Delete category</h2>
+    <p class="text-slate-500 text-lg mt-3">
+      Are you sure you want to delete
+      <strong class="text-slate-900">{{ categoryToDelete?.name }}</strong>?
+    </p>
+    <p class="text-slate-400 text-sm mt-2">This action cannot be undone.</p>
+  </div>
+
+  <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 mt-8">
+    <button
+      (click)="closeDeleteModal()"
+      class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl border border-slate-200 font-semibold hover:bg-slate-50 transition text-sm sm:text-base">
+      Cancel
+    </button>
+    <button
+      (click)="confirmDelete()"
+      class="h-12 sm:h-14 px-6 sm:px-8 rounded-2xl bg-red-500 text-white font-semibold hover:bg-red-600 transition text-sm sm:text-base">
+      Delete
+    </button>
+  </div>
+
+</app-modal>
+
+
+<!-- ERROR MODAL -->
+<app-modal [isOpen]="showErrorModal" (close)="closeErrorModal()">
+  <h2 class="text-2xl font-bold mb-4">Error</h2>
+  <p class="text-red-600 whitespace-pre-line">{{ errorMessage }}</p>
+</app-modal>

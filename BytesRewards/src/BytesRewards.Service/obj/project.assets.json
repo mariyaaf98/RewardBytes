@@ -8261,36 +8261,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MariyaAF\\.nuget\\packages\\": {}
+    "/Users/mariya.af/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.Service\\BytesRewards.Service.csproj",
+      "projectUniqueName": "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.Service/BytesRewards.Service.csproj",
       "projectName": "BytesRewards.Service",
-      "projectPath": "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.Service\\BytesRewards.Service.csproj",
-      "packagesPath": "C:\\Users\\MariyaAF\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.Service\\obj\\",
+      "projectPath": "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.Service/BytesRewards.Service.csproj",
+      "packagesPath": "/Users/mariya.af/.nuget/packages/",
+      "outputPath": "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.Service/obj/",
       "projectStyle": "PackageReference",
       "centralPackageVersionsManagementEnabled": true,
       "configFilePaths": [
-        "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\NuGet.Config",
-        "C:\\Users\\MariyaAF\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/mariya.af/mariya.af/BytesRewards/NuGet.Config",
+        "/Users/mariya.af/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json": {},
         "https://pkgs.dev.azure.com/bytestrone-labs/_packaging/appweaver-framework/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.ServiceDefaults\\BytesRewards.ServiceDefaults.csproj": {
-              "projectPath": "C:\\Users\\MariyaAF\\Desktop\\BytesRewards\\BytesRewards\\src\\BytesRewards.ServiceDefaults\\BytesRewards.ServiceDefaults.csproj"
+            "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.ServiceDefaults/BytesRewards.ServiceDefaults.csproj": {
+              "projectPath": "/Users/mariya.af/mariya.af/BytesRewards/src/BytesRewards.ServiceDefaults/BytesRewards.ServiceDefaults.csproj"
             }
           }
         }
@@ -8661,7 +8660,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

@@ -15,7 +15,7 @@ public sealed class CreateRewardCategoryEndpoint(
     {
         Post("/reward-categories");
 
-        Roles("manager");
+        Roles("admin", "manager");
 
         Options(option =>
             option.WithTags("05 - Reward Categories"));

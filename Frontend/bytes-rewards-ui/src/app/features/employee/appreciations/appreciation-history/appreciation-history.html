@@ -1,418 +1,193 @@
 <div class="flex min-h-screen bg-[#F5F7FB]">
 
-    <!-- SIDEBAR -->
-    <app-sidebar
-        workspaceTitle="Employee Workspace"
-        [menuItems]="employeeMenu">
-    </app-sidebar>
-
-    <!-- MAIN -->
-    <div class="flex-1 flex flex-col">
-
-        <!-- TOPBAR -->
-        <div class="h-[82px] border-b border-slate-200 bg-white px-8 flex items-center">
-
-            <app-topbar></app-topbar>
-
-        </div>
-
-        <!-- PAGE -->
-        <div class="p-8">
-
-            <!-- HEADER -->
-            <div class="flex justify-between items-start mb-8">
-
-                <div>
-
-                    <h1 class="text-5xl font-bold text-slate-900">
-
-                        Recognition History
-
-                    </h1>
-
-                    <p class="text-slate-500 text-lg mt-2">
-
-                        A complete log of every appreciation you've sent and received.
-
-                    </p>
-
-                </div>
-
-                <div class="flex gap-4">
-
-                    <button
-                        class="h-14 px-6 rounded-2xl border border-slate-200 bg-white font-semibold">
-
-                        Last 90 days
-
-                    </button>
-
-                    <button
-                        class="h-14 px-6 rounded-2xl bg-[#041C3C] text-white font-semibold">
-
-                        Export CSV
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- STATS -->
-            <div class="grid grid-cols-4 gap-6 mb-8">
-
-                <div class="bg-white rounded-[30px] p-8 shadow-sm">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="text-xs uppercase font-bold tracking-wider text-slate-500">
-
-                                Total Activity
-
-                            </p>
-
-                            <h2 class="text-5xl font-bold mt-4">
-
-                                8
-
-                            </h2>
-
-                            <p class="text-sm text-slate-400 mt-4">
-
-                                +12% vs last month
-
-                            </p>
-
-                        </div>
-
-                        <div
-                            class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-
-                            ↻
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded-[30px] p-8 shadow-sm">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="text-xs uppercase font-bold tracking-wider text-slate-500">
-
-                                Received
-
-                            </p>
-
-                            <h2 class="text-5xl font-bold mt-4">
-
-                                4
-
-                            </h2>
-
-                            <p class="text-sm text-emerald-500 mt-4">
-
-                                +720 Bytes
-
-                            </p>
-
-                        </div>
-
-                        <div
-                            class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center">
-
-                            ↙
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded-[30px] p-8 shadow-sm">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="text-xs uppercase font-bold tracking-wider text-slate-500">
-
-                                Sent
-
-                            </p>
-
-                            <h2 class="text-5xl font-bold mt-4">
-
-                                4
-
-                            </h2>
-
-                            <p class="text-sm text-slate-500 mt-4">
-
-                                -600 Bytes
-
-                            </p>
-
-                        </div>
-
-                        <div
-                            class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center">
-
-                            ↗
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded-[30px] p-8 shadow-sm">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="text-xs uppercase font-bold tracking-wider text-slate-500">
-
-                                Engagement
-
-                            </p>
-
-                            <h2 class="text-5xl font-bold mt-4">
-
-                                98%
-
-                            </h2>
-
-                            <p class="text-sm text-slate-400 mt-4">
-
-                                Top 5% in company
-
-                            </p>
-
-                        </div>
-
-                        <div
-                            class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center">
-
-                            ↗
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- HISTORY CARD -->
-            <div
-                class="bg-white rounded-[30px] shadow-sm overflow-hidden">
-
-                <!-- FILTER -->
-                <div class="p-8 flex justify-between items-center">
-
-                    <div
-                        class="bg-slate-100 rounded-full p-1 flex gap-1">
-
-                        <button
-                            class="h-11 px-6 rounded-full bg-white font-semibold shadow-sm">
-
-                            All Activity
-
-                        </button>
-
-                        <button
-                            class="h-11 px-6 rounded-full text-slate-500 font-medium">
-
-                            Received
-
-                        </button>
-
-                        <button
-                            class="h-11 px-6 rounded-full text-slate-500 font-medium">
-
-                            Sent
-
-                        </button>
-
-                    </div>
-
-                    <div class="flex gap-4">
-
-                        <input
-                            type="text"
-                            placeholder="Search teammates or messages..."
-                            class="h-12 w-80 rounded-full border border-slate-200 px-5 outline-none">
-
-                        
-
-                    </div>
-
-                </div>
-
-                <!-- TABLE -->
-                <div class="overflow-x-auto">
-
-                    <table class="w-full">
-
-                        <thead>
-
-                            <tr class="bg-slate-50">
-
-                                <th class="px-6 py-5 text-left text-xs uppercase text-slate-500">
-
-                                    Type
-
-                                </th>
-
-                                <th class="px-6 py-5 text-left text-xs uppercase text-slate-500">
-
-                                    Counterpart
-
-                                </th>
-
-                               
-
-                                <th class="px-6 py-5 text-left text-xs uppercase text-slate-500">
-
-                                    Message
-
-                                </th>
-
-                                
-                                <th class="px-6 py-5 text-left text-xs uppercase text-slate-500">
-
-                                    Date
-
-                                </th>
-
-                                <th class="px-6 py-5 text-left text-xs uppercase text-slate-500">
-
-                                    Reactions
-
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            @for(item of history; track item.id){
-
-                            <tr
-                                class="border-b border-slate-100 hover:bg-slate-50">
-
-                                <!-- TYPE -->
-                                <td class="px-6 py-5">
-
-                                    @if(item.type === 'Received'){
-
-                                    <span
-                                        class="px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold">
-
-                                        ↙ Received
-
-                                    </span>
-
-                                    }
-                                    @else {
-
-                                    <span
-                                        class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold">
-
-                                        ↗ Sent
-
-                                    </span>
-
-                                    }
-
-                                </td>
-
-                                <!-- USER -->
-                                <td class="px-6 py-5">
-
-                                    <div
-                                        class="flex items-center gap-3">
-
-                                        <div
-                                            class="w-11 h-11 rounded-full bg-[#25354F] text-white flex items-center justify-center font-bold">
-
-                                            {{ item.initials }}
-
-                                        </div>
-
-                                        <div>
-
-                                            <p class="font-semibold">
-
-                                                {{ item.name }}
-
-                                            </p>
-
-                                            <p
-                                                class="text-xs text-slate-400">
-
-                                                {{ item.department }}
-
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-
-                                <!-- MESSAGE -->
-                                <td class="px-6 py-5">
-
-                                    <p
-                                        class="italic text-slate-500 max-w-[350px] truncate">
-
-                                        "{{ item.message }}"
-
-                                    </p>
-
-                                </td>
-
-                               
-
-                                <!-- DATE -->
-                                <td class="px-6 py-5 text-slate-600">
-
-                                    {{ item.date }}
-
-                                </td>
-
-                                <!-- REACTION -->
-                                <td class="px-6 py-5">
-
-                                    ❤️ {{ item.reactions }}
-
-                                </td>
-
-                            </tr>
-
-                            }
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </div>
-
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Employee Workspace" [menuItems]="employeeMenu"></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
     </div>
 
+    <!-- PAGE -->
+    <div class="px-4 sm:px-8 py-7 flex-1">
+
+      <!-- HEADER -->
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Recognition History</h1>
+          <p class="text-slate-500 text-lg mt-2">
+            Every appreciation you've sent and received.
+          </p>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+
+        <div class="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 shadow-sm">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs uppercase font-bold tracking-wider text-slate-500">Total Activity</p>
+              <h2 class="text-4xl sm:text-5xl font-bold mt-4">{{ totalActivity }}</h2>
+            </div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 flex items-center justify-center text-lg">
+              ↻
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 shadow-sm">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs uppercase font-bold tracking-wider text-slate-500">Received</p>
+              <h2 class="text-4xl sm:text-5xl font-bold mt-4">{{ totalReceived }}</h2>
+            </div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center text-lg">
+              ↙
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 shadow-sm col-span-2 lg:col-span-1">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs uppercase font-bold tracking-wider text-slate-500">Sent</p>
+              <h2 class="text-4xl sm:text-5xl font-bold mt-4">{{ totalSent }}</h2>
+            </div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-50 flex items-center justify-center text-lg">
+              ↗
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HISTORY CARD -->
+      <div class="bg-white rounded-[24px] sm:rounded-[30px] shadow-sm overflow-hidden">
+
+        <!-- FILTERS -->
+        <div class="px-4 sm:px-8 py-5 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between border-b border-slate-100">
+
+          <!-- TAB FILTER -->
+          <div class="bg-slate-100 rounded-full p-1 flex gap-1 self-start">
+            <button
+              (click)="setFilter('all')"
+              class="h-10 px-5 rounded-full text-sm font-semibold transition"
+              [class]="activeFilter === 'all' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500'">
+              All Activity
+            </button>
+            <button
+              (click)="setFilter('received')"
+              class="h-10 px-5 rounded-full text-sm font-semibold transition"
+              [class]="activeFilter === 'received' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500'">
+              Received
+            </button>
+            <button
+              (click)="setFilter('sent')"
+              class="h-10 px-5 rounded-full text-sm font-semibold transition"
+              [class]="activeFilter === 'sent' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500'">
+              Sent
+            </button>
+          </div>
+
+          <!-- SEARCH -->
+          <input
+            type="text"
+            placeholder="Search names or messages..."
+            class="h-12 w-full sm:w-72 rounded-full border border-slate-200 px-5 outline-none text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            [(ngModel)]="searchText" />
+
+        </div>
+
+        <!-- LOADING -->
+        @if (isLoading) {
+          <div class="flex flex-col items-center justify-center py-16 gap-3 text-slate-400">
+            <div class="w-10 h-10 border-4 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
+            <p>Loading history…</p>
+          </div>
+        }
+
+        <!-- EMPTY -->
+        @else if (filteredHistory.length === 0) {
+          <div class="flex flex-col items-center justify-center py-16 gap-3 text-center">
+            <div class="text-5xl">💬</div>
+            <h3 class="text-xl font-semibold text-slate-700">No recognitions found</h3>
+            <p class="text-slate-400 text-sm">
+              @if (searchText) {
+                Try a different search term.
+              } @else {
+                Send your first appreciation to get started.
+              }
+            </p>
+          </div>
+        }
+
+        <!-- TABLE -->
+        @else {
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 600px;">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200">
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Type</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Person</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Message</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Date</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Reactions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of filteredHistory; track item.id) {
+                  <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+
+                    <!-- TYPE BADGE -->
+                    <td class="px-6 py-5">
+                      @if (item.type === 'Received') {
+                        <span class="inline-flex px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-semibold whitespace-nowrap">
+                          ↙ Received
+                        </span>
+                      } @else {
+                        <span class="inline-flex px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold whitespace-nowrap">
+                          ↗ Sent
+                        </span>
+                      }
+                    </td>
+
+                    <!-- PERSON -->
+                    <td class="px-6 py-5">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#041C3C] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                          {{ item.initials }}
+                        </div>
+                        <span class="font-semibold text-slate-900 whitespace-nowrap">{{ item.counterpartName }}</span>
+                      </div>
+                    </td>
+
+                    <!-- MESSAGE -->
+                    <td class="px-6 py-5 max-w-xs">
+                      <p class="italic text-slate-500 truncate">"{{ item.message }}"</p>
+                    </td>
+
+                    <!-- DATE -->
+                    <td class="px-6 py-5 text-slate-600 text-sm whitespace-nowrap">
+                      {{ item.createdAt | date:'dd MMM yyyy' }}
+                    </td>
+
+                    <!-- REACTIONS -->
+                    <td class="px-6 py-5 text-slate-600 text-sm">
+                      ❤️ {{ item.likesCount }}
+                    </td>
+
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
 </div>
