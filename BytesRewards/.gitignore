@@ -1,6 +1,14 @@
 # Build output
 bin/
 obj/
+**/bin/
+**/obj/
+
+# DLL and build artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
 
 # .NET publish output
 publish/
@@ -19,18 +27,21 @@ packages/
 *.userosscache
 *.sln.docstates
 
+# VS Code
+.vscode/
+
+# Kiro
+.kiro/
+
 # Rider / JetBrains
 .idea/
 *.DotSettings.user
-
-# VS Code
-.vscode/
 
 # Logs
 *.log
 logs/
 
-# SQLite databases (local dev data — do not commit)
+# SQLite databases
 *.db
 *.db-shm
 *.db-wal
@@ -40,10 +51,7 @@ logs/
 .env.local
 appsettings.Development.json
 appsettings.Local.json
-
-# EF Core migration bundles
-efbundle
-efbundle.exe
+**/NuGet.config
 
 # Test results
 TestResults/
@@ -58,10 +66,10 @@ Thumbs.db
 *.temp
 *~
 
+# Angular
+node_modules/
+dist/
+.angular/
+
 # Docker
-.dockerignore
 docker-compose.override.yml
-
-
-
-**/NuGet.config
