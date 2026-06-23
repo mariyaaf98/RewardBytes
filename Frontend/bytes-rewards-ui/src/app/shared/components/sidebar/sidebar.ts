@@ -17,6 +17,7 @@ import {
 } from '@angular/router';
 
 import { AuthService } from '../../../core/services/auth';
+import { UserService } from '../../../core/services/user';
 
 
 @Component({
@@ -62,33 +63,27 @@ menuItems: {
   }[];
 }[] = [];
 
-  expandedMenu = '';
-
-  userName = '';
-
-  userEmail = '';
-
-  initials = '';
-
+  expandedMenu     = '';
+  userName         = '';
+  userEmail        = '';
+  initials         = '';
+  profileImageUrl  = '';
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
-
   ngOnInit(): void {
+    this.userName  = this.authService.getUserName();
+    this.userEmail = this.authService.getUserEmail();
+    this.initials  = this.authService.getUserInitials();
 
-    this.userName =
-      this.authService.getUserName();
-
-
-    this.userEmail =
-      this.authService.getUserEmail();
-
-
-    this.initials =
-      this.authService.getUserInitials();
-
+    // load profile photo
+    this.userService.getCurrentUser().subscribe({
+      next: u => { this.profileImageUrl = u.profileImageUrl ?? ''; },
+      error: () => {}
+    });
   }
 
   toggleMenu(label: string): void {

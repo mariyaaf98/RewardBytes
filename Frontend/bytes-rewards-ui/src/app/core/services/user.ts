@@ -77,6 +77,24 @@ export class UserService {
     );
   }
 
+  updateCurrentUser(request: { firstName: string; lastName: string; phoneNumber: string }): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}/me`, request);
+  }
+
+  updateProfileImage(profileImageUrl: string): Observable<boolean> {
+    return this.http.put<boolean>(
+      `${this.apiUrl}/me/profile-image`,
+      { profileImageUrl }
+    );
+  }
+
+  changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
+    return this.http.put<boolean>(
+      `${this.apiUrl}/me/password`,
+      { currentPassword, newPassword }
+    );
+  }
+
   getUserLookup(): Observable<
     {
       id: string;

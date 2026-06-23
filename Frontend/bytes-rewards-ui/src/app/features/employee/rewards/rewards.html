@@ -1,0 +1,269 @@
+<div class="flex min-h-screen bg-[#F0F2F5]">
+
+  <app-sidebar [workspaceTitle]="workspaceTitle" [menuItems]="activeMenu"></app-sidebar>
+
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <div class="px-8 py-8 flex-1">
+
+      <!-- ══════════════════════════════════════════════
+           MANAGER VIEW — cost reference guide
+      ══════════════════════════════════════════════ -->
+      @if (isManager) {
+
+        <div class="flex items-start justify-between mb-6">
+          <div>
+            <h1 class="text-[26px] font-bold text-slate-900">Rewards Catalog</h1>
+            <p class="text-slate-400 text-sm mt-0.5">
+              Use this as a reference when deciding how many bytes to award an employee.
+            </p>
+          </div>
+          <button (click)="goToRecognize()"
+            class="h-10 px-5 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition">
+            🏅 Award Bytes Now
+          </button>
+        </div>
+
+        <!-- INFO BANNER -->
+        <div class="mb-6 flex items-start gap-3 bg-blue-50 border border-blue-200 text-blue-700 px-5 py-4 rounded-xl text-sm">
+          <span class="text-xl shrink-0 mt-0.5">💡</span>
+          <div>
+            <p class="font-semibold">How to use this page</p>
+            <p class="text-blue-600 text-xs mt-0.5">
+              Employees redeem these rewards using bytes you award them.
+              Check the cost of rewards your team values — then award enough bytes for them to afford it.
+              <strong>Example:</strong> if an employee wants Spotify Premium (500 bytes), award at least 500 bytes.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="bg-white rounded-xl border border-slate-200 px-5 py-3 flex items-center gap-3 mb-5">
+          <span class="text-slate-400">🔍</span>
+          <input type="text" placeholder="Search catalog…"
+            [value]="searchText()" (input)="onSearch($any($event.target).value)"
+            class="flex-1 outline-none text-sm text-slate-700 placeholder:text-slate-400" />
+          @if (searchText()) {
+            <button (click)="onSearch('')" class="text-slate-400 hover:text-slate-600 leading-none">✕</button>
+          }
+        </div>
+
+        <!-- LOADING / ERROR -->
+        @if (isLoading()) {
+          <div class="flex items-center justify-center py-32">
+            <div class="w-10 h-10 border-4 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+          </div>
+        } @else if (error()) {
+          <div class="flex flex-col items-center justify-center py-32 gap-3 text-center">
+            <p class="text-5xl">⚠️</p>
+            <p class="text-slate-600 font-semibold">{{ error() }}</p>
+          </div>
+        } @else if (filtered().length === 0) {
+          <div class="flex flex-col items-center justify-center py-24 gap-2 text-center bg-white rounded-2xl border border-slate-200">
+            <p class="text-5xl">🎁</p>
+            <p class="text-slate-600 font-semibold">No rewards found</p>
+          </div>
+        } @else {
+
+          <!-- MANAGER: TABLE VIEW (cost reference) -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <table class="w-full" style="min-width: 560px;">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200">
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Reward</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Code</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Cost</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Award Tip</th>
+                  <th class="px-6 py-4 text-right text-[11px] font-bold uppercase tracking-wider text-slate-400"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                @for (item of filtered(); track item.id) {
+                  <tr class="hover:bg-slate-50 transition-colors">
+
+                    <!-- REWARD -->
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 overflow-hidden">
+                          @if (item.imageUrl) {
+                            <img [src]="item.imageUrl" [alt]="item.name" class="w-full h-full object-cover rounded-xl" />
+                          } @else { <span class="text-xl">🎁</span> }
+                        </div>
+                        <div>
+                          <p class="font-semibold text-slate-900 text-sm">{{ item.name }}</p>
+                          <p class="text-slate-400 text-xs mt-0.5 truncate max-w-[220px]">{{ item.description }}</p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- CODE -->
+                    <td class="px-6 py-4">
+                      <span class="font-mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">{{ item.productCode }}</span>
+                    </td>
+
+                    <!-- COST -->
+                    <td class="px-6 py-4">
+                      <span class="text-sm font-bold px-3 py-1 rounded-full"
+                        [class]="getBytesColor(item.requiredBytes)">
+                        {{ item.requiredBytes | number }} bytes
+                      </span>
+                    </td>
+
+                    <!-- AWARD TIP -->
+                    <td class="px-6 py-4">
+                      <p class="text-xs text-slate-500">
+                        Award at least
+                        <span class="font-bold text-slate-900">{{ item.requiredBytes | number }}</span>
+                        bytes for this reward
+                      </p>
+                    </td>
+
+                    <!-- ACTION -->
+                    <td class="px-6 py-4 text-right">
+                      <button (click)="goToRecognize()"
+                        class="h-8 px-4 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-semibold hover:bg-emerald-100 transition border border-emerald-200">
+                        Award {{ item.requiredBytes | number }}+ bytes
+                      </button>
+                    </td>
+
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+        }
+
+      }
+
+      <!-- ══════════════════════════════════════════════
+           EMPLOYEE VIEW — redeem rewards
+      ══════════════════════════════════════════════ -->
+      @else {
+
+        <div class="flex items-start justify-between mb-6">
+          <div>
+            <h1 class="text-[26px] font-bold text-slate-900">Rewards Catalog</h1>
+            <p class="text-slate-400 text-sm mt-0.5">Browse and redeem rewards with your earned bytes.</p>
+          </div>
+          <button (click)="goToRedemptions()"
+            class="h-10 px-5 rounded-xl border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 transition">
+            My Redemptions
+          </button>
+        </div>
+
+        @if (redeemSuccess()) {
+          <div class="mb-4 flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-3 rounded-xl text-sm font-medium">
+            ✓ {{ redeemSuccess() }}
+          </div>
+        }
+        @if (redeemError()) {
+          <div class="mb-4 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-5 py-3 rounded-xl text-sm font-medium">
+            ⚠️ {{ redeemError() }}
+          </div>
+        }
+
+        <!-- STATS -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Your Balance</p>
+            <p class="text-3xl font-bold mt-2 text-emerald-500">
+              @if (availableBytes() !== null) { {{ availableBytes() | number }} } @else { — }
+            </p>
+            <p class="text-slate-400 text-xs mt-1">bytes available</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Rewards</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">{{ totalItems() }}</p>
+            <p class="text-slate-400 text-xs mt-1">items in catalog</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">You Can Redeem</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">{{ affordableCount() }}</p>
+            <p class="text-slate-400 text-xs mt-1">rewards within balance</p>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="bg-white rounded-xl border border-slate-200 px-5 py-4 flex items-center gap-3 mb-6">
+          <span class="text-slate-400 text-lg">🔍</span>
+          <input type="text" placeholder="Search rewards by name, description or code…"
+            [value]="searchText()" (input)="onSearch($any($event.target).value)"
+            class="flex-1 outline-none text-sm text-slate-700 placeholder:text-slate-400" />
+          @if (searchText()) {
+            <button (click)="onSearch('')" class="text-slate-400 hover:text-slate-600 text-lg leading-none">✕</button>
+          }
+        </div>
+
+        <!-- LOADING / ERROR / EMPTY -->
+        @if (isLoading()) {
+          <div class="flex items-center justify-center py-40">
+            <div class="w-10 h-10 border-4 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+          </div>
+        } @else if (error()) {
+          <div class="flex flex-col items-center justify-center py-40 gap-3 text-center">
+            <p class="text-5xl">⚠️</p>
+            <p class="text-lg font-semibold text-slate-700">{{ error() }}</p>
+          </div>
+        } @else if (filtered().length === 0) {
+          <div class="flex flex-col items-center justify-center py-24 gap-3 text-center">
+            <p class="text-5xl">🎁</p>
+            <p class="text-lg font-semibold text-slate-700">
+              @if (searchText()) { No rewards found } @else { No rewards available yet }
+            </p>
+          </div>
+        } @else {
+
+          <!-- EMPLOYEE: GRID CARDS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            @for (item of filtered(); track item.id) {
+              <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+
+                <div class="h-44 bg-gradient-to-br from-slate-100 to-slate-50 flex items-center justify-center relative">
+                  @if (hasImage(item)) {
+                    <img [src]="item.imageUrl" [alt]="item.name" class="w-full h-full object-cover" />
+                  } @else {
+                    <span class="text-6xl">🎁</span>
+                  }
+                  <span class="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full"
+                    [class]="getBytesColor(item.requiredBytes)">
+                    {{ item.requiredBytes | number }} bytes
+                  </span>
+                </div>
+
+                <div class="p-4 flex flex-col flex-1">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">{{ item.productCode }}</p>
+                  <h3 class="font-bold text-slate-900 text-[15px] leading-snug">{{ item.name }}</h3>
+                  <p class="text-slate-400 text-xs mt-1.5 leading-relaxed flex-1 line-clamp-2">{{ item.description }}</p>
+
+                  <div class="mt-4">
+                    @if (canAfford(item)) {
+                      <button (click)="redeem(item)" [disabled]="redeemingId() === item.id"
+                        class="w-full h-10 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition disabled:opacity-60 flex items-center justify-center gap-2">
+                        @if (redeemingId() === item.id) {
+                          <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Redeeming…
+                        } @else { Redeem }
+                      </button>
+                    } @else {
+                      <button disabled class="w-full h-10 rounded-xl bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed">
+                        Need {{ (item.requiredBytes - (availableBytes() ?? 0)) | number }} more bytes
+                      </button>
+                    }
+                  </div>
+                </div>
+
+              </div>
+            }
+          </div>
+
+        }
+
+      }
+
+    </div>
+  </div>
+</div>

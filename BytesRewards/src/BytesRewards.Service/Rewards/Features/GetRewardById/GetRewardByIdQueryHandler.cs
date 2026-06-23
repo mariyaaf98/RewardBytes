@@ -33,35 +33,10 @@ public sealed class GetRewardByIdQueryHandler(
         {
             Id = reward.Id,
 
-            FromUserName =
-                context.Users
-                    .Where(x =>
-                        x.Id == reward.FromUserId)
-                    .Select(x =>
-                        x.FirstName + " " + x.LastName)
-                    .FirstOrDefault() ?? string.Empty,
-
-            ToUserName =
-                context.Users
-                    .Where(x =>
-                        x.Id == reward.ToUserId)
-                    .Select(x =>
-                        x.FirstName + " " + x.LastName)
-                    .FirstOrDefault() ?? string.Empty,
-
-            RewardCategoryName =
-                context.RewardCategories
-                    .Where(x =>
-                        x.Id == reward.RewardCategoryId)
-                    .Select(x => x.Name)
-                    .FirstOrDefault() ?? string.Empty,
-
-            Bytes =
-                context.RewardCategories
-                    .Where(x =>
-                        x.Id == reward.RewardCategoryId)
-                    .Select(x => x.Bytes)
-                    .FirstOrDefault(),
+            FromUserName       = reward.FromUserName,
+            ToUserName         = reward.ToUserName,
+            RewardCategoryName = reward.RewardCategoryName,
+            Bytes              = reward.Bytes,
 
             Reason = reward.Reason,
 

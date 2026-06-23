@@ -23,13 +23,7 @@ public sealed class GetLeaderboardQueryHandler(
                 {
                     UserId = x.Key,
 
-                    TotalEarnedBytes =
-                        x.Sum(r =>
-                            context.RewardCategories
-                                .Where(c =>
-                                    c.Id == r.RewardCategoryId)
-                                .Select(c => c.Bytes)
-                                .FirstOrDefault())
+                    TotalEarnedBytes = x.Sum(r => r.Bytes)
                 })
                 .OrderByDescending(x =>
                     x.TotalEarnedBytes)

@@ -5,7 +5,8 @@ import {
   Wallet,
   Trophy,
   Bell,
-  UserCircle
+  UserCircle,
+  ShoppingBag
 } from 'lucide-angular';
 
 export const EMPLOYEE_MENU = [
@@ -31,7 +32,16 @@ export const EMPLOYEE_MENU = [
   {
     label: 'Rewards',
     icon: Gift,
-    route: '/rewards'
+    children: [
+      {
+        label: 'Catalog',
+        route: '/rewards'
+      },
+      {
+        label: 'My Redemptions',
+        route: '/redemptions'
+      }
+    ]
   },
   {
     label: 'Wallet',

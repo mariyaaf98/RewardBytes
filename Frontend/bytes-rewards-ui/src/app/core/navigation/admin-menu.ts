@@ -2,18 +2,18 @@ import {
   LayoutDashboard,
   Users,
   Gift,
-  ChartColumn,
+  Tag,
   ShieldCheck,
-  Settings,
   Building2,
-  Tag
+  ShoppingBag,
+  ReceiptText
 } from 'lucide-angular';
 
 export const ADMIN_MENU = [
   {
-    label: 'Admin Overview',
+    label: 'Overview',
     icon: LayoutDashboard,
-    route: '/'
+    route: '/admin'
   },
   {
     label: 'Employees',
@@ -31,23 +31,13 @@ export const ADMIN_MENU = [
     route: '/admin/reward-categories'
   },
   {
-    label: 'Roles',
-    icon: ShieldCheck,
-    route: '/admin/roles'
-  },
-  {
-    label: 'Rewards Catalogue',
+    label: 'Reward Items',
     icon: Gift,
-    route: '/rewards'
+    route: '/admin/reward-items'
   },
   {
-    label: 'Analytics',
-    icon: ChartColumn,
-    route: '/analytics'
-  },
-  {
-    label: 'Settings',
-    icon: Settings,
-    route: '/settings'
+    label: 'Redemptions',
+    icon: ReceiptText,
+    route: '/admin/redemptions'
   }
 ];

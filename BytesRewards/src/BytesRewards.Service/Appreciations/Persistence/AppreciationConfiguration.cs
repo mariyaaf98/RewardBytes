@@ -19,10 +19,14 @@ public sealed class AppreciationConfiguration
             .HasMaxLength(1000)
             .IsRequired();
 
-        builder.Property(x => x.FromUserId)
-            .IsRequired();
+        builder.Property(x => x.FromUserId).IsRequired();
 
-        builder.Property(x => x.ToUserId)
-            .IsRequired();
+        builder.Property(x => x.ToUserId).IsRequired();
+
+        builder.Property(x => x.FromUserName)
+            .HasMaxLength(200).IsRequired().HasDefaultValue(string.Empty);
+
+        builder.Property(x => x.ToUserName)
+            .HasMaxLength(200).IsRequired().HasDefaultValue(string.Empty);
     }
 }

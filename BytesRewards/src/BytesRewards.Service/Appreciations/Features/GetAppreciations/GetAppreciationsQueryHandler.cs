@@ -19,19 +19,11 @@ public sealed class GetAppreciationsQueryHandler(
         return await context.Appreciations
             .Select(x => new AppreciationResponse
             {
-                Id = x.Id,
-
-                FromUserName =
-                    context.Users
-                        .Where(u => u.Id == x.FromUserId)
-                        .Select(u => u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
-
-                ToUserName =
-                    context.Users
-                        .Where(u => u.Id == x.ToUserId)
-                        .Select(u => u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
+                Id           = x.Id,
+                FromUserId   = x.FromUserId,
+                ToUserId     = x.ToUserId,
+                FromUserName = x.FromUserName,
+                ToUserName   = x.ToUserName,
 
                 Message = x.Message,
 

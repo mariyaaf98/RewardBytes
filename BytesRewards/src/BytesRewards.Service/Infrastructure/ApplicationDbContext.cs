@@ -2,13 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using AppWeaver.Repository.EfCore;
 using AppWeaver.Contexts;
 using AppWeaver.DomainAbstraction.Entities;
-using  BytesRewards.Service.Users.Domain;
-using  BytesRewards.Service.Departments.Domain;
+using BytesRewards.Service.Users.Domain;
+using BytesRewards.Service.Departments.Domain;
 using BytesRewards.Service.Appreciations.Domain;
 using BytesRewards.Service.RewardCategories.Domain;
 using BytesRewards.Service.Rewards.Domain;
 using BytesRewards.Service.Wallets.Domain;
 
+using BytesRewards.Service.RewardsCatalog.Domain;
+using BytesRewards.Service.Redemptions.Domain;
 
 namespace BytesRewards.Service.Infrastructure;
 
@@ -28,6 +30,10 @@ public class ApplicationDbContext(
     public DbSet<Reward> Rewards => Set<Reward>();
 
     public DbSet<Wallet> Wallets => Set<Wallet>();
+
+    public DbSet<RewardItem> RewardItems=> Set<RewardItem>();
+
+    public DbSet<Redemption> Redemptions => Set<Redemption>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

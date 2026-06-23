@@ -32,8 +32,10 @@ export class EmployeeDashboardComponent implements OnInit {
   readonly employeeMenu = EMPLOYEE_MENU;
 
   // ── User ───────────────────────────────────────────────────────
-  readonly userName      = signal('');
-  readonly userFirstName = signal('');
+  readonly userName       = signal('');
+  readonly userFirstName  = signal('');
+  readonly currentUserId  = signal('');
+  readonly userDept       = signal('');   // current user's department
 
   // ── Wallet ─────────────────────────────────────────────────────
   readonly availableBytes  = signal<number | null>(null);
@@ -47,7 +49,7 @@ export class EmployeeDashboardComponent implements OnInit {
   // ── Derived ────────────────────────────────────────────────────
   readonly receivedCount = computed(() =>
     this.appreciations().filter(a =>
-      a.toUserName === this.userName()
+      a.toUserId === this.currentUserId()
     ).length
   );
 
@@ -63,6 +65,10 @@ export class EmployeeDashboardComponent implements OnInit {
     this.ledgerEntries().slice(0, 2)
   );
 
+  readonly totalAppreciationsCount = computed(() =>
+    this.appreciations().length
+  );
+
   // ── Lifecycle ──────────────────────────────────────────────────
   ngOnInit(): void {
     const name = this.auth.getUserName();
@@ -73,6 +79,8 @@ export class EmployeeDashboardComponent implements OnInit {
 
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
+        this.currentUserId.set(user.id);
+        this.userDept.set(user.departmentName ?? '');
         this.loadWallet(user.id);
       },
       error: () => this.isLoadingWallet.set(false)

@@ -1,6 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using BytesRewards.Service.Infrastructure.Security.Keycloak;
 
 using Serilog;
@@ -257,6 +258,15 @@ var app = builder.Build();
 // Configure HTTP request pipeline
 // NOTE: Exception handler must be registered early to capture exceptions from endpoints
 app.UseExceptionHandler(); // Custom error formatting
+
+// Serve static files from wwwroot (profile images, reward item images, etc.)
+var wwwrootPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot");
+Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads"));
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(wwwrootPath),
+    RequestPath  = ""
+});
 
 // Configure CORS based on environment
 if (isAspire)

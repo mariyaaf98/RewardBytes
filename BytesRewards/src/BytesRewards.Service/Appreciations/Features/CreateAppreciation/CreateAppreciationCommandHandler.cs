@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using AppWeaver.Mediator.Interfaces;
 using AppWeaver.Results;
 
@@ -15,22 +16,27 @@ public sealed class CreateAppreciationCommandHandler(
         CancellationToken ct)
     {
         if (request.FromUserId == request.ToUserId)
-        {
-            throw new Exception(
-                "You cannot appreciate yourself.");
-        }
+            throw new Exception("You cannot appreciate yourself.");
+
+        var fromUser = await context.Users
+            .Where(x => x.Id == request.FromUserId)
+            .Select(x => new { FullName = x.FirstName + " " + x.LastName })
+            .FirstOrDefaultAsync(ct);
+
+        var toUser = await context.Users
+            .Where(x => x.Id == request.ToUserId)
+            .Select(x => new { FullName = x.FirstName + " " + x.LastName })
+            .FirstOrDefaultAsync(ct);
 
         var appreciation = new Appreciation
         {
-            Id = Guid.NewGuid(),
-
-            FromUserId = request.FromUserId,
-
-            ToUserId = request.ToUserId,
-
-            Message = request.Message,
-
-            CreatedAt = DateTime.UtcNow
+            Id           = Guid.NewGuid(),
+            FromUserId   = request.FromUserId,
+            ToUserId     = request.ToUserId,
+            Message      = request.Message,
+            FromUserName = fromUser?.FullName ?? string.Empty,
+            ToUserName   = toUser?.FullName   ?? string.Empty,
+            CreatedAt    = DateTime.UtcNow
         };
 
         context.Appreciations.Add(appreciation);

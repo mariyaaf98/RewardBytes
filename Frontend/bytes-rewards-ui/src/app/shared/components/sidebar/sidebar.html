@@ -120,12 +120,14 @@
         <div class="flex items-center gap-4">
 
             <!-- Avatar -->
-            <div
-                class="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-lg shrink-0">
-
+            @if (profileImageUrl) {
+              <img [src]="profileImageUrl" alt="avatar"
+                class="w-12 h-12 rounded-full object-cover shrink-0" />
+            } @else {
+              <div class="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-lg shrink-0">
                 {{ initials }}
-
-            </div>
+              </div>
+            }
 
             <!-- USER INFO -->
             <div class="min-w-0">

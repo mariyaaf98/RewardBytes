@@ -10,3 +10,15 @@ export interface LedgerEntry {
   reason: string;
   awardedAt: string;
 }
+
+// Unified transaction for the full history view
+export interface Transaction {
+  id: string;
+  type: 'credit' | 'debit';
+  title: string;
+  subtitle: string;
+  note: string;
+  bytes: number;       // always positive
+  date: string;
+  runningBalance?: number;
+}

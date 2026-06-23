@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar';
 import { TopbarComponent } from '../../../shared/components/topbar/topbar';
 import { EMPLOYEE_MENU } from '../../../core/navigation/employee-menu';
+import { MANAGER_MENU } from '../../../core/navigation/manager-menu';
+import { ADMIN_MENU } from '../../../core/navigation/admin-menu';
 import { LeaderboardService, LeaderboardEntry } from '../../../core/services/leaderboard';
 import { AuthService } from '../../../core/services/auth';
 
@@ -21,6 +23,22 @@ export class LeaderboardComponent implements OnInit {
   private readonly authService        = inject(AuthService);
 
   readonly employeeMenu    = EMPLOYEE_MENU;
+  readonly managerMenu     = MANAGER_MENU;
+  readonly adminMenu       = ADMIN_MENU;
+
+  get activeMenu() {
+    const r = this.authService.currentRole();
+    if (r === 'manager') return this.managerMenu;
+    if (r === 'admin')   return this.adminMenu;
+    return this.employeeMenu;
+  }
+
+  get workspaceTitle(): string {
+    const r = this.authService.currentRole();
+    if (r === 'manager') return 'Manager Workspace';
+    if (r === 'admin')   return 'Admin Workspace';
+    return 'Employee Workspace';
+  }
 
   readonly entries         = signal<LeaderboardEntry[]>([]);
   readonly isLoading       = signal(true);

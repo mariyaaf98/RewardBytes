@@ -23,27 +23,11 @@ public sealed class GetWalletLedgerQueryHandler(
             {
                 RewardId = x.Id,
 
-                RewardCategoryName =
-                    context.RewardCategories
-                        .Where(c =>
-                            c.Id == x.RewardCategoryId)
-                        .Select(c => c.Name)
-                        .FirstOrDefault() ?? string.Empty,
+                RewardCategoryName = x.RewardCategoryName,
 
-                Bytes =
-                    context.RewardCategories
-                        .Where(c =>
-                            c.Id == x.RewardCategoryId)
-                        .Select(c => c.Bytes)
-                        .FirstOrDefault(),
+                Bytes = x.Bytes,
 
-                AwardedBy =
-                    context.Users
-                        .Where(u =>
-                            u.Id == x.FromUserId)
-                        .Select(u =>
-                            u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
+                AwardedBy = x.FromUserName,
 
                 Reason = x.Reason,
 

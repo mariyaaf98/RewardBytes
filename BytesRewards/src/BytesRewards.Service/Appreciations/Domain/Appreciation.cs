@@ -12,5 +12,9 @@ public class Appreciation : BaseEntity, IAggregateRoot
 
     public string Message { get; set; } = string.Empty;
 
-    // public ICollection<AppreciationLike> Likes { get; set; } = [];
+    /// <summary>Sender's full name — snapshotted at creation.</summary>
+    public string FromUserName { get; set; } = string.Empty;
+
+    /// <summary>Recipient's full name — snapshotted at creation.</summary>
+    public string ToUserName { get; set; } = string.Empty;
 }

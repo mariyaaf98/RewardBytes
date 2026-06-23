@@ -1,79 +1,3 @@
-// import { Routes } from '@angular/router';
-
-// import { roleRedirectGuard } from './core/guards/role-redirect-guard';
-
-// import { authGuard } from './core/guards/auth-guard';
-
-// import { adminGuard } from './core/guards/admin-guard';
-
-// import { managerGuard } from './core/guards/manager-guard';
-
-// import { EmployeeDashboardComponent } from './features/dashboard/employee-dashboard/employee-dashboard';
-
-// import { AdminDashboardComponent } from './features/dashboard/admin-dashboard/admin-dashboard';
-
-// import { ManagerDashboardComponent } from './features/dashboard/manager-dashboard/manager-dashboard';
-
-// import { EmployeeManagementComponent } from './features/admin/employee-management/employee-management';
-
-
-
-
-// export const routes: Routes = [
-
-//   // ROLE BASED REDIRECT
-//   {
-//     path: '',
-//     canActivate: [roleRedirectGuard],
-//     children: []
-//   },
-
-//   // EMPLOYEE
-//   {
-//     path: 'employee',
-//     component: EmployeeDashboardComponent,
-//     canActivate: [authGuard]
-//   },
-
-// //   {
-// //   path: 'employee/appreciations/create',
-// //   loadComponent: () =>
-// //     import('./features/employee/appreciations/create-appreciation/create-appreciation')
-// //       .then(m => m.CreateAppreciationComponent)
-// // },
-
-// // {
-// //   path: 'employee/appreciations/history',
-// //   loadComponent: () =>
-// //     import('./features/employee/appreciations/appreciation-history/appreciation-history')
-// //       .then(m => m.AppreciationHistoryComponent)
-// // },
-
-//   // ADMIN
-//   {
-//     path: 'admin',
-//     component: AdminDashboardComponent,
-//     canActivate: [adminGuard]
-//   },
-
-//   {
-//     path: 'admin/employees',
-//     component: EmployeeManagementComponent,
-//     canActivate: [adminGuard]
-//   },
-
-
-//   // MANAGER
-//   {
-//     path: 'manager',
-//     component: ManagerDashboardComponent,
-//     canActivate: [managerGuard]
-//   }
-
-// ];
-
-
-
 
 import { Routes } from '@angular/router';
 
@@ -150,6 +74,22 @@ export const routes: Routes = [
     canActivate: [adminGuard]
   },
 
+  {
+    path: 'admin/reward-items',
+    loadComponent: () =>
+      import('./features/admin/reward-item-management/reward-item-management')
+        .then(m => m.RewardItemManagementComponent),
+    canActivate: [adminGuard]
+  },
+
+  {
+    path: 'admin/redemptions',
+    loadComponent: () =>
+      import('./features/admin/redemption-management/redemption-management')
+        .then(m => m.RedemptionManagementComponent),
+    canActivate: [adminGuard]
+  },
+
   // MANAGER
   {
     path: 'manager',
@@ -180,6 +120,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/employee/leaderboard/leaderboard')
         .then(m => m.LeaderboardComponent),
+    canActivate: [authGuard]
+  },
+
+  // EMPLOYEE — REWARDS CATALOG
+  {
+    path: 'rewards',
+    loadComponent: () =>
+      import('./features/employee/rewards/rewards')
+        .then(m => m.RewardsComponent),
+    canActivate: [authGuard]
+  },
+
+  // EMPLOYEE — REDEMPTIONS
+  {
+    path: 'redemptions',
+    loadComponent: () =>
+      import('./features/employee/redemptions/redemptions')
+        .then(m => m.RedemptionsComponent),
     canActivate: [authGuard]
   },
 

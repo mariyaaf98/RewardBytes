@@ -21,33 +21,10 @@ public sealed class GetRewardsQueryHandler(
             {
                 Id = x.Id,
 
-                FromUserName =
-                    context.Users
-                        .Where(u => u.Id == x.FromUserId)
-                        .Select(u =>
-                            u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
-
-                ToUserName =
-                    context.Users
-                        .Where(u => u.Id == x.ToUserId)
-                        .Select(u =>
-                            u.FirstName + " " + u.LastName)
-                        .FirstOrDefault() ?? string.Empty,
-
-                RewardCategoryName =
-                    context.RewardCategories
-                        .Where(c =>
-                            c.Id == x.RewardCategoryId)
-                        .Select(c => c.Name)
-                        .FirstOrDefault() ?? string.Empty,
-
-                Bytes =
-                    context.RewardCategories
-                        .Where(c =>
-                            c.Id == x.RewardCategoryId)
-                        .Select(c => c.Bytes)
-                        .FirstOrDefault(),
+                FromUserName       = x.FromUserName,
+                ToUserName         = x.ToUserName,
+                RewardCategoryName = x.RewardCategoryName,
+                Bytes              = x.Bytes,
 
                 Reason = x.Reason,
 

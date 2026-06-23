@@ -17,5 +17,16 @@ public sealed class RewardConfiguration
 
         builder.Property(x => x.Reason)
             .HasMaxLength(500);
+
+        builder.Property(x => x.Bytes).IsRequired();
+
+        builder.Property(x => x.RewardCategoryName)
+            .HasMaxLength(200).IsRequired().HasDefaultValue(string.Empty);
+
+        builder.Property(x => x.FromUserName)
+            .HasMaxLength(200).IsRequired().HasDefaultValue(string.Empty);
+
+        builder.Property(x => x.ToUserName)
+            .HasMaxLength(200).IsRequired().HasDefaultValue(string.Empty);
     }
 }

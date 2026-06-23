@@ -1,339 +1,293 @@
-<div class="flex min-h-screen bg-[#F4F7FB]">
+<div class="flex min-h-screen bg-[#F0F2F5]">
 
-  <!-- SIDEBAR -->
-<app-sidebar
-  workspaceTitle="Admin Workspace"
-  [menuItems]="adminMenu"
-></app-sidebar>
+  <app-sidebar workspaceTitle="Admin Workspace" [menuItems]="adminMenu"></app-sidebar>
 
-  <!-- MAIN -->
-  <div class="flex-1 flex flex-col">
+  <div class="flex-1 flex flex-col min-w-0">
 
     <!-- TOPBAR -->
     <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
       <app-topbar></app-topbar>
     </div>
 
-    <!-- PAGE -->
-    <div class="px-7 py-6">
+    <div class="px-8 py-8 flex-1">
 
-      <!-- HERO -->
-      <div class="flex items-start justify-between">
-
-        <!-- LEFT -->
+      <!-- PAGE HEADER -->
+      <div class="flex items-start justify-between mb-7">
         <div>
-
-          <h1 class="text-5xl font-bold tracking-tight text-slate-900">
-            Admin overview
-          </h1>
-
-          <p class="text-slate-500 text-lg mt-2">
-            Monitor platform engagement, recognition velocity and budget across the organization.
-          </p>
-
+          <h1 class="text-[26px] font-bold text-slate-900">Admin Overview</h1>
+          <p class="text-slate-400 text-sm mt-0.5">Platform summary — employees, recognitions and redemptions.</p>
         </div>
-
-        <!-- ACTIONS -->
-        <div class="flex gap-3">
-
-          <button
-            class="h-14 px-6 bg-white border border-slate-200 rounded-2xl font-semibold"
-          >
-            Export
-          </button>
-
-          <button
-            class="h-14 px-7 bg-emerald-500 text-white rounded-2xl font-semibold shadow-md"
-          >
-            Add employee
-          </button>
-
-        </div>
-
+        <button (click)="go('/admin/employees')"
+          class="h-10 px-5 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition">
+          + Add Employee
+        </button>
       </div>
 
-      <!-- STATS -->
-      <div class="grid grid-cols-4 gap-6 mt-8">
+      <!-- LOADING -->
+      @if (isLoading()) {
+        <div class="flex items-center justify-center py-40">
+          <div class="w-10 h-10 border-4 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+        </div>
+      }
 
-        <!-- CARD -->
-        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+      @else {
 
-          <div class="flex items-start justify-between">
+        <!-- ── KPI CARDS ── -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
-            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
-              Total Employees
+          <!-- Total Employees -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer hover:shadow-md transition-shadow" (click)="go('/admin/employees')">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Employees</p>
+                <p class="text-4xl font-bold mt-3 text-slate-900">{{ totalEmployees() }}</p>
+                <p class="text-xs text-emerald-600 mt-1 font-medium">
+                  {{ activeEmployees() }} active · {{ totalEmployees() - activeEmployees() }} inactive
+                </p>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-xl shrink-0">👥</div>
+            </div>
+          </div>
+
+          <!-- Recognitions -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer hover:shadow-md transition-shadow" (click)="go('/admin/reward-categories')">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Recognitions Given</p>
+                <p class="text-4xl font-bold mt-3 text-slate-900">{{ totalRewards() }}</p>
+                <p class="text-xs text-slate-400 mt-1">{{ totalBytesAwarded() | number }} bytes awarded</p>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center text-xl shrink-0">🏅</div>
+            </div>
+          </div>
+
+          <!-- Appreciations -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Appreciations</p>
+                <p class="text-4xl font-bold mt-3 text-slate-900">{{ totalAppreciations() }}</p>
+                <p class="text-xs text-slate-400 mt-1">peer-to-peer shoutouts</p>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-pink-50 flex items-center justify-center text-xl shrink-0">✨</div>
+            </div>
+          </div>
+
+          <!-- Pending Redemptions -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer hover:shadow-md transition-shadow" (click)="go('/admin/redemptions')">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Pending Redemptions</p>
+                <p class="text-4xl font-bold mt-3"
+                  [class]="pendingRedemptions() > 0 ? 'text-amber-500' : 'text-slate-900'">
+                  {{ pendingRedemptions() }}
+                </p>
+                <p class="text-xs text-slate-400 mt-1">
+                  @if (pendingRedemptions() > 0) { awaiting your review } @else { all up to date }
+                </p>
+              </div>
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center text-xl shrink-0">🎁</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── SECONDARY KPI ROW ── -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+
+          <!-- Reward Catalog -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 cursor-pointer hover:shadow-md transition-shadow" (click)="go('/admin/reward-items')">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Catalog Items</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">{{ catalogItems() }}</p>
+            <p class="text-xs text-slate-400 mt-1">redeemable reward items</p>
+          </div>
+
+          <!-- Active Rate -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Active Rate</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">
+              @if (totalEmployees() > 0) {
+                {{ ((activeEmployees() / totalEmployees()) * 100) | number:'1.0-0' }}%
+              } @else { — }
             </p>
-
-            <div
-              class="w-14 h-14 rounded-full bg-[#102C57] text-white flex items-center justify-center"
-            >
-              👥
-            </div>
-
+            <p class="text-xs text-slate-400 mt-1">of workforce active</p>
           </div>
 
-          <h2 class="text-5xl font-bold mt-5">
-            1,284
-          </h2>
-
-          <p class="text-emerald-500 text-lg mt-3">
-            ↗ 6%
-            <span class="text-slate-500">
-              +74 this Q
-            </span>
-          </p>
-
-        </div>
-
-        <!-- CARD -->
-        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
-
-          <div class="flex items-start justify-between">
-
-            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
-              Active Users (30d)
+          <!-- Avg Bytes per Employee -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Avg Bytes / Employee</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">
+              @if (totalEmployees() > 0) {
+                {{ (totalBytesAwarded() / totalEmployees()) | number:'1.0-0' }}
+              } @else { — }
             </p>
+            <p class="text-xs text-slate-400 mt-1">bytes per person</p>
+          </div>
 
-            <div
-              class="w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center"
-            >
-              📈
+        </div>
+
+        <!-- ── BOTTOM GRID: recent activity + leaderboard ── -->
+        <div class="grid grid-cols-12 gap-5">
+
+          <!-- RECENT RECOGNITIONS -->
+          <div class="col-span-12 lg:col-span-7 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+
+            <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <h3 class="text-[16px] font-bold text-slate-900">Recent Recognitions</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Latest rewards given across the platform</p>
+              </div>
+              <button (click)="go('/admin/reward-categories')"
+                class="text-sm text-emerald-500 font-semibold hover:underline">
+                View all
+              </button>
             </div>
 
+            @if (recentRewards().length === 0) {
+              <div class="flex flex-col items-center justify-center py-16 gap-2 text-center">
+                <p class="text-4xl">🏅</p>
+                <p class="text-slate-500 text-sm font-medium">No recognitions yet</p>
+              </div>
+            } @else {
+              <div class="divide-y divide-slate-100">
+                @for (r of recentRewards(); track r.id) {
+                  <div class="flex items-center gap-4 px-6 py-4 hover:bg-slate-50 transition-colors">
+
+                    <!-- avatar -->
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white shrink-0"
+                      [style.background-color]="avatarColor($index)">
+                      {{ getInitials(r.fromUserName) }}
+                    </div>
+
+                    <!-- info -->
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-slate-900">
+                        {{ r.fromUserName }}
+                        <span class="font-normal text-slate-400">recognized</span>
+                        {{ r.toUserName }}
+                      </p>
+                      <p class="text-xs text-slate-400 mt-0.5 truncate">
+                        {{ r.rewardCategoryName }} · {{ r.createdAt | date:'dd MMM' }}
+                      </p>
+                    </div>
+
+                    <!-- bytes -->
+                    <span class="text-emerald-500 font-bold text-sm shrink-0">
+                      +{{ r.bytes | number }} bytes
+                    </span>
+
+                  </div>
+                }
+              </div>
+            }
+
           </div>
 
-          <h2 class="text-5xl font-bold mt-5">
-            1,051
-          </h2>
+          <!-- TOP PERFORMERS -->
+          <div class="col-span-12 lg:col-span-5 bg-white rounded-2xl border border-slate-200 overflow-hidden">
 
-          <p class="text-emerald-500 text-lg mt-3">
-            ↗ 11%
-            <span class="text-slate-500">
-              82% of org
-            </span>
-          </p>
-
-        </div>
-
-        <!-- CARD -->
-        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
-
-          <div class="flex items-start justify-between">
-
-            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
-              Recognitions Sent
-            </p>
-
-            <div
-              class="w-14 h-14 rounded-full bg-yellow-400 text-black flex items-center justify-center"
-            >
-              🏅
+            <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <h3 class="text-[16px] font-bold text-slate-900">Top Performers</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Ranked by total bytes earned</p>
+              </div>
+              <button (click)="go('/leaderboard')"
+                class="text-sm text-emerald-500 font-semibold hover:underline">
+                Full board
+              </button>
             </div>
 
-          </div>
+            @if (topEmployees().length === 0) {
+              <div class="flex flex-col items-center justify-center py-16 gap-2 text-center">
+                <p class="text-4xl">🏆</p>
+                <p class="text-slate-500 text-sm font-medium">No rankings yet</p>
+              </div>
+            } @else {
+              <div class="divide-y divide-slate-100">
+                @for (e of topEmployees(); track e.userId) {
+                  <div class="flex items-center gap-4 px-6 py-4 hover:bg-slate-50 transition-colors">
 
-          <h2 class="text-5xl font-bold mt-5">
-            9,420
-          </h2>
+                    <!-- rank -->
+                    <span class="text-[13px] font-bold w-6 shrink-0"
+                      [class]="e.rank === 1 ? 'text-amber-400' : e.rank === 2 ? 'text-slate-400' : e.rank === 3 ? 'text-orange-400' : 'text-slate-300'">
+                      #{{ e.rank }}
+                    </span>
 
-          <p class="text-emerald-500 text-lg mt-3">
-            ↗ 24%
-            <span class="text-slate-500">
-              this month
-            </span>
-          </p>
+                    <!-- avatar -->
+                    <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs text-white shrink-0"
+                      [style.background-color]="avatarColor(e.rank - 1)">
+                      {{ getInitials(e.employeeName) }}
+                    </div>
 
-        </div>
+                    <!-- name -->
+                    <p class="flex-1 text-sm font-semibold text-slate-900 truncate">{{ e.employeeName }}</p>
 
-        <!-- CARD -->
-        <div class="bg-white rounded-[28px] p-7 shadow-sm border border-slate-100">
+                    <!-- bytes -->
+                    <span class="text-emerald-500 font-bold text-sm shrink-0">
+                      {{ e.totalEarnedBytes | number }}
+                    </span>
 
-          <div class="flex items-start justify-between">
-
-            <p class="uppercase tracking-[0.18em] text-slate-500 text-xs">
-              Rewards Redeemed
-            </p>
-
-            <div
-              class="w-14 h-14 rounded-full bg-pink-500 text-white flex items-center justify-center"
-            >
-              🎁
-            </div>
-
-          </div>
-
-          <h2 class="text-5xl font-bold mt-5">
-            2,318
-          </h2>
-
-          <p class="text-emerald-500 text-lg mt-3">
-            ↗ 9%
-            <span class="text-slate-500">
-              $48.2k value
-            </span>
-          </p>
-
-        </div>
-
-      </div>
-
-      <!-- CHARTS -->
-      <div class="grid grid-cols-12 gap-6 mt-7">
-
-        <!-- TREND -->
-        <div
-          class="col-span-8 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
-        >
-
-          <h2 class="text-3xl font-bold text-slate-900">
-            Engagement trend
-          </h2>
-
-          <p class="text-slate-500 mt-2">
-            Monthly recognitions vs. reward redemptions
-          </p>
-
-          <!-- Fake Chart -->
-          <div class="mt-10 h-[340px] relative">
-
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[220px] bg-gradient-to-t from-emerald-100 to-transparent rounded-2xl"
-            ></div>
-
-            <div
-              class="absolute bottom-0 left-0 right-0 border-b border-dashed border-slate-300"
-            ></div>
-
-            <div
-              class="absolute bottom-[80px] left-0 right-0 border-b border-dashed border-slate-300"
-            ></div>
-
-            <div
-              class="absolute bottom-[160px] left-0 right-0 border-b border-dashed border-slate-300"
-            ></div>
-
-            <div
-              class="absolute bottom-[240px] left-0 right-0 border-b border-dashed border-slate-300"
-            ></div>
-
-          </div>
-
-        </div>
-
-        <!-- DONUT -->
-        <div
-          class="col-span-4 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
-        >
-
-          <h2 class="text-3xl font-bold text-slate-900">
-            Department engagement
-          </h2>
-
-          <p class="text-slate-500 mt-2">
-            Share of recognitions sent
-          </p>
-
-          <!-- Circle -->
-          <div class="flex justify-center mt-10">
-
-            <div
-              class="w-64 h-64 rounded-full border-[28px] border-[#041C3C] relative"
-            >
-
-              <div
-                class="absolute inset-0 border-[28px] border-transparent border-t-emerald-400 rounded-full rotate-[130deg]"
-              ></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- BOTTOM -->
-      <div class="grid grid-cols-12 gap-6 mt-7">
-
-        <!-- HEATMAP -->
-        <div
-          class="col-span-8 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
-        >
-
-          <h2 class="text-3xl font-bold text-slate-900">
-            Recognition activity heatmap
-          </h2>
-
-          <div class="mt-8 grid grid-cols-20 gap-2">
-
-            @for (item of [].constructor(120); track $index) {
-
-              <div
-                class="w-5 h-5 rounded-full bg-emerald-300"
-              ></div>
-
+                  </div>
+                }
+              </div>
             }
 
           </div>
 
         </div>
 
-        <!-- TOP EMPLOYEES -->
-        <div
-          class="col-span-4 bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm"
-        >
+        <!-- ── DEPARTMENT ANALYSIS ── -->
+        @if (deptStats().length > 0) {
+          <div class="mt-5 bg-white rounded-2xl border border-slate-200 overflow-hidden">
 
-          <h2 class="text-3xl font-bold text-slate-900">
-            Top performing employees
-          </h2>
+            <div class="px-6 py-4 border-b border-slate-100">
+              <h3 class="text-[16px] font-bold text-slate-900">Department Analysis</h3>
+              <p class="text-slate-400 text-xs mt-0.5">Bytes awarded and peer appreciations by department</p>
+            </div>
 
-          <div class="space-y-6 mt-8">
-
-            <!-- ITEM -->
-            <div class="flex items-center justify-between">
-
-              <div class="flex items-center gap-4">
-
-                <div
-                  class="w-12 h-12 rounded-full bg-yellow-300 flex items-center justify-center font-bold"
-                >
-                  1
-                </div>
-
-                <div
-                  class="w-14 h-14 rounded-full bg-[#102C57] text-white flex items-center justify-center font-bold"
-                >
-                  PS
-                </div>
-
-                <div>
-
-                  <h3 class="text-2xl font-semibold">
-                    Priya Shah
-                  </h3>
-
-                  <p class="text-slate-500">
-                    Engineering
-                  </p>
-
-                </div>
-
+            <div class="px-6 py-5">
+              <div class="grid grid-cols-[2fr_1fr_1fr_1fr_3fr] gap-x-6 mb-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Department</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Employees</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Bytes Given</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Appreciations</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Engagement</span>
               </div>
 
-              <div class="text-emerald-500 font-bold text-3xl">
-                38
-              </div>
+              <div class="space-y-3">
+                @for (d of deptStats(); track d.name) {
+                  <div class="grid grid-cols-[2fr_1fr_1fr_1fr_3fr] gap-x-6 items-center">
 
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></div>
+                      <span class="text-sm font-semibold text-slate-900 truncate">{{ d.name }}</span>
+                    </div>
+
+                    <span class="text-sm text-slate-600">{{ d.employeeCount }}</span>
+
+                    <span class="text-sm font-bold text-emerald-600">{{ d.bytesAwarded | number }}</span>
+
+                    <span class="text-sm text-slate-600">{{ d.appreciations }}</span>
+
+                    <div class="flex items-center gap-3">
+                      <div class="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden">
+                        <div class="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                          [style.width.%]="d.pct"></div>
+                      </div>
+                      <span class="text-xs text-slate-400 w-8 shrink-0 text-right">{{ d.pct }}%</span>
+                    </div>
+
+                  </div>
+                }
+              </div>
             </div>
 
           </div>
+        }
 
-        </div>
-
-      </div>
+      }
 
     </div>
-
   </div>
 
 </div>

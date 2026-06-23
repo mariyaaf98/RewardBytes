@@ -1,9 +1,7 @@
 <div class="flex min-h-screen bg-[#F0F2F5]">
 
-  <!-- SIDEBAR -->
-  <app-sidebar workspaceTitle="Employee Workspace" [menuItems]="employeeMenu"></app-sidebar>
+  <app-sidebar [workspaceTitle]="workspaceTitle" [menuItems]="activeMenu"></app-sidebar>
 
-  <!-- MAIN -->
   <div class="flex-1 flex flex-col min-w-0">
 
     <!-- TOPBAR -->
@@ -11,75 +9,83 @@
       <app-topbar></app-topbar>
     </div>
 
-    <!-- PAGE -->
     <div class="px-8 py-8 flex-1">
 
       <!-- HEADER -->
       <div class="mb-6">
-        <h1 class="text-3xl font-bold text-slate-900">Wallet & Bytes</h1>
-        <p class="text-slate-400 mt-1">Track every Byte you've earned and spent.</p>
+        <h1 class="text-[26px] font-bold text-slate-900">Wallet & Bytes</h1>
+        <p class="text-slate-400 text-sm mt-0.5">Your full bytes history — earned and spent.</p>
       </div>
 
-      <!-- TOP SECTION: balance card + two stat cards -->
-      <div class="grid grid-cols-3 gap-4 mb-6">
+      <!-- TOP ROW: balance + stats -->
+      <div class="grid grid-cols-12 gap-4 mb-6">
 
-        <!-- BALANCE CARD (takes 2 cols) -->
-        <div class="col-span-2 bg-gradient-to-br from-[#0d1f3c] via-[#1a3a5c] to-[#1a4a3a] rounded-2xl p-7 text-white relative overflow-hidden">
+        <!-- BALANCE CARD -->
+        <div class="col-span-12 lg:col-span-5 bg-gradient-to-br from-[#0d1f3c] via-[#1a3a5c] to-[#1a4a3a] rounded-2xl p-7 text-white relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none"></div>
 
-          <!-- subtle glow -->
-          <div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
+          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400">Available Balance</p>
 
-          <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">Total Balance</p>
-
-          <!-- BALANCE VALUE -->
           @if (isLoadingWallet()) {
             <div class="mt-4 flex items-center gap-3">
               <div class="w-7 h-7 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-              <span class="text-slate-400 text-lg">Loading…</span>
+              <span class="text-slate-400">Loading…</span>
             </div>
-          } @else if (walletError()) {
-            <p class="mt-4 text-red-300 text-sm">{{ walletError() }}</p>
           } @else {
             <div class="flex items-baseline gap-3 mt-3">
               <h2 class="text-6xl font-bold tracking-tight">{{ availableBytes() | number }}</h2>
-              <span class="text-2xl text-slate-300 font-medium">Bytes</span>
+              <span class="text-xl text-slate-300">Bytes</span>
             </div>
           }
 
-          <!-- ACTIONS -->
-          <div class="flex gap-3 mt-7">
-            <button class="flex items-center gap-2 h-11 px-5 rounded-xl bg-white text-slate-900 font-semibold text-sm hover:bg-slate-100 transition">
+          <div class="flex gap-3 mt-6">
+            <button (click)="goToRewards()"
+              class="h-10 px-5 rounded-xl bg-white text-slate-900 font-semibold text-sm hover:bg-slate-100 transition">
               🎁 Redeem
             </button>
-            <button
-              (click)="goToRecognize()"
-              class="flex items-center gap-2 h-11 px-5 rounded-xl border border-white/20 text-white font-semibold text-sm hover:bg-white/10 transition">
+            <button (click)="goToRecognize()"
+              class="h-10 px-5 rounded-xl border border-white/20 text-white font-semibold text-sm hover:bg-white/10 transition">
               ✦ Recognize
             </button>
           </div>
-
         </div>
 
-        <!-- RIGHT STAT CARDS -->
-        <div class="col-span-1 flex flex-col gap-4">
+        <!-- STAT CARDS -->
+        <div class="col-span-12 lg:col-span-7 grid grid-cols-3 gap-4">
 
-          <!-- EARNED THIS MONTH -->
-          <div class="bg-white rounded-2xl p-6 flex-1 border border-slate-100 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Earned this month</p>
-            @if (isLoadingLedger()) {
-              <div class="mt-3 w-5 h-5 border-2 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col justify-between">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Earned</p>
+            @if (isLoadingHistory()) {
+              <div class="w-5 h-5 border-2 border-slate-200 border-t-emerald-500 rounded-full animate-spin mt-2"></div>
             } @else {
-              <p class="text-4xl font-bold text-emerald-500 mt-2">+{{ totalEarned() | number }}</p>
+              <div class="mt-2">
+                <p class="text-3xl font-bold text-emerald-500">+{{ totalCredits() | number }}</p>
+                <p class="text-slate-400 text-xs mt-1">{{ creditCount() }} credits</p>
+              </div>
             }
           </div>
 
-          <!-- TRANSACTIONS -->
-          <div class="bg-white rounded-2xl p-6 flex-1 border border-slate-100 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Transactions</p>
-            @if (isLoadingLedger()) {
-              <div class="mt-3 w-5 h-5 border-2 border-slate-200 border-t-slate-500 rounded-full animate-spin"></div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col justify-between">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Spent</p>
+            @if (isLoadingHistory()) {
+              <div class="w-5 h-5 border-2 border-slate-200 border-t-red-400 rounded-full animate-spin mt-2"></div>
             } @else {
-              <p class="text-4xl font-bold text-slate-700 mt-2">{{ ledger().length }}</p>
+              <div class="mt-2">
+                <p class="text-3xl font-bold text-red-400">−{{ totalDebits() | number }}</p>
+                <p class="text-slate-400 text-xs mt-1">{{ debitCount() }} redemptions</p>
+              </div>
+            }
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col justify-between">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Transactions</p>
+            @if (isLoadingHistory()) {
+              <div class="w-5 h-5 border-2 border-slate-200 border-t-slate-400 rounded-full animate-spin mt-2"></div>
+            } @else {
+              <div class="mt-2">
+                <p class="text-3xl font-bold text-slate-900">{{ allTransactions().length }}</p>
+                <p class="text-slate-400 text-xs mt-1">all time</p>
+              </div>
             }
           </div>
 
@@ -87,83 +93,141 @@
 
       </div>
 
-      <!-- TRANSACTION HISTORY CARD -->
-      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <!-- TRANSACTION HISTORY -->
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
 
         <!-- CARD HEADER -->
-        <div class="px-7 py-5 flex items-center justify-between border-b border-slate-100">
-          <h3 class="text-lg font-bold text-slate-900">Transaction history</h3>
-          <input
-            type="text"
-            placeholder="Search…"
-            [value]="searchText()"
-            (input)="onSearch($any($event.target).value)"
-            class="h-9 w-56 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm outline-none focus:border-slate-400 transition" />
+        <div class="px-6 py-5 border-b border-slate-100 flex flex-wrap items-center gap-4">
+
+          <!-- TITLE -->
+          <div class="flex-1 min-w-0">
+            <h3 class="text-[16px] font-bold text-slate-900">Transaction History</h3>
+            <p class="text-slate-400 text-xs mt-0.5">All credits and debits in one place</p>
+          </div>
+
+          <!-- FILTER TABS -->
+          <div class="flex items-center gap-1 bg-slate-100 rounded-xl p-1">
+            <button (click)="setTab('all')"
+              class="px-4 py-1.5 rounded-lg text-xs font-semibold transition"
+              [class]="activeTab() === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
+              All ({{ allTransactions().length }})
+            </button>
+            <button (click)="setTab('credit')"
+              class="px-4 py-1.5 rounded-lg text-xs font-semibold transition"
+              [class]="activeTab() === 'credit' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
+              Credits ({{ creditCount() }})
+            </button>
+            <button (click)="setTab('debit')"
+              class="px-4 py-1.5 rounded-lg text-xs font-semibold transition"
+              [class]="activeTab() === 'debit' ? 'bg-white text-red-500 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
+              Debits ({{ debitCount() }})
+            </button>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 h-9 w-52">
+            <span class="text-slate-400 text-xs">🔍</span>
+            <input type="text" placeholder="Search…"
+              [value]="searchText()"
+              (input)="onSearch($any($event.target).value)"
+              class="flex-1 bg-transparent outline-none text-sm text-slate-700 placeholder:text-slate-400" />
+          </div>
+
         </div>
 
         <!-- LOADING -->
-        @if (isLoadingLedger()) {
-          <div class="flex items-center justify-center py-16 gap-3 text-slate-400">
+        @if (isLoadingHistory()) {
+          <div class="flex items-center justify-center py-20 gap-3 text-slate-400">
             <div class="w-8 h-8 border-4 border-slate-200 border-t-[#0d1f3c] rounded-full animate-spin"></div>
-            <span>Loading transactions…</span>
-          </div>
-        }
-
-        <!-- ERROR -->
-        @else if (ledgerError()) {
-          <div class="flex flex-col items-center justify-center py-16 gap-3 text-center px-8">
-            <div class="text-5xl">⚠️</div>
-            <p class="text-slate-500">{{ ledgerError() }}</p>
+            <span class="text-sm">Loading transactions…</span>
           </div>
         }
 
         <!-- EMPTY -->
-        @else if (filteredLedger().length === 0) {
-          <div class="flex flex-col items-center justify-center py-16 gap-3 text-center">
-            <div class="text-5xl">💰</div>
-            <p class="text-slate-500 font-medium">
-              @if (searchText()) { No results for "{{ searchText() }}" } @else { No transactions yet }
+        @else if (filtered().length === 0) {
+          <div class="flex flex-col items-center justify-center py-20 gap-3 text-center">
+            <p class="text-5xl">💳</p>
+            <p class="text-slate-600 font-semibold">
+              @if (searchText()) { No results for "{{ searchText() }}" }
+              @else if (activeTab() === 'credit') { No credits yet }
+              @else if (activeTab() === 'debit') { No debits yet }
+              @else { No transactions yet }
             </p>
-            <p class="text-slate-400 text-sm">Your earned bytes will appear here once a manager rewards you.</p>
+            <p class="text-slate-400 text-sm">Transactions will appear here as you earn and spend bytes.</p>
           </div>
         }
 
-        <!-- LIST -->
+        <!-- TABLE -->
         @else {
-          <div class="divide-y divide-slate-100">
-            @for (entry of filteredLedger(); track entry.rewardId) {
+          <div class="overflow-x-auto">
+            <table class="w-full" style="min-width: 600px;">
+              <thead>
+                <tr class="border-b border-slate-100 bg-slate-50">
+                  <th class="px-6 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Transaction</th>
+                  <th class="px-6 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Category</th>
+                  <th class="px-6 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Date</th>
+                  <th class="px-6 py-3 text-right text-[11px] font-bold uppercase tracking-wider text-slate-400">Amount</th>
+                  <th class="px-6 py-3 text-right text-[11px] font-bold uppercase tracking-wider text-slate-400">Balance</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                @for (t of filtered(); track t.id) {
+                  <tr class="hover:bg-slate-50 transition-colors">
 
-              <div class="flex items-center gap-4 px-7 py-4 hover:bg-slate-50 transition-colors">
+                    <!-- TRANSACTION -->
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-3">
+                        <!-- icon -->
+                        <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-bold"
+                          [class]="t.type === 'credit'
+                            ? 'bg-emerald-50 text-emerald-600'
+                            : 'bg-red-50 text-red-500'">
+                          {{ t.type === 'credit' ? '↙' : '↗' }}
+                        </div>
+                        <div class="min-w-0">
+                          <p class="font-semibold text-slate-900 text-sm truncate max-w-[220px]">{{ t.title }}</p>
+                          @if (t.note) {
+                            <p class="text-slate-400 text-xs mt-0.5 truncate max-w-[220px] italic">"{{ t.note }}"</p>
+                          }
+                        </div>
+                      </div>
+                    </td>
 
-                <!-- ICON CIRCLE -->
-                <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-emerald-50 text-emerald-600 text-lg">
-                  ↙
-                </div>
+                    <!-- CATEGORY / STATUS -->
+                    <td class="px-6 py-4">
+                      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold"
+                        [class]="t.type === 'credit'
+                          ? 'bg-slate-100 text-slate-600'
+                          : 'bg-amber-50 text-amber-600'">
+                        {{ t.subtitle }}
+                      </span>
+                    </td>
 
-                <!-- DETAILS -->
-                <div class="flex-1 min-w-0">
-                  <p class="font-semibold text-slate-900 text-sm">Recognition from {{ entry.awardedBy }}</p>
-                  <p class="text-xs text-slate-400 mt-0.5">
-                    {{ entry.awardedAt | date:'MMM dd' }}
-                    @if (entry.rewardCategoryName) {
-                      · {{ entry.rewardCategoryName }}
-                    }
-                  </p>
-                </div>
+                    <!-- DATE -->
+                    <td class="px-6 py-4 text-slate-500 text-sm whitespace-nowrap">
+                      {{ t.date | date:'dd MMM yyyy' }}
+                    </td>
 
-                <!-- REASON (truncated) -->
-                <div class="hidden lg:block flex-1 min-w-0 px-4">
-                  <p class="text-xs text-slate-400 truncate italic">"{{ entry.reason }}"</p>
-                </div>
+                    <!-- AMOUNT -->
+                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                      <span class="font-bold text-sm"
+                        [class]="t.type === 'credit' ? 'text-emerald-500' : 'text-red-400'">
+                        {{ t.type === 'credit' ? '+' : '−' }}{{ t.bytes | number }} bytes
+                      </span>
+                    </td>
 
-                <!-- BYTES -->
-                <div class="text-emerald-500 font-bold text-sm whitespace-nowrap">
-                  +{{ entry.bytes }} Bytes
-                </div>
+                    <!-- RUNNING BALANCE -->
+                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                      <span class="text-slate-700 font-semibold text-sm">
+                        {{ t.runningBalance | number }}
+                      </span>
+                      <span class="text-slate-400 text-xs ml-1">bytes</span>
+                    </td>
 
-              </div>
-
-            }
+                  </tr>
+                }
+              </tbody>
+            </table>
           </div>
         }
 

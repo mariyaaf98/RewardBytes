@@ -4,6 +4,10 @@ public sealed class AppreciationResponse
 {
     public Guid Id { get; set; }
 
+    public Guid FromUserId { get; set; }
+
+    public Guid ToUserId { get; set; }
+
     public string FromUserName { get; set; } = string.Empty;
 
     public string ToUserName { get; set; } = string.Empty;

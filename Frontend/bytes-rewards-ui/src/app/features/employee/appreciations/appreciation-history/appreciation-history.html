@@ -132,10 +132,10 @@
               <thead>
                 <tr class="bg-slate-50 border-b border-slate-200">
                   <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Type</th>
-                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Person</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">From</th>
+                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">To</th>
                   <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Message</th>
                   <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Date</th>
-                  <th class="px-6 py-4 text-left text-xs font-semibold uppercase text-slate-500 tracking-wider">Reactions</th>
                 </tr>
               </thead>
               <tbody>
@@ -145,23 +145,35 @@
                     <!-- TYPE BADGE -->
                     <td class="px-6 py-5">
                       @if (item.type === 'Received') {
-                        <span class="inline-flex px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-semibold whitespace-nowrap">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-semibold whitespace-nowrap">
                           ↙ Received
                         </span>
                       } @else {
-                        <span class="inline-flex px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold whitespace-nowrap">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-600 text-xs font-semibold whitespace-nowrap">
                           ↗ Sent
                         </span>
                       }
                     </td>
 
-                    <!-- PERSON -->
+                    <!-- FROM -->
                     <td class="px-6 py-5">
-                      <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-[#041C3C] text-white flex items-center justify-center font-bold text-sm shrink-0">
-                          {{ item.initials }}
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs shrink-0"
+                          [class]="item.type === 'Sent' ? 'bg-amber-500' : 'bg-[#041C3C]'">
+                          {{ item.fromInitials }}
                         </div>
-                        <span class="font-semibold text-slate-900 whitespace-nowrap">{{ item.counterpartName }}</span>
+                        <span class="text-sm font-semibold text-slate-900 whitespace-nowrap">{{ item.fromName }}</span>
+                      </div>
+                    </td>
+
+                    <!-- TO -->
+                    <td class="px-6 py-5">
+                      <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs shrink-0"
+                          [class]="item.type === 'Received' ? 'bg-emerald-500' : 'bg-[#041C3C]'">
+                          {{ item.toInitials }}
+                        </div>
+                        <span class="text-sm font-semibold text-slate-900 whitespace-nowrap">{{ item.toName }}</span>
                       </div>
                     </td>
 
@@ -173,11 +185,6 @@
                     <!-- DATE -->
                     <td class="px-6 py-5 text-slate-600 text-sm whitespace-nowrap">
                       {{ item.createdAt | date:'dd MMM yyyy' }}
-                    </td>
-
-                    <!-- REACTIONS -->
-                    <td class="px-6 py-5 text-slate-600 text-sm">
-                      ❤️ {{ item.likesCount }}
                     </td>
 
                   </tr>

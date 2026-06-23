@@ -1,0 +1,189 @@
+<div class="flex min-h-screen bg-[#F0F2F5]">
+
+  <app-sidebar workspaceTitle="Admin Workspace" [menuItems]="adminMenu"></app-sidebar>
+
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <div class="px-8 py-8 flex-1">
+
+      <!-- HEADER -->
+      <div class="mb-6">
+        <h1 class="text-[26px] font-bold text-slate-900">Redemptions</h1>
+        <p class="text-slate-400 text-sm mt-0.5">Review and update employee redemption requests.</p>
+      </div>
+
+      <!-- TOASTS -->
+      @if (updateSuccess) {
+        <div class="mb-4 px-5 py-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-medium">
+          ✓ {{ updateSuccess }}
+        </div>
+      }
+      @if (updateError) {
+        <div class="mb-4 px-5 py-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm font-medium">
+          ⚠️ {{ updateError }}
+        </div>
+      }
+
+      <!-- LOADING -->
+      @if (isLoading()) {
+        <div class="flex items-center justify-center py-40">
+          <div class="w-10 h-10 border-4 border-slate-200 border-t-emerald-500 rounded-full animate-spin"></div>
+        </div>
+      }
+
+      <!-- ERROR -->
+      @else if (error()) {
+        <div class="flex flex-col items-center justify-center py-40 gap-3 text-center">
+          <p class="text-5xl">⚠️</p>
+          <p class="text-lg font-semibold text-slate-700">{{ error() }}</p>
+          <button (click)="load()"
+            class="h-10 px-5 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition">
+            Try again
+          </button>
+        </div>
+      }
+
+      @else {
+
+        <!-- INFO BANNER -->
+      <div class="mb-5 flex items-start gap-3 bg-blue-50 border border-blue-200 text-blue-700 px-5 py-4 rounded-xl text-sm">
+        <span class="text-xl shrink-0">ℹ️</span>
+        <div>
+          <p class="font-semibold">Redemption flow</p>
+          <p class="text-blue-600 text-xs mt-0.5">
+            Bytes are deducted from the employee's wallet when they submit a request (<strong>Pending</strong>).
+            <strong>Approve</strong> to confirm delivery. <strong>Reject</strong> to cancel — bytes are automatically refunded to the employee's wallet.
+          </p>
+        </div>
+      </div>
+
+      <!-- STATS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total</p>
+            <p class="text-3xl font-bold mt-2 text-slate-900">{{ totalCount() }}</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Pending</p>
+            <p class="text-3xl font-bold mt-2 text-amber-500">{{ pendingCount() }}</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Delivered</p>
+            <p class="text-3xl font-bold mt-2 text-emerald-500">{{ deliveredCount() }}</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Rejected</p>
+            <p class="text-3xl font-bold mt-2 text-red-500">{{ rejectedCount() }}</p>
+          </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="bg-white rounded-xl border border-slate-200 px-5 py-3 flex flex-wrap items-center gap-4 mb-5">
+          <div class="flex items-center gap-2 flex-1 min-w-48">
+            <span class="text-slate-400">🔍</span>
+            <input type="text" placeholder="Search by reward or employee…"
+              [value]="searchText()"
+              (input)="onSearch($any($event.target).value)"
+              class="flex-1 outline-none text-sm text-slate-700 placeholder:text-slate-400" />
+          </div>
+          <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+            @for (tab of ['all', 'Pending', 'Approved', 'Delivered', 'Rejected']; track tab) {
+              <button (click)="setStatus(tab)"
+                class="px-3 py-1.5 rounded-md text-xs font-semibold transition"
+                [class]="statusFilter() === tab ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'">
+                {{ tab === 'all' ? 'All' : tab }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- EMPTY -->
+        @if (filtered().length === 0) {
+          <div class="flex flex-col items-center justify-center py-24 gap-3 text-center bg-white rounded-2xl border border-slate-200">
+            <p class="text-5xl">📦</p>
+            <p class="text-lg font-semibold text-slate-700">No redemptions found</p>
+          </div>
+        }
+
+        <!-- TABLE -->
+        @else {
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <table class="w-full" style="min-width: 700px;">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200">
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Reward</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Bytes</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Date</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Status</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                @for (r of filtered(); track r.redemptionId) {
+                  <tr class="hover:bg-slate-50 transition-colors">
+
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-lg shrink-0">🎁</div>
+                        <p class="font-semibold text-slate-900 text-sm">{{ r.productName }}</p>
+                      </div>
+                    </td>
+
+                    <td class="px-6 py-4">
+                      @if (r.status === 'Rejected') {
+                        <div>
+                          <span class="text-slate-400 text-xs line-through">−{{ r.redeemedBytes | number }}</span>
+                          <span class="ml-1 text-emerald-500 font-bold text-xs">refunded</span>
+                        </div>
+                      } @else {
+                        <span class="text-red-500 font-bold text-sm">−{{ r.redeemedBytes | number }}</span>
+                      }
+                    </td>
+
+                    <td class="px-6 py-4 text-slate-500 text-sm whitespace-nowrap">
+                      {{ r.redeemedAt | date:'dd MMM yyyy' }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                      <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
+                        [class]="statusClass(r.status)">
+                        {{ r.status }}
+                      </span>
+                    </td>
+
+                    <td class="px-6 py-4">
+                      @if (nextStatuses(r.status).length > 0) {
+                        <div class="flex items-center gap-2">
+                          @for (s of nextStatuses(r.status); track s) {
+                            <button
+                              (click)="updateStatus(r.redemptionId, s)"
+                              [disabled]="updatingId === r.redemptionId"
+                              class="h-8 px-3 rounded-lg text-xs font-semibold transition disabled:opacity-50"
+                              [class]="s === 'Rejected'
+                                ? 'border border-red-200 text-red-500 hover:bg-red-50'
+                                : 'border border-emerald-200 text-emerald-600 hover:bg-emerald-50'">
+                              @if (updatingId === r.redemptionId) { … } @else { {{ s }} }
+                            </button>
+                          }
+                        </div>
+                      } @else {
+                        <span class="text-slate-400 text-xs">—</span>
+                      }
+                    </td>
+
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+
+      }
+
+    </div>
+  </div>
+</div>

@@ -34,6 +34,13 @@ namespace BytesRewards.Service.Migrations
                     b.Property<Guid>("FromUserId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("FromUserName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -41,6 +48,13 @@ namespace BytesRewards.Service.Migrations
 
                     b.Property<Guid>("ToUserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ToUserName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -76,6 +90,44 @@ namespace BytesRewards.Service.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("BytesRewards.Service.Redemptions.Domain.Redemption", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
+
+                    b.Property<int>("RedeemedBytes")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("RewardItemId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Redemptions", (string)null);
                 });
 
             modelBuilder.Entity("BytesRewards.Service.RewardCategories.Domain.RewardCategory", b =>
@@ -117,11 +169,21 @@ namespace BytesRewards.Service.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Bytes")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("FromUserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("FromUserName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
 
                     b.Property<string>("Reason")
                         .IsRequired()
@@ -131,8 +193,22 @@ namespace BytesRewards.Service.Migrations
                     b.Property<Guid>("RewardCategoryId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("RewardCategoryName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
+
                     b.Property<Guid>("ToUserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ToUserName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasDefaultValue("");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -140,6 +216,47 @@ namespace BytesRewards.Service.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rewards", (string)null);
+                });
+
+            modelBuilder.Entity("BytesRewards.Service.RewardsCatalog.Domain.RewardItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("ProductCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequiredBytes")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RewardItems", (string)null);
                 });
 
             modelBuilder.Entity("BytesRewards.Service.Users.Domain.User", b =>

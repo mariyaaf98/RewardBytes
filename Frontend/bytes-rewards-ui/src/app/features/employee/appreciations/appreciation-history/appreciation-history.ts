@@ -5,14 +5,16 @@ import { SidebarComponent } from '../../../../shared/components/sidebar/sidebar'
 import { TopbarComponent } from '../../../../shared/components/topbar/topbar';
 import { EMPLOYEE_MENU } from '../../../../core/navigation/employee-menu';
 import { AppreciationService } from '../../../../core/services/appreciation';
-import { AuthService } from '../../../../core/services/auth';
+import { UserService } from '../../../../core/services/user';
 import { Appreciation } from '../../../../core/models/appreciation';
 
 interface HistoryItem {
   id: string;
   type: 'Received' | 'Sent';
-  counterpartName: string;
-  initials: string;
+  fromName: string;       // who sent it
+  toName: string;         // who received it
+  fromInitials: string;
+  toInitials: string;
   message: string;
   createdAt: string;
   likesCount: number;
@@ -28,72 +30,81 @@ interface HistoryItem {
 export class AppreciationHistoryComponent implements OnInit {
 
   private readonly appreciationService = inject(AppreciationService);
-  private readonly authService = inject(AuthService);
+  private readonly userService         = inject(UserService);
 
   employeeMenu = EMPLOYEE_MENU;
 
-  searchText = '';
+  searchText   = '';
   activeFilter: 'all' | 'received' | 'sent' = 'all';
-  isLoading = true;
+  isLoading    = true;
 
-  currentUserName = '';
+  // Use DB user id for reliable comparison — not Keycloak name string
+  private currentUserId = '';
   history: HistoryItem[] = [];
+  allAppreciations: Appreciation[] = [];
 
   ngOnInit(): void {
-    this.currentUserName = this.authService.getUserName();
-    this.loadAppreciations();
+    // Get current user's DB id first, then load appreciations
+    this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.currentUserId = user.id;
+        this.loadAppreciations();
+      },
+      error: () => {
+        // Fallback: load anyway, type detection will be best-effort
+        this.loadAppreciations();
+      }
+    });
   }
 
   loadAppreciations(): void {
     this.isLoading = true;
     this.appreciationService.getAppreciations().subscribe({
       next: (appreciations) => {
+        this.allAppreciations = appreciations;
         this.history = appreciations.map(a => this.mapToHistoryItem(a));
         this.isLoading = false;
       },
-      error: (err) => {
-        console.error(err);
-        this.isLoading = false;
-      }
+      error: () => { this.isLoading = false; }
     });
   }
 
   private mapToHistoryItem(a: Appreciation): HistoryItem {
-    const isSent = a.fromUserName === this.currentUserName;
-    const counterpart = isSent ? a.toUserName : a.fromUserName;
+    // Compare by userId (fromUserId on the model) — reliable, not string-matched name
+    const isSent = a.fromUserId === this.currentUserId;
+
     return {
-      id: a.id,
-      type: isSent ? 'Sent' : 'Received',
-      counterpartName: counterpart,
-      initials: this.getInitials(counterpart),
-      message: a.message,
-      createdAt: a.createdAt,
-      likesCount: a.likesCount ?? 0
+      id:           a.id,
+      type:         isSent ? 'Sent' : 'Received',
+      fromName:     a.fromUserName,
+      toName:       a.toUserName,
+      fromInitials: this.getInitials(a.fromUserName),
+      toInitials:   this.getInitials(a.toUserName),
+      message:      a.message,
+      createdAt:    a.createdAt,
+      likesCount:   a.likesCount ?? 0
     };
   }
 
   get totalActivity(): number { return this.history.length; }
   get totalReceived(): number { return this.history.filter(h => h.type === 'Received').length; }
-  get totalSent(): number { return this.history.filter(h => h.type === 'Sent').length; }
+  get totalSent():     number { return this.history.filter(h => h.type === 'Sent').length; }
 
-  setFilter(f: 'all' | 'received' | 'sent'): void {
-    this.activeFilter = f;
-  }
+  setFilter(f: 'all' | 'received' | 'sent'): void { this.activeFilter = f; }
 
   get filteredHistory(): HistoryItem[] {
     let items = this.history;
-
     if (this.activeFilter === 'received') items = items.filter(h => h.type === 'Received');
-    else if (this.activeFilter === 'sent') items = items.filter(h => h.type === 'Sent');
+    else if (this.activeFilter === 'sent')  items = items.filter(h => h.type === 'Sent');
 
     if (this.searchText.trim()) {
       const q = this.searchText.toLowerCase();
       items = items.filter(h =>
-        h.counterpartName.toLowerCase().includes(q) ||
+        h.fromName.toLowerCase().includes(q) ||
+        h.toName.toLowerCase().includes(q)   ||
         h.message.toLowerCase().includes(q)
       );
     }
-
     return items;
   }
 

@@ -34,26 +34,15 @@ public sealed class GetAppreciationByIdQueryHandler(
                     "appreciations"));
         }
 
-        var response =
-            new AppreciationResponse
+        var response = new AppreciationResponse
             {
-                Id = appreciation.Id,
-
-                FromUserName =
-                    context.Users
-                        .Where(x => x.Id == appreciation.FromUserId)
-                        .Select(x => x.FirstName + " " + x.LastName)
-                        .FirstOrDefault() ?? string.Empty,
-
-                ToUserName =
-                    context.Users
-                        .Where(x => x.Id == appreciation.ToUserId)
-                        .Select(x => x.FirstName + " " + x.LastName)
-                        .FirstOrDefault() ?? string.Empty,
-
-                Message = appreciation.Message,
-
-                CreatedAt = appreciation.CreatedAt
+                Id           = appreciation.Id,
+                FromUserId   = appreciation.FromUserId,
+                ToUserId     = appreciation.ToUserId,
+                FromUserName = appreciation.FromUserName,
+                ToUserName   = appreciation.ToUserName,
+                Message      = appreciation.Message,
+                CreatedAt    = appreciation.CreatedAt
             };
 
         return Result<AppreciationResponse>.Ok(response);
