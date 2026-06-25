@@ -21,7 +21,12 @@ public sealed class GetUsersQueryHandler(
     {
         var users = await dbContext.Users
             .Include(x => x.Department)
+            .Include(x => x.Designation)
             .ToListAsync(ct);
+
+        // Load all wallets in one query and index by UserId for O(1) lookup
+        var wallets = await dbContext.Wallets
+            .ToDictionaryAsync(w => w.UserId, w => w.AvailableBytes, ct);
 
         var token =
             await keycloakAdminService
@@ -58,7 +63,9 @@ public sealed class GetUsersQueryHandler(
 
                     PhoneNumber = user.PhoneNumber,
 
-                    Designation = user.Designation,
+                    DesignationId = user.DesignationId,
+
+                    DesignationName = user.Designation?.Name ?? string.Empty,
 
                     IsActive = user.IsActive,
 
@@ -66,7 +73,9 @@ public sealed class GetUsersQueryHandler(
 
                     DepartmentName = user.Department.Name,
 
-                    RoleName = roleName
+                    RoleName = roleName,
+
+                    TotalBytes = wallets.TryGetValue(user.Id, out var bytes) ? bytes : 0
                 });
         }
 

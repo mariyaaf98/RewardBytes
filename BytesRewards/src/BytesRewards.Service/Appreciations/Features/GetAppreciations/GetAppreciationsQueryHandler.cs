@@ -1,16 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-
 using AppWeaver.Mediator.Interfaces;
-
 using BytesRewards.Service.Infrastructure;
 
 namespace BytesRewards.Service.Appreciations.Features.GetAppreciations;
 
 public sealed class GetAppreciationsQueryHandler(
     ApplicationDbContext context)
-    : IQueryHandler<
-        GetAppreciationsQuery,
-        List<AppreciationResponse>>
+    : IQueryHandler<GetAppreciationsQuery, List<AppreciationResponse>>
 {
     public async ValueTask<List<AppreciationResponse>> Handle(
         GetAppreciationsQuery request,
@@ -24,32 +20,9 @@ public sealed class GetAppreciationsQueryHandler(
                 ToUserId     = x.ToUserId,
                 FromUserName = x.FromUserName,
                 ToUserName   = x.ToUserName,
-
-                Message = x.Message,
-
-                CreatedAt = x.CreatedAt,
-
-                // LikesCount = x.Likes.Count(),
+                Message      = x.Message,
+                CreatedAt    = x.CreatedAt
             })
             .ToListAsync(ct);
-
-    //         .Select(x => new AppreciationResponse
-    //         {
-    //             Id = x.Id,
-
-    //             FromUserName = x.FromUser.FirstName + " " + x.FromUser.LastName,
-
-    //             ToUserName = x.ToUser.FirstName + " " + x.ToUser.LastName,
-
-    //             Message = x.Message,
-
-    //             CreatedAt = x.CreatedAt,
-
-    //             // LikesCount = x.Likes.Count(),
-
-    //             IsLiked = x.Likes.Any(
-    //     l => l.UserId == currentUserId)
-    //         }).ToList();
-    // }
-}
+    }
 }

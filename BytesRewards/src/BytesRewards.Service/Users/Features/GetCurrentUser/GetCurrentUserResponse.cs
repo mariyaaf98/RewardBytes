@@ -14,7 +14,9 @@ public sealed class GetCurrentUserResponse
 
     public string PhoneNumber { get; set; } = string.Empty;
 
-    public string Designation { get; set; } = string.Empty;
+    public Guid DesignationId { get; set; }
+
+    public string DesignationName { get; set; } = string.Empty;
 
     public string ProfileImageUrl { get; set; } = string.Empty;
 

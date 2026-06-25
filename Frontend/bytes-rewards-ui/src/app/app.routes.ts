@@ -67,6 +67,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'admin/designations',
+    loadComponent: () =>
+      import('./features/admin/designation-management/designation-management')
+        .then(m => m.DesignationManagementComponent),
+    canActivate: [adminGuard]
+  },
+
+  {
     path: 'admin/reward-categories',
     loadComponent: () =>
       import('./features/admin/reward-category-management/reward-category-management')
@@ -105,6 +113,14 @@ export const routes: Routes = [
     canActivate: [managerGuard]
   },
 
+  {
+    path: 'manager/team-rewards',
+    loadComponent: () =>
+      import('./features/manager/team-rewards/team-rewards')
+        .then(m => m.TeamRewardsComponent),
+    canActivate: [managerGuard]
+  },
+
   // EMPLOYEE — WALLET
   {
     path: 'wallet',
@@ -132,6 +148,15 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
+  // EMPLOYEE — MY REWARDS HISTORY
+  {
+    path: 'employee/my-rewards',
+    loadComponent: () =>
+      import('./features/employee/my-rewards/my-rewards')
+        .then(m => m.MyRewardsComponent),
+    canActivate: [authGuard]
+  },
+
   // EMPLOYEE — REDEMPTIONS
   {
     path: 'redemptions',
@@ -147,6 +172,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/employee/profile/profile')
         .then(m => m.ProfileComponent),
+    canActivate: [authGuard]
+  },
+
+  // NOTIFICATIONS — all roles share one page
+  {
+    path: 'notifications',
+    loadComponent: () =>
+      import('./features/notifications/notifications-page')
+        .then(m => m.NotificationsPageComponent),
     canActivate: [authGuard]
   },
 

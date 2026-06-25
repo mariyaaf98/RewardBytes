@@ -7,7 +7,7 @@ namespace BytesRewards.Service.Infrastructure.Uploads;
 /// POST /uploads/image
 /// Accepts multipart/form-data with field name "file".
 /// Saves to {ContentRootPath}/wwwroot/uploads/ and returns { url: "/uploads/{filename}" }.
-/// Allowed types: JPG, PNG, WebP, GIF — max 2 MB.
+/// Allowed types: JPG, PNG GIF — max 2 MB.
 /// </summary>
 public sealed class UploadImageEndpoint(IWebHostEnvironment env)
     : EndpointWithoutRequest<UploadImageResponse>
@@ -16,7 +16,7 @@ public sealed class UploadImageEndpoint(IWebHostEnvironment env)
         new(StringComparer.OrdinalIgnoreCase)
         {
             "image/jpeg", "image/jpg",
-            "image/png", "image/webp", "image/gif"
+            "image/png", "image/gif"
         };
 
     private const long MaxBytes = 2 * 1024 * 1024; // 2 MB
@@ -38,7 +38,7 @@ public sealed class UploadImageEndpoint(IWebHostEnvironment env)
             throw new Exception("No file uploaded. Use field name 'file'.");
 
         if (!AllowedTypes.Contains(formFile.ContentType))
-            throw new Exception("Only image files are allowed (JPG, PNG, WebP, GIF).");
+            throw new Exception("Only image files are allowed (JPG, PNG, GIF).");
 
         if (formFile.Length > MaxBytes)
             throw new Exception("Image must be under 2 MB.");

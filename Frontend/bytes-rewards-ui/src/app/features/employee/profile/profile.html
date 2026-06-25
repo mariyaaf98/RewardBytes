@@ -8,12 +8,8 @@
       <app-topbar></app-topbar>
     </div>
 
-    <div class="px-8 py-8 flex-1">
-
-      <div class="mb-6">
-        <h1 class="text-[26px] font-bold text-slate-900">My Profile</h1>
-        <p class="text-slate-400 text-sm mt-0.5">Manage your personal information and account settings.</p>
-      </div>
+    <!-- PAGE BODY -->
+    <div class="flex-1 overflow-y-auto">
 
       @if (isLoading()) {
         <div class="flex items-center justify-center py-40">
@@ -22,7 +18,7 @@
       }
 
       @else if (error()) {
-        <div class="flex flex-col items-center justify-center py-40 gap-3 text-center">
+        <div class="flex flex-col items-center justify-center py-40 gap-3 text-center px-8">
           <p class="text-5xl">⚠️</p>
           <p class="text-lg font-semibold text-slate-700">Could not load profile</p>
           <p class="text-slate-400 text-sm">{{ error() }}</p>
@@ -31,271 +27,297 @@
 
       @else if (profile()) {
 
-        <!-- TOAST -->
+        <!-- ── TOAST ── -->
         @if (saveSuccess()) {
-          <div class="mb-5 flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-3 rounded-xl text-sm font-medium">
+          <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-emerald-500 text-white px-5 py-3 rounded-2xl shadow-lg text-sm font-medium animate-pulse">
             ✓ {{ saveSuccess() }}
           </div>
         }
         @if (saveError()) {
-          <div class="mb-5 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-5 py-3 rounded-xl text-sm font-medium">
+          <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-red-500 text-white px-5 py-3 rounded-2xl shadow-lg text-sm font-medium">
             ⚠️ {{ saveError() }}
           </div>
         }
 
-        <div class="grid grid-cols-12 gap-5">
+        <!-- ── HERO COVER ── -->
+        <div class="h-44 bg-gradient-to-r from-[#0d1a2e] via-[#1a3a5c] to-[#0f2640] relative overflow-hidden shrink-0">
+          <div class="absolute inset-0 opacity-10"
+               style="background-image: radial-gradient(circle at 20% 50%, #ffffff 1px, transparent 1px),
+                                        radial-gradient(circle at 80% 20%, #ffffff 1px, transparent 1px);
+                      background-size: 40px 40px;"></div>
+        </div>
 
-          <!-- ══ LEFT: identity card + stats ══ -->
-          <div class="col-span-4 flex flex-col gap-5">
 
-            <!-- IDENTITY CARD -->
-            <div class="bg-[#0d1a2e] rounded-2xl p-6 text-white relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none"></div>
-              <div class="relative flex flex-col items-center text-center">
+        <!-- ── AVATAR + NAME STRIP ── -->
+        <div class="px-6 sm:px-10 -mt-14 relative z-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
 
-                <!-- AVATAR -->
-                @if (imagePreviewUrl) {
-                  <img [src]="imagePreviewUrl" alt="Profile"
-                    class="w-20 h-20 rounded-full object-cover ring-4 ring-white/10 mb-4" />
+          <div class="flex items-end gap-5">
+            <!-- AVATAR -->
+            <div class="relative shrink-0 cursor-pointer group" (click)="setSection('avatar')">
+              @if (imagePreviewUrl) {
+                <img [src]="imagePreviewUrl" alt="Profile"
+                  class="w-28 h-28 rounded-full object-cover ring-4 ring-white shadow-xl" />
+              } @else {
+                <div class="w-28 h-28 rounded-full bg-emerald-500 flex items-center justify-center
+                            font-black text-4xl text-white ring-4 ring-white shadow-xl">
+                  {{ getInitials(profile()!) }}
+                </div>
+              }
+              <div class="absolute inset-0 rounded-full bg-black/30 flex items-center justify-center
+                          opacity-0 group-hover:opacity-100 transition">
+                <span class="text-white text-xs font-semibold">Change</span>
+              </div>
+            </div>
+
+            <div class="pb-1">
+              <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+                {{ profile()!.firstName }} {{ profile()!.lastName }}
+              </h1>
+              <p class="text-slate-500 text-sm mt-0.5">{{ profile()!.designationName }}</p>
+              <div class="flex items-center gap-2 mt-2 flex-wrap">
+                <span class="px-3 py-1 rounded-full text-xs font-bold capitalize"
+                  [class]="getRoleBadgeStyle()">{{ role() }}</span>
+                @if (profile()!.isActive) {
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active
+                  </span>
                 } @else {
-                  <div class="w-20 h-20 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-2xl ring-4 ring-white/10 mb-4">
-                    {{ getInitials(profile()!) }}
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-600 text-xs font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Inactive
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- edit quick-action -->
+          <button (click)="openEdit(); setSection('details')"
+            class="h-10 px-5 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold
+                   hover:bg-[#1a3a5c] transition shadow shrink-0 self-end sm:self-auto">
+            ✏️ Edit Profile
+          </button>
+        </div>
+
+
+        <!-- ── MAIN GRID ── -->
+        <div class="px-6 sm:px-10 pb-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+          <!-- ══ LEFT COLUMN ══ -->
+          <div class="lg:col-span-4 flex flex-col gap-5">
+
+            <!-- INFO CARD -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Account Info</h3>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">✉️</div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">Email</p>
+                    <p class="text-sm text-slate-900 font-medium truncate">{{ profile()!.email }}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">🪪</div>
+                  <div>
+                    <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">Employee ID</p>
+                    <p class="text-sm text-slate-900 font-medium font-mono">{{ profile()!.employeeId }}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">🏢</div>
+                  <div>
+                    <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">Department</p>
+                    <p class="text-sm text-slate-900 font-medium">{{ profile()!.departmentName || '—' }}</p>
+                  </div>
+                </div>
+                @if (profile()!.phoneNumber) {
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">📱</div>
+                    <div>
+                      <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">Phone</p>
+                      <p class="text-sm text-slate-900 font-medium">{{ profile()!.phoneNumber }}</p>
+                    </div>
                   </div>
                 }
-
-                <!-- change photo button -->
-                <button (click)="setSection('avatar')"
-                  class="text-xs text-slate-400 hover:text-emerald-400 transition mb-4 underline underline-offset-2">
-                  Change photo
-                </button>
-
-                <h2 class="text-xl font-bold leading-snug">
-                  {{ profile()!.firstName }} {{ profile()!.lastName }}
-                </h2>
-                <p class="text-slate-300 text-sm mt-1">{{ profile()!.designation }}</p>
-
-                <div class="flex items-center gap-2 mt-3 flex-wrap justify-center">
-                  <span class="px-3 py-1 rounded-full text-xs font-semibold capitalize"
-                    [class]="getRoleBadgeStyle()">{{ role() }}</span>
-                  @if (profile()!.isActive) {
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
-                    </span>
-                  } @else {
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-semibold">
-                      <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Inactive
-                    </span>
-                  }
-                </div>
-
-                <div class="w-full border-t border-white/10 my-5"></div>
-
-                <div class="w-full space-y-3 text-left">
-                  <div class="flex items-start gap-3">
-                    <span class="text-slate-500 text-xs w-24 shrink-0 pt-0.5">Email</span>
-                    <span class="text-slate-200 text-sm break-all">{{ profile()!.email }}</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-slate-500 text-xs w-24 shrink-0">Employee ID</span>
-                    <span class="text-slate-200 text-sm">{{ profile()!.employeeId }}</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-slate-500 text-xs w-24 shrink-0">Department</span>
-                    <span class="text-slate-200 text-sm">{{ profile()!.departmentName || '—' }}</span>
-                  </div>
-                  @if (profile()!.phoneNumber) {
-                    <div class="flex items-center gap-3">
-                      <span class="text-slate-500 text-xs w-24 shrink-0">Phone</span>
-                      <span class="text-slate-200 text-sm">{{ profile()!.phoneNumber }}</span>
-                    </div>
-                  }
-                </div>
               </div>
             </div>
 
-            <!-- STATS CARD — only for employees (managers award bytes, not earn them) -->
+
+            <!-- STATS CARD — employees + admins only -->
             @if (role() !== 'manager') {
-            <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
-              <h3 class="text-[12px] font-bold uppercase tracking-wider text-slate-400">Activity</h3>
-              <div class="grid grid-cols-2 gap-3">
-                <div class="bg-[#F0F2F5] rounded-xl p-4 cursor-pointer hover:bg-slate-200 transition" (click)="goToWallet()">
-                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Balance</p>
-                  <p class="text-2xl font-bold text-slate-900 mt-1">
-                    @if (availableBytes() !== null) { {{ availableBytes() | number }} } @else { — }
-                  </p>
-                  <p class="text-slate-400 text-[10px] mt-0.5">bytes</p>
+              <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Activity</h3>
+                <div class="grid grid-cols-2 gap-3">
+
+                  <div class="rounded-xl p-4 bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 cursor-pointer hover:shadow-sm transition" (click)="goToWallet()">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-600">Balance</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">
+                      @if (availableBytes() !== null) { {{ availableBytes() | number }} } @else { — }
+                    </p>
+                    <p class="text-slate-400 text-[10px] mt-0.5">bytes</p>
+                  </div>
+
+                  <div class="rounded-xl p-4 bg-gradient-to-br from-blue-50 to-white border border-blue-100 cursor-pointer hover:shadow-sm transition" (click)="goToWallet()">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Total Earned</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">{{ totalEarned() | number }}</p>
+                    <p class="text-slate-400 text-[10px] mt-0.5">lifetime</p>
+                  </div>
+
+                  <div class="rounded-xl p-4 bg-gradient-to-br from-violet-50 to-white border border-violet-100 cursor-pointer hover:shadow-sm transition" (click)="goToAppreciations()">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-violet-600">Received</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">{{ receivedCount() }}</p>
+                    <p class="text-slate-400 text-[10px] mt-0.5">appreciations</p>
+                  </div>
+
+                  <div class="rounded-xl p-4 bg-gradient-to-br from-amber-50 to-white border border-amber-100 cursor-pointer hover:shadow-sm transition" (click)="goToAppreciations()">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-amber-600">Sent</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">{{ sentCount() }}</p>
+                    <p class="text-slate-400 text-[10px] mt-0.5">appreciations</p>
+                  </div>
+
                 </div>
-                <div class="bg-[#F0F2F5] rounded-xl p-4 cursor-pointer hover:bg-slate-200 transition" (click)="goToWallet()">
-                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Total Earned</p>
-                  <p class="text-2xl font-bold text-slate-900 mt-1">{{ totalEarned() | number }}</p>
-                  <p class="text-slate-400 text-[10px] mt-0.5">bytes lifetime</p>
-                </div>
-                <div class="bg-[#F0F2F5] rounded-xl p-4 cursor-pointer hover:bg-slate-200 transition" (click)="goToAppreciations()">
-                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Received</p>
-                  <p class="text-2xl font-bold text-slate-900 mt-1">{{ receivedCount() }}</p>
-                  <p class="text-slate-400 text-[10px] mt-0.5">appreciations</p>
-                </div>
-                <div class="bg-[#F0F2F5] rounded-xl p-4 cursor-pointer hover:bg-slate-200 transition" (click)="goToAppreciations()">
-                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Sent</p>
-                  <p class="text-2xl font-bold text-slate-900 mt-1">{{ sentCount() }}</p>
-                  <p class="text-slate-400 text-[10px] mt-0.5">appreciations</p>
+                <div class="flex flex-col gap-2 mt-4">
+                  <button (click)="goToWallet()"
+                    class="w-full h-10 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#1a3a5c] transition">
+                    View Wallet
+                  </button>
+                  <button (click)="goToAppreciations()"
+                    class="w-full h-10 rounded-xl border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 transition">
+                    Appreciation History
+                  </button>
                 </div>
               </div>
-              <div class="flex flex-col gap-2 pt-1">
-                <button (click)="goToWallet()"
-                  class="w-full h-10 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#162f4f] transition">
-                  View Wallet
-                </button>
-                <button (click)="goToAppreciations()"
-                  class="w-full h-10 rounded-xl border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 transition">
-                  Appreciation History
-                </button>
-              </div>
-            </div>
             }
 
           </div>
+          <!-- ══ end LEFT COLUMN ══ -->
 
-          <!-- ══ RIGHT: tabbed sections ══ -->
-          <div class="col-span-8">
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+
+          <!-- ══ RIGHT COLUMN ══ -->
+          <div class="lg:col-span-8">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
 
               <!-- TAB BAR -->
-              <div class="flex border-b border-slate-100">
+              <div class="flex border-b border-slate-100 bg-slate-50/50">
                 <button (click)="setSection('details')"
-                  class="px-6 py-4 text-sm font-semibold border-b-2 transition"
+                  class="flex items-center gap-2 px-6 py-4 text-sm font-semibold border-b-2 transition"
                   [class]="activeSection === 'details'
-                    ? 'border-[#0d1a2e] text-slate-900'
+                    ? 'border-[#0d1a2e] text-slate-900 bg-white'
                     : 'border-transparent text-slate-400 hover:text-slate-600'">
-                  Profile Details
+                  <span>👤</span> Profile Details
                 </button>
                 <button (click)="setSection('password')"
-                  class="px-6 py-4 text-sm font-semibold border-b-2 transition"
+                  class="flex items-center gap-2 px-6 py-4 text-sm font-semibold border-b-2 transition"
                   [class]="activeSection === 'password'
-                    ? 'border-[#0d1a2e] text-slate-900'
+                    ? 'border-[#0d1a2e] text-slate-900 bg-white'
                     : 'border-transparent text-slate-400 hover:text-slate-600'">
-                  Change Password
+                  <span>🔒</span> Password
                 </button>
                 <button (click)="setSection('avatar')"
-                  class="px-6 py-4 text-sm font-semibold border-b-2 transition"
+                  class="flex items-center gap-2 px-6 py-4 text-sm font-semibold border-b-2 transition"
                   [class]="activeSection === 'avatar'
-                    ? 'border-[#0d1a2e] text-slate-900'
+                    ? 'border-[#0d1a2e] text-slate-900 bg-white'
                     : 'border-transparent text-slate-400 hover:text-slate-600'">
-                  Profile Photo
+                  <span>🖼️</span> Photo
                 </button>
               </div>
 
+
               <!-- ── TAB: Profile Details ── -->
               @if (activeSection === 'details') {
+                <div class="p-7">
 
-                <div class="px-7 py-5 border-b border-slate-100 flex items-center justify-between">
-                  <div>
-                    <h3 class="text-[15px] font-bold text-slate-900">
-                      {{ isEditing() ? 'Edit Details' : 'Profile Details' }}
-                    </h3>
-                    <p class="text-slate-400 text-xs mt-0.5">Your personal and account information.</p>
-                  </div>
                   @if (!isEditing()) {
-                    <button (click)="openEdit()"
-                      class="h-9 px-4 rounded-lg border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-50 transition">
-                      ✏️ Edit
-                    </button>
+                    <!-- VIEW MODE -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">First Name</p>
+                        <p class="text-base font-semibold text-slate-900">{{ profile()!.firstName }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Last Name</p>
+                        <p class="text-base font-semibold text-slate-900">{{ profile()!.lastName }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email</p>
+                        <p class="text-base font-semibold text-slate-900 break-all">{{ profile()!.email }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Phone</p>
+                        <p class="text-base font-semibold text-slate-900">{{ profile()!.phoneNumber || '—' }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Designation</p>
+                        <p class="text-base font-semibold text-slate-900">{{ profile()!.designationName || '—' }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Department</p>
+                        <p class="text-base font-semibold text-slate-900">{{ profile()!.departmentName || '—' }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Employee ID</p>
+                        <p class="text-base font-semibold text-slate-900 font-mono">{{ profile()!.employeeId }}</p>
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Role</p>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold capitalize"
+                          [class]="getRoleBadgeStyle()">{{ role() }}</span>
+                      </div>
+                    </div>
+                    <div class="mt-7 pt-5 border-t border-slate-100">
+                      <button (click)="openEdit()"
+                        class="h-10 px-6 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#1a3a5c] transition">
+                        ✏️ Edit Details
+                      </button>
+                    </div>
                   }
-                </div>
 
-                <div class="px-7 py-6">
-                  <div class="grid grid-cols-2 gap-x-8 gap-y-6">
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">First Name</label>
-                      @if (isEditing()) {
+                  @else {
+                    <!-- EDIT MODE -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                          First Name <span class="text-red-400">*</span>
+                        </label>
                         <input [(ngModel)]="editFirstName" type="text" placeholder="First name"
-                          class="w-full h-10 px-3 rounded-lg border text-sm outline-none transition"
-                          [class]="firstNameError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
+                          class="w-full h-11 px-4 rounded-xl border text-sm outline-none transition"
+                          [class]="firstNameError ? 'border-red-400 bg-red-50' : 'border-slate-200 focus:border-[#0d1a2e]'" />
                         @if (firstNameError) { <p class="text-red-500 text-xs mt-1">{{ firstNameError }}</p> }
-                      } @else {
-                        <p class="text-[15px] font-medium text-slate-900">{{ profile()!.firstName }}</p>
-                      }
-                    </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Last Name</label>
-                      @if (isEditing()) {
+                      </div>
+                      <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Last Name</label>
                         <input [(ngModel)]="editLastName" type="text" placeholder="Last name"
-                          class="w-full h-10 px-3 rounded-lg border text-sm outline-none transition"
-                          [class]="lastNameError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
-                        @if (lastNameError) { <p class="text-red-500 text-xs mt-1">{{ lastNameError }}</p> }
-                      } @else {
-                        <p class="text-[15px] font-medium text-slate-900">{{ profile()!.lastName }}</p>
-                      }
-                    </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Designation</label>
-                      <p class="text-[15px] font-medium text-slate-900">{{ profile()!.designation }}</p>
-                    </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Phone Number</label>
-                      @if (isEditing()) {
+                          class="w-full h-11 px-4 rounded-xl border border-slate-200 text-sm outline-none focus:border-[#0d1a2e] transition" />
+                      </div>
+                      <div class="sm:col-span-2">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Phone Number</label>
                         <input [(ngModel)]="editPhoneNumber" type="text" placeholder="10-digit number"
-                          class="w-full h-10 px-3 rounded-lg border text-sm outline-none transition"
-                          [class]="phoneError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
+                          class="w-full h-11 px-4 rounded-xl border text-sm outline-none transition"
+                          [class]="phoneError ? 'border-red-400 bg-red-50' : 'border-slate-200 focus:border-[#0d1a2e]'" />
                         @if (phoneError) { <p class="text-red-500 text-xs mt-1">{{ phoneError }}</p> }
-                      } @else {
-                        <p class="text-[15px] font-medium text-slate-900">{{ profile()!.phoneNumber || '—' }}</p>
-                      }
+                      </div>
                     </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Email</label>
-                      <p class="text-[15px] font-medium text-slate-900">{{ profile()!.email }}</p>
+                    <div class="flex items-center justify-end gap-3 mt-7 pt-5 border-t border-slate-100">
+                      <button (click)="cancelEdit()"
+                        class="h-10 px-5 rounded-xl border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition">
+                        Cancel
+                      </button>
+                      <button (click)="saveEdit()" [disabled]="isSaving()"
+                        class="flex items-center gap-2 h-10 px-6 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#1a3a5c] transition disabled:opacity-60">
+                        @if (isSaving()) {
+                          <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Saving…
+                        } @else { Save Changes }
+                      </button>
                     </div>
+                  }
 
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Employee ID</label>
-                      <p class="text-[15px] font-medium text-slate-900">{{ profile()!.employeeId }}</p>
-                    </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Department</label>
-                      <p class="text-[15px] font-medium text-slate-900">{{ profile()!.departmentName || '—' }}</p>
-                    </div>
-
-                    <div>
-                      <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Role</label>
-                      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold capitalize"
-                        [class]="getRoleBadgeStyle()">{{ role() }}</span>
-                    </div>
-
-                  </div>
                 </div>
-
-                @if (isEditing()) {
-                  <div class="px-7 py-5 border-t border-slate-100 flex items-center justify-end gap-3">
-                    <button (click)="cancelEdit()"
-                      class="h-10 px-5 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition">
-                      Cancel
-                    </button>
-                    <button (click)="saveEdit()" [disabled]="isSaving()"
-                      class="flex items-center gap-2 h-10 px-6 rounded-lg bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#162f4f] transition disabled:opacity-60">
-                      @if (isSaving()) {
-                        <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Saving…
-                      } @else { Save Changes }
-                    </button>
-                  </div>
-                }
               }
+
 
               <!-- ── TAB: Change Password ── -->
               @if (activeSection === 'password') {
-
-                <div class="px-7 py-5 border-b border-slate-100">
-                  <h3 class="text-[15px] font-bold text-slate-900">Change Password</h3>
-                  <p class="text-slate-400 text-xs mt-0.5">Update your Keycloak account password.</p>
-                </div>
-
-                <div class="px-7 py-6 max-w-md">
+                <div class="p-7 max-w-md">
                   <div class="space-y-5">
 
                     <div>
@@ -303,25 +325,13 @@
                         Current Password <span class="text-red-400">*</span>
                       </label>
                       <div class="relative">
-                        <input [(ngModel)]="currentPassword"
-                          [type]="showCurrentPw ? 'text' : 'password'"
+                        <input [(ngModel)]="currentPassword" [type]="showCurrentPw ? 'text' : 'password'"
                           placeholder="Enter your current password"
                           class="w-full h-11 px-4 pr-11 rounded-xl border text-sm outline-none transition"
-                          [class]="currentPasswordError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
+                          [class]="currentPasswordError ? 'border-red-400 bg-red-50' : 'border-slate-200 focus:border-[#0d1a2e]'" />
                         <button type="button" (click)="showCurrentPw = !showCurrentPw"
-                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition p-1">
-                          @if (showCurrentPw) {
-                            <!-- Eye-off SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                            </svg>
-                          } @else {
-                            <!-- Eye SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                          }
+                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                          {{ showCurrentPw ? '🙈' : '👁️' }}
                         </button>
                       </div>
                       @if (currentPasswordError) { <p class="text-red-500 text-xs mt-1.5">{{ currentPasswordError }}</p> }
@@ -332,23 +342,13 @@
                         New Password <span class="text-red-400">*</span>
                       </label>
                       <div class="relative">
-                        <input [(ngModel)]="newPassword"
-                          [type]="showNewPw ? 'text' : 'password'"
+                        <input [(ngModel)]="newPassword" [type]="showNewPw ? 'text' : 'password'"
                           placeholder="Min. 8 characters"
                           class="w-full h-11 px-4 pr-11 rounded-xl border text-sm outline-none transition"
-                          [class]="newPasswordError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
+                          [class]="newPasswordError ? 'border-red-400 bg-red-50' : 'border-slate-200 focus:border-[#0d1a2e]'" />
                         <button type="button" (click)="showNewPw = !showNewPw"
-                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition p-1">
-                          @if (showNewPw) {
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                            </svg>
-                          } @else {
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                          }
+                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                          {{ showNewPw ? '🙈' : '👁️' }}
                         </button>
                       </div>
                       @if (newPasswordError) { <p class="text-red-500 text-xs mt-1.5">{{ newPasswordError }}</p> }
@@ -359,23 +359,13 @@
                         Confirm New Password <span class="text-red-400">*</span>
                       </label>
                       <div class="relative">
-                        <input [(ngModel)]="confirmPassword"
-                          [type]="showConfirmPw ? 'text' : 'password'"
+                        <input [(ngModel)]="confirmPassword" [type]="showConfirmPw ? 'text' : 'password'"
                           placeholder="Re-enter new password"
                           class="w-full h-11 px-4 pr-11 rounded-xl border text-sm outline-none transition"
-                          [class]="confirmError ? 'border-red-400' : 'border-slate-200 focus:border-[#0d1a2e]'" />
+                          [class]="confirmError ? 'border-red-400 bg-red-50' : 'border-slate-200 focus:border-[#0d1a2e]'" />
                         <button type="button" (click)="showConfirmPw = !showConfirmPw"
-                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition p-1">
-                          @if (showConfirmPw) {
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                            </svg>
-                          } @else {
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                          }
+                          class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                          {{ showConfirmPw ? '🙈' : '👁️' }}
                         </button>
                       </div>
                       @if (confirmError) { <p class="text-red-500 text-xs mt-1.5">{{ confirmError }}</p> }
@@ -383,43 +373,34 @@
 
                     <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
                       <p class="text-amber-700 text-xs font-medium">
-                        🔒 You will remain logged in after changing your password.
-                        Your new password will be required on next sign-in.
+                        🔒 You'll remain logged in. New password required on next sign-in.
                       </p>
                     </div>
 
                     <button (click)="savePassword()" [disabled]="isSavingPassword"
-                      class="flex items-center gap-2 h-11 px-6 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#162f4f] transition disabled:opacity-60">
+                      class="flex items-center gap-2 h-11 px-6 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold hover:bg-[#1a3a5c] transition disabled:opacity-60">
                       @if (isSavingPassword) {
-                        <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Saving…
+                        <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Updating…
                       } @else { Update Password }
                     </button>
-
                   </div>
                 </div>
-
               }
+
 
               <!-- ── TAB: Profile Photo ── -->
               @if (activeSection === 'avatar') {
-
-                <div class="px-7 py-5 border-b border-slate-100">
-                  <h3 class="text-[15px] font-bold text-slate-900">Profile Photo</h3>
-                  <p class="text-slate-400 text-xs mt-0.5">
-                    Upload a photo from your device. JPG, PNG or WebP — max 2 MB.
-                  </p>
-                </div>
-
-                <div class="px-7 py-6 max-w-md">
+                <div class="p-7 max-w-lg">
                   <div class="space-y-5">
 
-                    <!-- CURRENT AVATAR PREVIEW -->
-                    <div class="flex items-center gap-5">
+                    <!-- CURRENT PREVIEW -->
+                    <div class="flex items-center gap-5 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                       @if (imagePreviewUrl) {
                         <img [src]="imagePreviewUrl" alt="Preview"
-                          class="w-20 h-20 rounded-full object-cover ring-4 ring-slate-200 shrink-0" />
+                          class="w-20 h-20 rounded-full object-cover ring-4 ring-white shadow shrink-0" />
                       } @else {
-                        <div class="w-20 h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-2xl ring-4 ring-slate-200 shrink-0">
+                        <div class="w-20 h-20 rounded-full bg-emerald-500 text-white flex items-center
+                                    justify-center font-black text-2xl ring-4 ring-white shadow shrink-0">
                           {{ getInitials(profile()!) }}
                         </div>
                       }
@@ -427,28 +408,25 @@
                         <p class="text-sm font-semibold text-slate-900">
                           {{ imagePreviewUrl ? 'Current photo' : 'No photo set' }}
                         </p>
-                        <p class="text-slate-400 text-xs mt-0.5">JPG, PNG or WebP · max 2 MB</p>
+                        <p class="text-slate-400 text-xs mt-0.5">JPG or PNG  · max 2 MB</p>
                         @if (imagePreviewUrl) {
                           <button type="button" (click)="removeImage()"
-                            class="text-xs text-red-500 hover:underline mt-1.5">
-                            Remove photo
+                            class="text-xs text-red-500 hover:text-red-700 hover:underline mt-2 block transition">
+                            🗑 Remove photo
                           </button>
                         }
                       </div>
                     </div>
 
-                    <!-- HIDDEN FILE INPUT — images only -->
-                    <input
-                      type="file"
-                      id="avatarFileInput"
-                      accept="image/jpeg,image/png,image/webp,image/gif"
-                      class="hidden"
-                      (change)="onFileSelected($event)" />
+                    <!-- HIDDEN FILE INPUT -->
+                    <input type="file" id="avatarFileInput"
+                      accept="image/jpeg,image/png,image/gif"
+                      class="hidden" (change)="onFileSelected($event)" />
 
                     <!-- DROP ZONE -->
-                    <label
-                      for="avatarFileInput"
-                      class="flex flex-col items-center justify-center gap-3 border-2 border-dashed rounded-2xl p-8 cursor-pointer transition-colors"
+                    <label for="avatarFileInput"
+                      class="flex flex-col items-center justify-center gap-3 border-2 border-dashed
+                             rounded-2xl p-8 cursor-pointer transition-colors"
                       [class]="isDraggingOver
                         ? 'border-emerald-400 bg-emerald-50'
                         : 'border-slate-200 hover:border-slate-400 bg-slate-50'"
@@ -456,38 +434,35 @@
                       (dragleave)="onDragLeave()"
                       (drop)="onDrop($event)">
 
-                      <div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
-                        </svg>
+                      <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm
+                                  flex items-center justify-center text-2xl">
+                        📤
                       </div>
-
                       <div class="text-center">
                         <p class="text-sm font-semibold text-slate-700">
                           Click to upload
-                          <span class="font-normal text-slate-400">or drag and drop</span>
+                          <span class="font-normal text-slate-400">or drag & drop</span>
                         </p>
-                        <p class="text-xs text-slate-400 mt-1">JPG, PNG, WebP — max 2 MB</p>
+                        <p class="text-xs text-slate-400 mt-1">JPG or PNG — max 2 MB</p>
                       </div>
-
                     </label>
 
                     <!-- ERROR -->
                     @if (imageUrlError) {
-                      <div class="flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
+                      <div class="flex items-center gap-2 bg-red-50 border border-red-200
+                                  text-red-600 px-4 py-3 rounded-xl text-sm">
                         ⚠️ {{ imageUrlError }}
                       </div>
                     }
 
-                    <!-- SAVE BUTTON — enabled only when a file is pending -->
-                    <button
-                      type="button"
-                      (click)="saveImage()"
+                    <!-- SAVE BUTTON -->
+                    <button type="button" (click)="saveImage()"
                       [disabled]="isSavingImage || !pendingFile"
-                      class="flex items-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                      class="flex items-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold transition
+                             disabled:opacity-40 disabled:cursor-not-allowed"
                       [class]="!pendingFile && !isSavingImage
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                        : 'bg-[#0d1a2e] text-white hover:bg-[#162f4f]'">
+                        ? 'bg-slate-200 text-slate-400'
+                        : 'bg-[#0d1a2e] text-white hover:bg-[#1a3a5c]'">
                       @if (isSavingImage) {
                         <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         Uploading…
@@ -500,15 +475,21 @@
 
                   </div>
                 </div>
-
               }
+              <!-- ── end tabs ── -->
 
             </div>
           </div>
+          <!-- ══ end RIGHT COLUMN ══ -->
 
         </div>
+        <!-- ── end MAIN GRID ── -->
+
       }
+      <!-- end @else if (profile()) -->
 
     </div>
+    <!-- end PAGE BODY -->
+
   </div>
 </div>

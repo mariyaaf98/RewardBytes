@@ -54,11 +54,15 @@ export class RewardsComponent implements OnInit {
   get isAdmin():   boolean { return this.authService.currentRole() === 'admin'; }
 
   // ── State ───────────────────────────────────────────────────────
-  readonly items         = signal<RewardItem[]>([]);
-  readonly isLoading     = signal(true);
-  readonly error         = signal('');
-  readonly searchText    = signal('');
+  readonly items          = signal<RewardItem[]>([]);
+  readonly isLoading      = signal(true);
+  readonly error          = signal('');
+  readonly searchText     = signal('');
   readonly availableBytes = signal<number | null>(null);
+
+  // Track which rewardItemIds have an active (Pending/Approved) redemption
+  readonly activeRedemptions = signal<Map<string, string>>(new Map());
+  // Map: rewardItemId → status ('Pending' | 'Approved')
 
   // Redeem state
   readonly redeemingId   = signal<string | null>(null);
@@ -101,10 +105,48 @@ export class RewardsComponent implements OnInit {
             next: (w) => this.availableBytes.set(w.availableBytes),
             error: () => {}
           });
+          // Load existing redemptions to know which items are already pending
+          this.loadActiveRedemptions(user.id);
         },
         error: () => {}
       });
     }
+  }
+
+  private loadActiveRedemptions(userId: string): void {
+    this.redemptionService.getRedemptionHistory(userId).subscribe({
+      next: (list) => {
+        const map = new Map<string, string>();
+
+        // Group by product name — take the most recent redemption per item
+        // Include Pending, Approved (blocked) and Rejected (show notification + allow retry)
+        const sorted = [...list].sort(
+          (a, b) => new Date(b.redeemedAt).getTime() - new Date(a.redeemedAt).getTime()
+        );
+
+        sorted.forEach(r => {
+          const item = this.items().find(i => i.name === r.productName);
+          if (item && !map.has(item.id)) {
+            // Only track the most recent redemption per item
+            if (r.status === 'Pending' || r.status === 'Approved' || r.status === 'Rejected') {
+              map.set(item.id, r.status);
+            }
+          }
+        });
+
+        this.activeRedemptions.set(map);
+
+        // If any Rejected items found, refresh wallet — bytes were refunded server-side
+        const hasRejected = [...map.values()].some(s => s === 'Rejected');
+        if (hasRejected) {
+          this.walletService.getWallet(userId).subscribe({
+            next: (w) => this.availableBytes.set(w.availableBytes),
+            error: () => {}
+          });
+        }
+      },
+      error: () => {}
+    });
   }
 
   loadItems(): void {
@@ -116,6 +158,23 @@ export class RewardsComponent implements OnInit {
   }
 
   onSearch(v: string): void { this.searchText.set(v); }
+
+  // Get the current redemption status for an item (null = no active redemption)
+  getItemRedemptionStatus(itemId: string): string | null {
+    return this.activeRedemptions().get(itemId) ?? null;
+  }
+
+  // Names of items whose most recent redemption was rejected — for the banner
+  readonly rejectedItemNames = computed(() => {
+    const names: string[] = [];
+    this.activeRedemptions().forEach((status, itemId) => {
+      if (status === 'Rejected') {
+        const item = this.items().find(i => i.id === itemId);
+        if (item) names.push(item.name);
+      }
+    });
+    return names;
+  });
 
   canAfford(item: RewardItem): boolean {
     return this.availableBytes() !== null && this.availableBytes()! >= item.requiredBytes;
@@ -135,10 +194,16 @@ export class RewardsComponent implements OnInit {
           `Bytes have been deducted from your wallet. ` +
           `Your request is now pending admin approval.`
         );
+        // Refresh wallet balance
         this.walletService.getWallet(this.currentUserId).subscribe({
           next: (w) => this.availableBytes.set(w.availableBytes),
           error: () => {}
         });
+        // Mark this item as pending immediately in UI
+        const map = new Map(this.activeRedemptions());
+        map.set(item.id, 'Pending');
+        this.activeRedemptions.set(map);
+
         setTimeout(() => this.redeemSuccess.set(''), 8000);
       },
       error: (err) => {

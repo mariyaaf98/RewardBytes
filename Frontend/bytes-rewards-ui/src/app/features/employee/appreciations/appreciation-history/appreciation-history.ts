@@ -11,13 +11,12 @@ import { Appreciation } from '../../../../core/models/appreciation';
 interface HistoryItem {
   id: string;
   type: 'Received' | 'Sent';
-  fromName: string;       // who sent it
-  toName: string;         // who received it
+  fromName: string;
+  toName: string;
   fromInitials: string;
   toInitials: string;
   message: string;
   createdAt: string;
-  likesCount: number;
 }
 
 @Component({
@@ -81,8 +80,7 @@ export class AppreciationHistoryComponent implements OnInit {
       fromInitials: this.getInitials(a.fromUserName),
       toInitials:   this.getInitials(a.toUserName),
       message:      a.message,
-      createdAt:    a.createdAt,
-      likesCount:   a.likesCount ?? 0
+      createdAt:    a.createdAt
     };
   }
 

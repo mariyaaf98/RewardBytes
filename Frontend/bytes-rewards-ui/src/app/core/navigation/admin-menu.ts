@@ -3,10 +3,10 @@ import {
   Users,
   Gift,
   Tag,
-  ShieldCheck,
   Building2,
-  ShoppingBag,
-  ReceiptText
+  Briefcase,
+  ReceiptText,
+  Bell
 } from 'lucide-angular';
 
 export const ADMIN_MENU = [
@@ -26,6 +26,11 @@ export const ADMIN_MENU = [
     route: '/admin/departments'
   },
   {
+    label: 'Designations',
+    icon: Briefcase,
+    route: '/admin/designations'
+  },
+  {
     label: 'Reward Categories',
     icon: Tag,
     route: '/admin/reward-categories'
@@ -39,5 +44,10 @@ export const ADMIN_MENU = [
     label: 'Redemptions',
     icon: ReceiptText,
     route: '/admin/redemptions'
+  },
+  {
+    label: 'Notifications',
+    icon: Bell,
+    route: '/notifications'
   }
 ];

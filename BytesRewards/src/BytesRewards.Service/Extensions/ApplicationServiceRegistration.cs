@@ -1,10 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation ;
+using FluentValidation;
 using AppWeaver.Mediator.Extensions;
 using AppWeaver.Mediator.Default.Extensions;
 using AppWeaver.Mediator.Behaviors;
 using AppWeaver.EventBus.Extensions;
 using AppWeaver.EventBus.Default.Extensions;
+using BytesRewards.Service.Notifications.Services;
+
 namespace BytesRewards.Service.Extensions;
 public static class ApplicationServiceRegistration
 {
@@ -14,7 +16,6 @@ public static class ApplicationServiceRegistration
         var applicationAssembly =
                 typeof(ApplicationServiceRegistration).Assembly;
 
-        // Register AppWeaver.Mediator with Default implementation and enable behaviors
         services.AddMediator(builder =>
         {
             builder.UseDefault()
@@ -23,21 +24,21 @@ public static class ApplicationServiceRegistration
                    .AddFluentValidationBehavior();
         }, options => options.Provider = "Default");
 
-        // Register handlers from application assembly
         services.AddAppWeaverMediatorHandlersFrom(
                         typeof(ApplicationServiceRegistration));
 
-        // Register FluentValidation validators
         services.AddValidatorsFromAssembly(applicationAssembly);
 
         services.AddEventBus(builder =>
         {
             builder.UseDefaultEventBus(options =>
             {
-                // Register all handlers in the same assembly as SendWelcomeEmailHandler
                 options.RegisterServicesFromAssembly(typeof(ApplicationServiceRegistration).Assembly);
             });
         });
+
+        // Notification writer — scoped so it shares the DbContext per request
+        services.AddScoped<NotificationService>();
 
         return services;
     }

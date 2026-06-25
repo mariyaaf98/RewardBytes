@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateUserRequest, CurrentUser, UpdateUserRequest, User } from '../models/user.model';
-import { Department } from '../models/lookup';
+import { Department, UserLookup } from '../models/lookup';
 
 @Injectable({
   providedIn: 'root'
@@ -95,22 +95,8 @@ export class UserService {
     );
   }
 
-  getUserLookup(): Observable<
-    {
-      id: string;
-      fullName: string;
-    }[]
-  > {
-
-    return this.http.get<
-      {
-        id: string;
-        fullName: string;
-      }[]
-    >(
-      `${this.apiUrl}/lookup`
-    );
-
+  getUserLookup(): Observable<UserLookup[]> {
+    return this.http.get<UserLookup[]>(`${this.apiUrl}/lookup`);
   }
 
 }

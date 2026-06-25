@@ -1,19 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-
 using AppWeaver.Mediator.Interfaces;
 using AppWeaver.Results;
-
 using BytesRewards.Service.Infrastructure;
 using BytesRewards.Service.Rewards.Domain;
 using BytesRewards.Service.Wallets.Domain;
+using BytesRewards.Service.Notifications.Services;
 
 namespace BytesRewards.Service.Rewards.Features.CreateReward;
 
 public sealed class CreateRewardCommandHandler(
-    ApplicationDbContext context)
-    : ICommandHandler<
-        CreateRewardCommand,
-        Result<Guid>>
+    ApplicationDbContext context,
+    NotificationService notifications)
+    : ICommandHandler<CreateRewardCommand, Result<Guid>>
 {
     public async ValueTask<Result<Guid>> Handle(
         CreateRewardCommand request,
@@ -56,6 +54,7 @@ public sealed class CreateRewardCommandHandler(
         context.Rewards.Add(reward);
         await context.SaveChangesAsync(ct);
 
+        // ── Wallet ──────────────────────────────────────────────
         var wallet =
             await context.Wallets
                 .FirstOrDefaultAsync(
@@ -66,10 +65,10 @@ public sealed class CreateRewardCommandHandler(
         {
             wallet = new Wallet
             {
-                Id = Guid.NewGuid(),
-                UserId = request.ToUserId,
+                Id             = Guid.NewGuid(),
+                UserId         = request.ToUserId,
                 AvailableBytes = reward.Bytes,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt      = DateTime.UtcNow
             };
             context.Wallets.Add(wallet);
         }
@@ -77,6 +76,33 @@ public sealed class CreateRewardCommandHandler(
         {
             wallet.AvailableBytes += reward.Bytes;
         }
+
+        // ── Notification to recipient (employee) ───────────────
+        notifications.Create(
+            userId:  request.ToUserId,
+            type:    "RewardReceived",
+            title:   $"🏅 You received a reward!",
+            message: $"{reward.FromUserName} awarded you {reward.Bytes} bytes " +
+                     $"for \"{reward.RewardCategoryName}\". Reason: {reward.Reason}");
+
+        // ── Confirmation to the manager who sent it ─────────────
+        notifications.Create(
+            userId:  request.FromUserId,
+            type:    "RewardSent",
+            title:   $"✅ Reward assigned to {reward.ToUserName}",
+            message: $"You awarded {reward.Bytes} bytes ({reward.RewardCategoryName}) " +
+                     $"to {reward.ToUserName}. Reason: {reward.Reason}");
+
+        // ── Broadcast recognition to ALL other users ────────────
+        // Everyone sees who got recognised — builds a culture of visibility.
+        // Excludes: the manager (already notified) and the recipient (already notified).
+        await notifications.CreateForAllUsersExceptAsync(
+            excludeUserIds: [request.FromUserId, request.ToUserId],
+            type:           "TeamRecognition",
+            title:          $"🎉 {reward.ToUserName} was recognised!",
+            message:        $"{reward.FromUserName} awarded {reward.Bytes} bytes " +
+                            $"({reward.RewardCategoryName}) to {reward.ToUserName}.",
+            ct:             ct);
 
         await context.SaveChangesAsync(ct);
 

@@ -1,16 +1,20 @@
 import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, Search, Bell } from 'lucide-angular';
 import { Router } from '@angular/router';
-import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Subject, interval, debounceTime, distinctUntilChanged,
+         takeUntil, startWith } from 'rxjs';
 
 import { AuthService }        from '../../../core/services/auth';
 import { UserService }        from '../../../core/services/user';
 import { RewardService,
          RewardResponse }     from '../../../core/services/reward';
 import { AppreciationService } from '../../../core/services/appreciation';
+import { NotificationService,
+         NotificationItem }   from '../../../core/services/notification';
 import { Appreciation }       from '../../../core/models/appreciation';
+import { TimeAgoPipe }        from '../../pipes/time-ago.pipe';
 
 // ── Unified search result shape ──────────────────────────────────
 export interface SearchResult {
@@ -25,7 +29,7 @@ export interface SearchResult {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, DatePipe, TimeAgoPipe, FormsModule, LucideAngularModule],
   templateUrl: './topbar.html',
   styleUrl: './topbar.css'
 })
@@ -60,13 +64,71 @@ export class TopbarComponent implements OnInit, OnDestroy {
   private destroy$      = new Subject<void>();
 
   constructor(
-    private authService:        AuthService,
-    private userService:        UserService,
-    private rewardService:      RewardService,
-    private appreciationService: AppreciationService,
-    private router:             Router,
-    private elRef:              ElementRef
+    private authService:          AuthService,
+    private userService:          UserService,
+    private rewardService:        RewardService,
+    private appreciationService:  AppreciationService,
+    private notificationService:  NotificationService,
+    private router:               Router,
+    private elRef:                ElementRef
   ) {}
+
+  // ── Notifications ─────────────────────────────────────────────
+  notifications:     NotificationItem[] = [];
+  notifOpen         = false;
+  unreadCount       = 0;
+
+  loadNotifications(): void {
+    this.notificationService.getNotifications().subscribe({
+      next: items => {
+        this.notifications = items;
+        this.unreadCount   = items.filter(n => !n.isRead).length;
+      },
+      error: () => {}
+    });
+  }
+
+  private startNotificationPolling(): void {
+    // Poll every 30 s; fires immediately on subscribe (startWith)
+    interval(30_000)
+      .pipe(startWith(0), takeUntil(this.destroy$))
+      .subscribe(() => this.loadNotifications());
+  }
+
+  toggleNotif(): void {
+    this.notifOpen = !this.notifOpen;
+    if (this.notifOpen) this.loadNotifications(); // immediate refresh on open
+    this.dropdownOpen = false;
+    this.searchOpen   = false;
+  }
+
+  markAllRead(): void {
+    this.notificationService.markAllRead().subscribe({
+      next: () => {
+        this.notifications = this.notifications.map(n => ({ ...n, isRead: true }));
+        this.unreadCount   = 0;
+      },
+      error: () => {}
+    });
+  }
+
+  getNotifIcon(type: string): string {
+    switch (type) {
+      case 'RewardReceived':        return '🏅';
+      case 'RewardSent':            return '✅';
+      case 'RewardAssigned':        return '🏅';
+      case 'TeamRecognition':       return '🎉';
+      case 'AppreciationReceived':  return '✨';
+      case 'AppreciationSent':      return '✅';
+      case 'TeamAppreciation':      return '✨';
+      case 'RedemptionPending':     return '🛒';
+      case 'NewRedemptionRequest':  return '🔔';
+      case 'RedemptionApproved':    return '✅';
+      case 'RedemptionRejected':    return '❌';
+      case 'RedemptionDelivered':   return '📦';
+      default:                      return '🔔';
+    }
+  }
 
   ngOnInit(): void {
     this.userName  = this.authService.getUserName();
@@ -76,11 +138,14 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
     this.userService.getCurrentUser().subscribe({
       next: u => {
-        this.userDesignation = u.designation;
+        this.userDesignation = u.designationName;
         this.profileImageUrl = u.profileImageUrl ?? '';
       },
       error: () => {}
     });
+
+    // start polling notifications every 30 s
+    this.startNotificationPolling();
 
     // load search data sources in background
     this.userService.getUserLookup().subscribe({
@@ -202,7 +267,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
   appreciationResults: SearchResult[] = [];
 
   // ── Profile dropdown ──────────────────────────────────────────
-  toggleDropdown(): void { this.dropdownOpen = !this.dropdownOpen; }
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+    this.notifOpen    = false;
+  }
 
   navigate(path: string): void {
     this.dropdownOpen = false;
@@ -218,8 +286,9 @@ export class TopbarComponent implements OnInit, OnDestroy {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (!this.elRef.nativeElement.contains(event.target)) {
-      this.dropdownOpen  = false;
-      this.searchOpen    = false;
+      this.dropdownOpen = false;
+      this.searchOpen   = false;
+      this.notifOpen    = false;
     }
   }
 

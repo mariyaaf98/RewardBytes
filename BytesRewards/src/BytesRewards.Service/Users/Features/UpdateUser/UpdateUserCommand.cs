@@ -16,7 +16,7 @@ public sealed record UpdateUserCommand(
 
     string PhoneNumber,
 
-    string Designation,
+    Guid DesignationId,
     
     string Email,
 

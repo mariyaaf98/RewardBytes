@@ -32,15 +32,16 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.PhoneNumber)
             .HasMaxLength(20);
 
-        builder.Property(x => x.Designation)
-            .HasMaxLength(100);
-
         builder.Property(x => x.ProfileImageUrl)
             .HasMaxLength(500);
-
 
         builder.HasOne(x => x.Department)
             .WithMany()
             .HasForeignKey(x => x.DepartmentId);
+
+        builder.HasOne(x => x.Designation)
+            .WithMany()
+            .HasForeignKey(x => x.DesignationId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

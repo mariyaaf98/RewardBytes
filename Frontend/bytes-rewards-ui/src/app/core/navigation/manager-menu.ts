@@ -3,7 +3,9 @@ import {
   BadgePlus,
   Trophy,
   Gift,
-  UserCircle
+  UserCircle,
+  Users,
+  Bell
 } from 'lucide-angular';
 
 export const MANAGER_MENU = [
@@ -16,6 +18,11 @@ export const MANAGER_MENU = [
     label: 'Recognize',
     icon: BadgePlus,
     route: '/manager/recognize'
+  },
+  {
+    label: 'Team Rewards',
+    icon: Users,
+    route: '/manager/team-rewards'
   },
   {
     label: 'Leaderboard',
@@ -31,5 +38,10 @@ export const MANAGER_MENU = [
     label: 'My Profile',
     icon: UserCircle,
     route: '/profile'
+  },
+  {
+    label: 'Notifications',
+    icon: Bell,
+    route: '/notifications'
   }
 ];

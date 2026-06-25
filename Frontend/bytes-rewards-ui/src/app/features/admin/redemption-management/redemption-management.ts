@@ -7,15 +7,14 @@ import { SidebarComponent } from '../../../shared/components/sidebar/sidebar';
 import { TopbarComponent } from '../../../shared/components/topbar/topbar';
 import { ADMIN_MENU } from '../../../core/navigation/admin-menu';
 
-// Admin sees all redemptions — simple direct HTTP call
 interface AdminRedemption {
-  redemptionId: string;
-  productName: string;
+  redemptionId:  string;
+  userId:        string;
+  userName:      string;   // employee who requested
+  productName:   string;
   redeemedBytes: number;
-  status: string;
-  redeemedAt: string;
-  userId?: string;
-  userName?: string;
+  status:        string;
+  redeemedAt:    string;
 }
 
 @Component({
@@ -31,15 +30,14 @@ export class RedemptionManagementComponent implements OnInit {
 
   readonly adminMenu = ADMIN_MENU;
 
-  readonly redemptions   = signal<AdminRedemption[]>([]);
-  readonly isLoading     = signal(true);
-  readonly error         = signal('');
-  readonly searchText    = signal('');
-  readonly statusFilter  = signal('all');
+  readonly redemptions  = signal<AdminRedemption[]>([]);
+  readonly isLoading    = signal(true);
+  readonly error        = signal('');
+  readonly searchText   = signal('');
+  readonly statusFilter = signal('all');
 
-  // Status update
-  updatingId  = '';
-  updateError = '';
+  updatingId    = '';
+  updateError   = '';
   updateSuccess = '';
 
   readonly filtered = computed(() => {
@@ -47,30 +45,29 @@ export class RedemptionManagementComponent implements OnInit {
     const q  = this.searchText().toLowerCase().trim();
     if (q) list = list.filter(r =>
       r.productName.toLowerCase().includes(q) ||
-      (r.userName ?? '').toLowerCase().includes(q)
+      r.userName.toLowerCase().includes(q)
     );
     const s = this.statusFilter();
     if (s !== 'all') list = list.filter(r => r.status === s);
     return list;
   });
 
-  readonly totalCount    = computed(() => this.redemptions().length);
-  readonly pendingCount  = computed(() => this.redemptions().filter(r => r.status === 'Pending').length);
+  readonly totalCount     = computed(() => this.redemptions().length);
+  readonly pendingCount   = computed(() => this.redemptions().filter(r => r.status === 'Pending').length);
   readonly deliveredCount = computed(() => this.redemptions().filter(r => r.status === 'Delivered').length);
-  readonly rejectedCount = computed(() => this.redemptions().filter(r => r.status === 'Rejected').length);
-
-  readonly statuses = ['Pending', 'Approved', 'Rejected', 'Delivered'];
+  readonly rejectedCount  = computed(() => this.redemptions().filter(r => r.status === 'Rejected').length);
 
   ngOnInit(): void { this.load(); }
 
   load(): void {
     this.isLoading.set(true);
-    // Admin gets all redemptions — we use the history endpoint with a wildcard
-    // In real app this would be GET /redemptions (admin-only list endpoint)
-    // For now fetch from a known pattern
+    this.error.set('');
     this.http.get<AdminRedemption[]>('http://localhost:7000/redemptions').subscribe({
-      next:  (data) => { this.redemptions.set(data); this.isLoading.set(false); },
-      error: (err)  => { this.error.set(err.error?.detail ?? 'Failed to load redemptions.'); this.isLoading.set(false); }
+      next:  d => { this.redemptions.set(d); this.isLoading.set(false); },
+      error: e => {
+        this.error.set(e.error?.detail ?? 'Failed to load redemptions.');
+        this.isLoading.set(false);
+      }
     });
   }
 
@@ -80,14 +77,14 @@ export class RedemptionManagementComponent implements OnInit {
 
     this.http.put<string>('http://localhost:7000/redemptions/status', { redemptionId, status }).subscribe({
       next: () => {
-        this.updatingId = '';
-        this.updateSuccess = `Status updated to ${status}.`;
+        this.updatingId    = '';
+        this.updateSuccess = `Status updated to "${status}".${status === 'Rejected' ? ' Bytes have been refunded to the employee.' : ''}`;
         this.load();
-        setTimeout(() => this.updateSuccess = '', 3000);
+        setTimeout(() => this.updateSuccess = '', 4000);
       },
-      error: (err) => {
+      error: e => {
         this.updatingId  = '';
-        this.updateError = err.error?.detail ?? 'Failed to update status.';
+        this.updateError = e.error?.detail ?? 'Failed to update status.';
         setTimeout(() => this.updateError = '', 4000);
       }
     });
@@ -107,16 +104,14 @@ export class RedemptionManagementComponent implements OnInit {
   }
 
   nextStatuses(current: string): string[] {
-    // show logical transitions only
     switch (current) {
       case 'Pending':   return ['Approved', 'Rejected'];
       case 'Approved':  return ['Delivered', 'Rejected'];
-      case 'Delivered': return [];
-      case 'Rejected':  return [];
-      default:          return ['Pending', 'Approved', 'Rejected', 'Delivered'];
+      default:          return [];
     }
   }
 
-
-  
+  getInitials(name: string): string {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  }
 }

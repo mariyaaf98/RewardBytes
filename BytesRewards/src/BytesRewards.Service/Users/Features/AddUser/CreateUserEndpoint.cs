@@ -39,7 +39,7 @@ public class CreateUserEndpoint(IMediator _mediator)
                 req.LastName,
                 req.Email,
                 req.PhoneNumber,
-                req.Designation,
+                req.DesignationId,
                 req.TemporaryPassword,
                 req.Role,
                 req.DepartmentId
@@ -58,7 +58,7 @@ public class CreateUserRequest
 
     public string PhoneNumber { get; set; } = string.Empty;
 
-    public string Designation { get; set; } = string.Empty;
+    public Guid DesignationId { get; set; }
 
     public string TemporaryPassword { get; set; } = string.Empty;
 

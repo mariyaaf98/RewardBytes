@@ -15,8 +15,4 @@ public sealed class AppreciationResponse
     public string Message { get; set; } = string.Empty;
 
     public DateTime CreatedAt { get; set; }
-
-    public int LikesCount { get; set; }
-
-    public bool IsLiked { get; set; }
 }

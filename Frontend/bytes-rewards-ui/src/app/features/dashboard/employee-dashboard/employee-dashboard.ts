@@ -10,6 +10,7 @@ import { AuthService } from '../../../core/services/auth';
 import { UserService } from '../../../core/services/user';
 import { WalletService } from '../../../core/services/wallet';
 import { AppreciationService } from '../../../core/services/appreciation';
+import { RewardService, RewardHistoryItem } from '../../../core/services/reward';
 
 import { Appreciation } from '../../../core/models/appreciation';
 import { LedgerEntry } from '../../../core/models/wallet';
@@ -27,6 +28,7 @@ export class EmployeeDashboardComponent implements OnInit {
   private readonly userService       = inject(UserService);
   private readonly walletService     = inject(WalletService);
   private readonly appreciationService = inject(AppreciationService);
+  private readonly rewardService     = inject(RewardService);
   private readonly router            = inject(Router);
 
   readonly employeeMenu = EMPLOYEE_MENU;
@@ -43,8 +45,15 @@ export class EmployeeDashboardComponent implements OnInit {
   readonly isLoadingWallet = signal(true);
 
   // ── Appreciations ──────────────────────────────────────────────
-  readonly appreciations        = signal<Appreciation[]>([]);
+  readonly appreciations          = signal<Appreciation[]>([]);
   readonly isLoadingAppreciations = signal(true);
+
+  // ── Rewards ────────────────────────────────────────────────────
+  readonly recentRewards    = signal<RewardHistoryItem[]>([]);
+  readonly isLoadingRewards = signal(true);
+
+  // active tab in the bottom-left panel
+  activeTab: 'appreciations' | 'rewards' = 'appreciations';
 
   // ── Derived ────────────────────────────────────────────────────
   readonly receivedCount = computed(() =>
@@ -82,6 +91,7 @@ export class EmployeeDashboardComponent implements OnInit {
         this.currentUserId.set(user.id);
         this.userDept.set(user.departmentName ?? '');
         this.loadWallet(user.id);
+        this.loadRewards(user.id);
       },
       error: () => this.isLoadingWallet.set(false)
     });
@@ -113,6 +123,21 @@ export class EmployeeDashboardComponent implements OnInit {
     });
   }
 
+  private loadRewards(userId: string): void {
+    this.rewardService.getRewardHistory(userId).subscribe({
+      next: (data) => {
+        // most recent first, show top 3 on dashboard
+        this.recentRewards.set(
+          [...data]
+            .sort((a, b) => new Date(b.awardedAt).getTime() - new Date(a.awardedAt).getTime())
+            .slice(0, 3)
+        );
+        this.isLoadingRewards.set(false);
+      },
+      error: () => this.isLoadingRewards.set(false)
+    });
+  }
+
   // ── Navigation ─────────────────────────────────────────────────
   goToWallet(): void {
     this.router.navigate(['/wallet']);
@@ -126,6 +151,10 @@ export class EmployeeDashboardComponent implements OnInit {
     this.router.navigate(['/employee/appreciations/history']);
   }
 
+  goToMyRewards(): void {
+    this.router.navigate(['/employee/my-rewards']);
+  }
+
   // ── Helpers ────────────────────────────────────────────────────
   getInitials(name: string): string {
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
@@ -133,5 +162,16 @@ export class EmployeeDashboardComponent implements OnInit {
 
   formatBytes(n: number): string {
     return n.toLocaleString();
+  }
+
+  getCategoryIcon(category: string): string {
+    const c = category.toLowerCase();
+    if (c.includes('excellen')) return '🌟';
+    if (c.includes('innovat'))  return '💡';
+    if (c.includes('team'))     return '🤝';
+    if (c.includes('leader'))   return '🏆';
+    if (c.includes('perform'))  return '🚀';
+    if (c.includes('help'))     return '🙌';
+    return '🏅';
   }
 }

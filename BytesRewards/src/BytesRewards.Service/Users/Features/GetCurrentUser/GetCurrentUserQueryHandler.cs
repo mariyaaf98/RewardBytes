@@ -19,6 +19,7 @@ public sealed class GetCurrentUserQueryHandler(
         var user =
             await context.Users
                 .Include(x => x.Department)
+                .Include(x => x.Designation)
                 .FirstOrDefaultAsync(
                     x => x.KeycloakUserId == request.KeycloakUserId,
                     ct);
@@ -37,7 +38,8 @@ public sealed class GetCurrentUserQueryHandler(
             LastName        = user.LastName,
             Email           = user.Email,
             PhoneNumber     = user.PhoneNumber,
-            Designation     = user.Designation,
+            DesignationId   = user.DesignationId,
+            DesignationName = user.Designation?.Name ?? string.Empty,
             ProfileImageUrl = user.ProfileImageUrl,
             IsActive        = user.IsActive,
             DepartmentId    = user.DepartmentId.ToString(),

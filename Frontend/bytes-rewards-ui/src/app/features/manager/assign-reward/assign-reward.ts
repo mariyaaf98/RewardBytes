@@ -80,6 +80,13 @@ export class AssignRewardComponent implements OnInit {
     return u.fullName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   });
 
+  readonly selectedUserInfo = computed(() => {
+    const u = this.allUsers().find(u => u.id === this.selectedUserId());
+    if (!u) return '';
+    const parts = [u.designationName, u.departmentName].filter(Boolean);
+    return parts.join(' · ');
+  });
+
   readonly activeCategories = computed(() =>
     this.allCategories().filter(c => c.isActive)
   );
@@ -220,6 +227,12 @@ export class AssignRewardComponent implements OnInit {
     this.userError.set('');
     this.categoryError.set('');
     this.reasonError.set('');
+  }
+
+  clearUser(): void {
+    this.selectedUserId.set('');
+    this.userSearchText.set('');
+    this.userError.set('');
   }
 
   closeErrorModal(): void {

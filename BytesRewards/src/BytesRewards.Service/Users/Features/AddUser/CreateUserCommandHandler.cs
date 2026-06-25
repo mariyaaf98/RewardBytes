@@ -57,7 +57,7 @@ public class CreateUserCommandHandler(
                 LastName = request.LastName,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
-                Designation = request.Designation,
+                DesignationId = request.DesignationId,
                 DepartmentId = request.DepartmentId,
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow,

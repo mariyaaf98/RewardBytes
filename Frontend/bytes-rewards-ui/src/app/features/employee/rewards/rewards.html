@@ -157,13 +157,30 @@
         </div>
 
         @if (redeemSuccess()) {
-          <div class="mb-4 flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-3 rounded-xl text-sm font-medium">
-            ✓ {{ redeemSuccess() }}
+          <div class="mb-4 flex items-start gap-3 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-3 rounded-xl text-sm font-medium">
+            <span class="shrink-0 mt-0.5">✓</span>
+            <span>{{ redeemSuccess() }}</span>
           </div>
         }
         @if (redeemError()) {
           <div class="mb-4 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-5 py-3 rounded-xl text-sm font-medium">
             ⚠️ {{ redeemError() }}
+          </div>
+        }
+
+        <!-- REJECTED ITEMS BANNER -->
+        @if (rejectedItemNames().length > 0) {
+          <div class="mb-5 flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-xl text-sm">
+            <span class="text-xl shrink-0">🔔</span>
+            <div>
+              <p class="font-semibold">Redemption request{{ rejectedItemNames().length > 1 ? 's' : '' }} rejected</p>
+              <p class="text-red-600 text-xs mt-0.5">
+                Your request for
+                <strong>{{ rejectedItemNames().join(', ') }}</strong>
+                was rejected by the admin. Your bytes have been automatically refunded to your wallet.
+                You can submit a new request anytime.
+              </p>
+            </div>
           </div>
         }
 
@@ -240,16 +257,61 @@
                   <h3 class="font-bold text-slate-900 text-[15px] leading-snug">{{ item.name }}</h3>
                   <p class="text-slate-400 text-xs mt-1.5 leading-relaxed flex-1 line-clamp-2">{{ item.description }}</p>
 
+                  <!-- REDEEM BUTTON — state-aware -->
                   <div class="mt-4">
-                    @if (canAfford(item)) {
-                      <button (click)="redeem(item)" [disabled]="redeemingId() === item.id"
-                        class="w-full h-10 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition disabled:opacity-60 flex items-center justify-center gap-2">
-                        @if (redeemingId() === item.id) {
-                          <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Redeeming…
-                        } @else { Redeem }
+                    @if (redeemingId() === item.id) {
+                      <!-- Submitting -->
+                      <button disabled
+                        class="w-full h-10 rounded-xl bg-emerald-500 text-white text-sm font-semibold flex items-center justify-center gap-2 opacity-70">
+                        <span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        Submitting…
                       </button>
+
+                    } @else if (getItemRedemptionStatus(item.id) === 'Rejected') {
+                      <!-- Rejected — bytes refunded, employee can try again -->
+                      <div class="space-y-2">
+                        <div class="flex items-center gap-2 bg-red-50 border border-red-200 rounded-xl px-3 py-2 text-xs text-red-600">
+                          <span class="shrink-0">✕</span>
+                          <span class="font-medium">Request rejected — bytes refunded</span>
+                        </div>
+                        @if (canAfford(item)) {
+                          <button (click)="redeem(item)"
+                            class="w-full h-9 rounded-xl bg-slate-800 text-white text-xs font-semibold hover:bg-slate-900 transition">
+                            Request Again
+                          </button>
+                        } @else {
+                          <button disabled
+                            class="w-full h-9 rounded-xl bg-slate-100 text-slate-400 text-xs font-semibold cursor-not-allowed">
+                            Need {{ (item.requiredBytes - (availableBytes() ?? 0)) | number }} more bytes
+                          </button>
+                        }
+                      </div>
+
+                    } @else if (getItemRedemptionStatus(item.id) === 'Pending') {
+                      <!-- Pending approval -->
+                      <button disabled
+                        class="w-full h-10 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 text-sm font-semibold cursor-not-allowed flex items-center justify-center gap-2">
+                        ⏳ Pending Approval
+                      </button>
+
+                    } @else if (getItemRedemptionStatus(item.id) === 'Approved') {
+                      <!-- Approved, awaiting delivery -->
+                      <button disabled
+                        class="w-full h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 text-sm font-semibold cursor-not-allowed flex items-center justify-center gap-2">
+                        ✓ Approved — Awaiting Delivery
+                      </button>
+
+                    } @else if (canAfford(item)) {
+                      <!-- Can afford — redeem -->
+                      <button (click)="redeem(item)"
+                        class="w-full h-10 rounded-xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition flex items-center justify-center gap-2">
+                        Redeem
+                      </button>
+
                     } @else {
-                      <button disabled class="w-full h-10 rounded-xl bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed">
+                      <!-- Cannot afford -->
+                      <button disabled
+                        class="w-full h-10 rounded-xl bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed">
                         Need {{ (item.requiredBytes - (availableBytes() ?? 0)) | number }} more bytes
                       </button>
                     }

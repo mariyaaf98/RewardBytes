@@ -12,7 +12,9 @@ export interface User {
 
   phoneNumber: string;
 
-  designation: string;
+  designationId: string;
+
+  designationName: string;
 
   totalBytes: number;
 
@@ -38,7 +40,7 @@ export interface CreateUserRequest {
 
   phoneNumber: string;
 
-  designation: string;
+  designationId: string;
 
   temporaryPassword: string;
 
@@ -56,7 +58,7 @@ export interface UpdateUserRequest {
 
   phoneNumber: string;
 
-  designation: string;
+  designationId: string;
 
   role: string;
 
@@ -78,7 +80,9 @@ export interface CurrentUser {
 
   phoneNumber: string;
 
-  designation: string;
+  designationId: string;
+
+  designationName: string;
 
   profileImageUrl: string;
 

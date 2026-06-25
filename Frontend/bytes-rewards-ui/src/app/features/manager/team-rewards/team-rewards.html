@@ -1,0 +1,246 @@
+<div class="flex min-h-screen bg-[#F4F7FB]">
+
+  <!-- SIDEBAR -->
+  <app-sidebar workspaceTitle="Manager Workspace" [menuItems]="managerMenu"></app-sidebar>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <!-- PAGE -->
+    <div class="px-4 sm:px-8 py-7 flex-1">
+
+      <!-- HEADER -->
+      <div class="mb-8">
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Team Rewards</h1>
+        <p class="text-slate-500 text-lg mt-2">
+          Track which employees have or haven't been rewarded in the last 6 months.
+        </p>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+
+        <!-- Not Rewarded card -->
+        <div class="bg-white rounded-[24px] border border-slate-100 shadow-sm p-6 flex items-center gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center text-2xl shrink-0">
+            ⚠️
+          </div>
+          <div>
+            <p class="text-slate-500 text-sm font-medium">Not Rewarded (6 months)</p>
+            <p class="text-4xl font-bold text-red-600 mt-0.5">{{ data().notRewarded.length }}</p>
+          </div>
+        </div>
+
+        <!-- Rewarded card -->
+        <div class="bg-white rounded-[24px] border border-slate-100 shadow-sm p-6 flex items-center gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-2xl shrink-0">
+            🏅
+          </div>
+          <div>
+            <p class="text-slate-500 text-sm font-medium">Rewarded (6 months)</p>
+            <p class="text-4xl font-bold text-emerald-600 mt-0.5">{{ data().rewarded.length }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABS -->
+      <div class="flex flex-wrap gap-3 mb-6">
+        <button
+          (click)="setTab('notRewarded')"
+          class="px-5 py-2.5 rounded-2xl font-semibold text-sm border transition"
+          [class]="activeTab() === 'notRewarded'
+            ? 'bg-[#041C3C] text-white border-[#041C3C]'
+            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'">
+          Not Rewarded
+          <span class="ml-2 rounded-full px-2 py-0.5 text-xs font-bold"
+            [class]="activeTab() === 'notRewarded'
+              ? 'bg-white/20 text-white'
+              : 'bg-red-100 text-red-600'">
+            {{ data().notRewarded.length }}
+          </span>
+        </button>
+
+        <button
+          (click)="setTab('rewarded')"
+          class="px-5 py-2.5 rounded-2xl font-semibold text-sm border transition"
+          [class]="activeTab() === 'rewarded'
+            ? 'bg-[#041C3C] text-white border-[#041C3C]'
+            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'">
+          Rewarded
+          <span class="ml-2 rounded-full px-2 py-0.5 text-xs font-bold"
+            [class]="activeTab() === 'rewarded'
+              ? 'bg-white/20 text-white'
+              : 'bg-emerald-100 text-emerald-700'">
+            {{ data().rewarded.length }}
+          </span>
+        </button>
+      </div>
+
+      <!-- TABLE CARD -->
+      <div class="bg-white rounded-[30px] border border-slate-100 shadow-sm overflow-hidden">
+
+        <!-- SEARCH BAR inside the card -->
+        <div class="px-6 pt-6 pb-4 border-b border-slate-100">
+          <div class="flex items-center gap-3 h-12 rounded-2xl bg-slate-100 px-5 max-w-sm">
+            <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor"
+              stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search by name, department…"
+              class="w-full bg-transparent outline-none text-sm"
+              [value]="searchText()"
+              (input)="searchText.set($any($event.target).value)" />
+          </div>
+        </div>
+
+        <!-- LOADING -->
+        @if (isLoading()) {
+          <div class="flex items-center justify-center py-20 text-slate-400 gap-3">
+            <div class="w-5 h-5 border-2 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
+            <span>Loading…</span>
+          </div>
+        }
+
+        <!-- EMPTY STATE (no results at all) -->
+        @else if (data().notRewarded.length === 0 && data().rewarded.length === 0) {
+          <div class="flex flex-col items-center justify-center py-20 text-center gap-3">
+            <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-3xl">
+              👥
+            </div>
+            <h3 class="text-xl font-semibold text-slate-700">No employees found</h3>
+            <p class="text-slate-400 text-sm">Data will appear once employees are added.</p>
+          </div>
+        }
+
+        <!-- EMPTY STATE (search filter) -->
+        @else if (currentList().length === 0) {
+          <div class="flex flex-col items-center justify-center py-16 text-center gap-3">
+            <div class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center text-2xl">
+              🔍
+            </div>
+            <p class="text-slate-500 font-medium">No employees match your search.</p>
+          </div>
+        }
+
+        <!-- TABLE -->
+        @else {
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm" style="min-width: 560px">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
+                    Employee
+                  </th>
+                  <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">
+                    Department
+                  </th>
+                  <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden lg:table-cell">
+                    Designation
+                  </th>
+
+                  @if (activeTab() === 'rewarded') {
+                    <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Last Reward
+                    </th>
+                    <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Last Rewarded
+                    </th>
+                    <th class="text-right px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Rewards (6 mo)
+                    </th>
+                  }
+
+                  @if (activeTab() === 'notRewarded') {
+                    <th class="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Status
+                    </th>
+                  }
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-slate-100">
+                @for (emp of currentList(); track emp.id) {
+                  <tr class="hover:bg-slate-50 transition-colors">
+
+                    <!-- EMPLOYEE -->
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-[#041C3C] text-white flex items-center
+                                    justify-center font-bold text-xs shrink-0">
+                          {{ getInitials(emp.fullName) }}
+                        </div>
+                        <div class="min-w-0">
+                          <p class="font-semibold text-slate-900 truncate">{{ emp.fullName }}</p>
+                          <!-- Mobile sub-info -->
+                          <p class="text-xs text-slate-400 truncate md:hidden">{{ emp.departmentName }}</p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- DEPARTMENT -->
+                    <td class="px-6 py-4 text-slate-600 hidden md:table-cell">
+                      {{ emp.departmentName }}
+                    </td>
+
+                    <!-- DESIGNATION -->
+                    <td class="px-6 py-4 text-slate-600 hidden lg:table-cell">
+                      {{ emp.designationName }}
+                    </td>
+
+                    <!-- REWARDED columns -->
+                    @if (activeTab() === 'rewarded') {
+                      <!-- Last Reward category + bytes -->
+                      <td class="px-6 py-4">
+                        @if (emp.lastRewardCategoryName) {
+                          <div class="flex items-center gap-2">
+                            <span class="text-sm font-medium text-slate-900">{{ emp.lastRewardCategoryName }}</span>
+                            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap">
+                              ✦ {{ emp.lastRewardBytes | number }}
+                            </span>
+                          </div>
+                        } @else {
+                          <span class="text-slate-400 text-sm">—</span>
+                        }
+                      </td>
+                      <!-- Date -->
+                      <td class="px-6 py-4 text-slate-600 whitespace-nowrap">
+                        {{ emp.lastRewardedAt | date:'dd MMM yyyy' }}
+                      </td>
+                      <!-- Count -->
+                      <td class="px-6 py-4 text-right">
+                        <span class="bg-emerald-100 text-emerald-700 font-bold px-3 py-1 rounded-full text-xs">
+                          {{ emp.totalRewards }}
+                        </span>
+                      </td>
+                    }
+
+                    <!-- NOT REWARDED status -->
+                    @if (activeTab() === 'notRewarded') {
+                      <td class="px-6 py-4">
+                        <span class="bg-red-100 text-red-600 font-semibold px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                          No reward in 6 months
+                        </span>
+                      </td>
+                    }
+
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+
+      </div>
+
+    </div>
+  </div>
+</div>

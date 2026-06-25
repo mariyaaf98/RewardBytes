@@ -113,60 +113,130 @@
       <!-- BOTTOM GRID -->
       <div class="grid grid-cols-12 gap-6 mt-6 items-start">
 
-        <!-- RECENT APPRECIATIONS -->
+        <!-- RECENT APPRECIATIONS + REWARDS — tabbed panel -->
         <div class="col-span-8">
-          <div class="bg-white rounded-[30px] p-7 border border-slate-100 shadow-sm">
+          <div class="bg-white rounded-[30px] border border-slate-100 shadow-sm overflow-hidden">
 
-            <div class="flex items-center justify-between mb-6">
-              <h2 class="text-3xl font-bold text-slate-900">Recent Appreciations</h2>
-              <button (click)="goToAppreciations()" class="text-emerald-500 font-semibold">View all</button>
+            <!-- TAB BAR -->
+            <div class="flex border-b border-slate-100">
+              <button
+                (click)="activeTab = 'appreciations'"
+                class="flex items-center gap-2 px-7 py-5 text-base font-semibold border-b-2 transition"
+                [class]="activeTab === 'appreciations'
+                  ? 'border-[#041C3C] text-slate-900'
+                  : 'border-transparent text-slate-400 hover:text-slate-600'">
+                💬 Recent Appreciations
+              </button>
+              <button
+                (click)="activeTab = 'rewards'"
+                class="flex items-center gap-2 px-7 py-5 text-base font-semibold border-b-2 transition"
+                [class]="activeTab === 'rewards'
+                  ? 'border-emerald-500 text-slate-900'
+                  : 'border-transparent text-slate-400 hover:text-slate-600'">
+                🏅 My Rewards
+                @if (recentRewards().length > 0) {
+                  <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                    {{ recentRewards().length }}
+                  </span>
+                }
+              </button>
             </div>
 
-            @if (isLoadingAppreciations()) {
-              <div class="flex items-center justify-center py-12">
-                <div class="w-8 h-8 border-4 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
-              </div>
-            } @else if (recentAppreciations().length === 0) {
-              <div class="flex flex-col items-center justify-center py-12 text-center gap-3">
-                <div class="text-5xl">💬</div>
-                <p class="text-slate-500">No appreciations yet. Send the first one!</p>
-              </div>
-            } @else {
-              <div class="space-y-4">
-                @for (a of recentAppreciations(); track a.id) {
-                  <div class="border border-slate-100 rounded-[24px] p-5">
-                    <div class="flex justify-between items-start gap-4">
+            <!-- ── APPRECIATIONS TAB ── -->
+            @if (activeTab === 'appreciations') {
+              <div class="p-7">
+                <div class="flex items-center justify-between mb-6">
+                  <h2 class="text-2xl font-bold text-slate-900">Recent Appreciations</h2>
+                  <button (click)="goToAppreciations()" class="text-emerald-500 font-semibold text-sm">View all</button>
+                </div>
 
-                      <div class="flex gap-4">
-                        <!-- Avatar -->
-                        <div class="w-12 h-12 rounded-full bg-[#0F2D57] text-white flex items-center justify-center font-bold shrink-0">
-                          {{ getInitials(a.fromUserName) }}
-                        </div>
-
-                        <div>
-                          <h3 class="text-lg font-semibold text-slate-900">
-                            {{ a.fromUserName }}
-                            <span class="font-normal text-slate-500">appreciated</span>
-                            {{ a.toUserName }}
-                          </h3>
-
-                          <p class="text-slate-400 text-sm mt-1">
-                            {{ a.createdAt | date:'dd MMM yyyy' }}
-                          </p>
-
-                          <p class="mt-3 text-slate-700 leading-relaxed">
-                            "{{ a.message }}"
-                          </p>
-
-                          @if (a.likesCount > 0) {
-                            <div class="flex gap-3 mt-3">
-                              <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">❤️ {{ a.likesCount }}</span>
+                @if (isLoadingAppreciations()) {
+                  <div class="flex items-center justify-center py-12">
+                    <div class="w-8 h-8 border-4 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
+                  </div>
+                } @else if (recentAppreciations().length === 0) {
+                  <div class="flex flex-col items-center justify-center py-12 text-center gap-3">
+                    <div class="text-5xl">💬</div>
+                    <p class="text-slate-500">No appreciations yet. Send the first one!</p>
+                  </div>
+                } @else {
+                  <div class="space-y-4">
+                    @for (a of recentAppreciations(); track a.id) {
+                      <div class="border border-slate-100 rounded-[24px] p-5">
+                        <div class="flex justify-between items-start gap-4">
+                          <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#0F2D57] text-white flex items-center justify-center font-bold shrink-0">
+                              {{ getInitials(a.fromUserName) }}
                             </div>
-                          }
+                            <div>
+                              <h3 class="text-lg font-semibold text-slate-900">
+                                {{ a.fromUserName }}
+                                <span class="font-normal text-slate-500">appreciated</span>
+                                {{ a.toUserName }}
+                              </h3>
+                              <p class="text-slate-400 text-sm mt-1">{{ a.createdAt | date:'dd MMM yyyy' }}</p>
+                              <p class="mt-3 text-slate-700 leading-relaxed">"{{ a.message }}"</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
 
-                    </div>
+            <!-- ── REWARDS TAB ── -->
+            @if (activeTab === 'rewards') {
+              <div class="p-7">
+                <div class="flex items-center justify-between mb-6">
+                  <h2 class="text-2xl font-bold text-slate-900">My Rewards</h2>
+                  <button (click)="goToMyRewards()" class="text-emerald-500 font-semibold text-sm">View all</button>
+                </div>
+
+                @if (isLoadingRewards()) {
+                  <div class="flex items-center justify-center py-12">
+                    <div class="w-8 h-8 border-4 border-slate-200 border-t-[#041C3C] rounded-full animate-spin"></div>
+                  </div>
+                } @else if (recentRewards().length === 0) {
+                  <div class="flex flex-col items-center justify-center py-12 text-center gap-3">
+                    <div class="text-5xl">🏅</div>
+                    <p class="text-slate-500 font-medium">No rewards yet</p>
+                    <p class="text-slate-400 text-sm">Your rewards from managers will appear here.</p>
+                  </div>
+                } @else {
+                  <div class="space-y-4">
+                    @for (r of recentRewards(); track r.rewardId) {
+                      <div class="flex items-center gap-4 border border-slate-100 rounded-[24px] p-5 hover:bg-slate-50 transition-colors">
+
+                        <!-- icon -->
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-2xl shrink-0">
+                          {{ getCategoryIcon(r.rewardCategoryName) }}
+                        </div>
+
+                        <!-- details -->
+                        <div class="flex-1 min-w-0">
+                          <p class="font-bold text-slate-900 text-base leading-tight">{{ r.rewardCategoryName }}</p>
+                          <p class="text-slate-500 text-sm mt-0.5">
+                            From <span class="font-semibold text-slate-700">{{ r.awardedBy }}</span>
+                            &nbsp;·&nbsp;
+                            <span class="text-slate-400">{{ r.awardedAt | date:'dd MMM yyyy' }}</span>
+                          </p>
+                          <p class="text-slate-400 text-sm mt-1 truncate">"{{ r.reason }}"</p>
+                        </div>
+
+                        <!-- bytes badge -->
+                        <div class="flex items-baseline gap-1 px-4 py-2 rounded-xl font-black text-lg shrink-0"
+                             [class]="r.bytes >= 1000
+                               ? 'bg-amber-50 text-amber-600 border border-amber-200'
+                               : r.bytes >= 500
+                                 ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
+                                 : 'bg-blue-50 text-blue-600 border border-blue-200'">
+                          <span class="text-sm">✦</span>{{ r.bytes | number }}
+                        </div>
+
+                      </div>
+                    }
                   </div>
                 }
               </div>

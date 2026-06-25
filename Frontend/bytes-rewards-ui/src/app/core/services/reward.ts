@@ -18,6 +18,31 @@ export interface RewardResponse {
   createdAt: string;
 }
 
+export interface EmployeeRewardSummary {
+  id: string;
+  fullName: string;
+  departmentName: string;
+  designationName: string;
+  lastRewardedAt?: string;
+  lastRewardCategoryName: string;
+  lastRewardBytes: number;
+  totalRewards: number;
+}
+
+export interface EmployeeRewardStatusResponse {
+  rewarded: EmployeeRewardSummary[];
+  notRewarded: EmployeeRewardSummary[];
+}
+
+export interface RewardHistoryItem {
+  rewardId: string;
+  rewardCategoryName: string;
+  bytes: number;
+  awardedBy: string;
+  reason: string;
+  awardedAt: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,5 +58,15 @@ export class RewardService {
 
   createReward(request: CreateRewardRequest): Observable<string> {
     return this.http.post<string>(this.apiUrl, request);
+  }
+
+  getRewardHistory(userId: string): Observable<RewardHistoryItem[]> {
+    return this.http.get<RewardHistoryItem[]>(`${this.apiUrl}/history/${userId}`);
+  }
+
+  getEmployeeRewardStatus(): Observable<EmployeeRewardStatusResponse> {
+    return this.http.get<EmployeeRewardStatusResponse>(
+      `${this.apiUrl}/employee-status`
+    );
   }
 }

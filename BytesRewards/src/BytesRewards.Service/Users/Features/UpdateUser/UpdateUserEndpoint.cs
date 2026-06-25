@@ -64,7 +64,7 @@ public sealed class UpdateUserEndpoint(
                 req.FirstName,
                 req.LastName,
                 req.PhoneNumber,
-                req.Designation,
+                req.DesignationId,
                 req.Email,
                 req.Role,
                 req.DepartmentId

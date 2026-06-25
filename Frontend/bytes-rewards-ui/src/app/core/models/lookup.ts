@@ -37,4 +37,21 @@ export interface UserLookup {
 
   fullName: string;
 
+  designationName: string;
+
+  departmentName: string;
+
+}
+
+
+export interface Designation {
+
+  id: string;
+
+  name: string;
+
+  description: string;
+
+  isActive: boolean;
+
 }

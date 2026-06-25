@@ -21,13 +21,15 @@ public sealed class GetUserLookupQueryHandler(
         var users =
             await context.Users
                 .Where(x => x.IsActive)
+                .Include(x => x.Designation)
+                .Include(x => x.Department)
                 .OrderBy(x => x.FirstName)
                 .Select(x => new UserLookupResponse
                 {
-                    Id = x.Id,
-
-                    FullName =
-                        x.FirstName + " " + x.LastName
+                    Id              = x.Id,
+                    FullName        = x.FirstName + " " + x.LastName,
+                    DesignationName = x.Designation != null ? x.Designation.Name : string.Empty,
+                    DepartmentName  = x.Department != null ? x.Department.Name  : string.Empty
                 })
                 .ToListAsync(ct);
 

@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using AppWeaver.Mediator.Interfaces;
 using AppWeaver.Results;
-
 using BytesRewards.Service.Appreciations.Domain;
 using BytesRewards.Service.Infrastructure;
+using BytesRewards.Service.Notifications.Services;
 
 namespace BytesRewards.Service.Appreciations.Features.CreateAppreciation;
 
 public sealed class CreateAppreciationCommandHandler(
-    ApplicationDbContext context)
+    ApplicationDbContext context,
+    NotificationService notifications)
     : ICommandHandler<CreateAppreciationCommand, Result<Guid>>
 {
     public async ValueTask<Result<Guid>> Handle(
@@ -40,6 +41,31 @@ public sealed class CreateAppreciationCommandHandler(
         };
 
         context.Appreciations.Add(appreciation);
+
+        // ── Notifications ────────────────────────────────────────
+        // Recipient: you received an appreciation
+        notifications.Create(
+            userId:  request.ToUserId,
+            type:    "AppreciationReceived",
+            title:   $"✨ {appreciation.FromUserName} appreciated you!",
+            message: appreciation.Message);
+
+        // Sender: confirmation that appreciation was sent
+        notifications.Create(
+            userId:  request.FromUserId,
+            type:    "AppreciationSent",
+            title:   $"✅ Appreciation sent to {appreciation.ToUserName}",
+            message: $"Your appreciation was sent successfully.");
+
+        // Broadcast to everyone else — peer recognition is public
+        await notifications.CreateForAllUsersExceptAsync(
+            excludeUserIds: [request.FromUserId, request.ToUserId],
+            type:           "TeamAppreciation",
+            title:          $"✨ {appreciation.FromUserName} appreciated {appreciation.ToUserName}",
+            message:        appreciation.Message.Length > 120
+                                ? appreciation.Message[..120] + "…"
+                                : appreciation.Message,
+            ct:             ct);
 
         await context.SaveChangesAsync(ct);
 

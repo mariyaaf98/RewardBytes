@@ -23,7 +23,7 @@ public class CreateUserValidator
             .Matches(@"^\d{10}$")
             .WithMessage("Phone number must contain exactly 10 digits");
 
-        RuleFor(x => x.Designation)
+        RuleFor(x => x.DesignationId)
             .NotEmpty()
             .WithMessage("Designation is required");
 

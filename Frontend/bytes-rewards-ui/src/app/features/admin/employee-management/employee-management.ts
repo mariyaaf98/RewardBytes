@@ -6,8 +6,9 @@ import { ModalComponent } from '../../../shared/components/modal/modal';
 import { ADMIN_MENU } from '../../../core/navigation/admin-menu';
 import { UserService } from '../../../core/services/user';
 import { User } from '../../../core/models/user.model';
-import { Role, Department } from '../../../core/models/lookup';
+import { Role, Department, Designation } from '../../../core/models/lookup';
 import { RoleService } from '../../../core/services/role';
+import { DesignationService } from '../../../core/services/designation';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class EmployeeManagementComponent
 
   private readonly roleService = inject(RoleService);
 
+  private readonly designationService = inject(DesignationService);
+
   isAddEmployeeModalOpen = false;
 
   adminMenu = ADMIN_MENU;
@@ -51,7 +54,7 @@ export class EmployeeManagementComponent
 
   phoneNumber = '';
 
-  designation = '';
+  designationId = '';
 
   errorMessage = '';
 
@@ -89,6 +92,8 @@ export class EmployeeManagementComponent
 
   departments: Department[] = [];
 
+  designations: Designation[] = [];
+
   ngOnInit(): void {
 
     this.loadUsers();
@@ -96,6 +101,8 @@ export class EmployeeManagementComponent
     this.loadRoles();
 
     this.loadDepartments();
+
+    this.loadDesignations();
 
   }
 
@@ -106,14 +113,13 @@ export class EmployeeManagementComponent
 
         next: (response) => {
 
+          // Exclude system roles AND 'admin' — admin cannot be assigned via this form
           this.roles = response.filter(
             role =>
               role.name !== 'offline_access' &&
-              role.name !== 'uma_authorization'
+              role.name !== 'uma_authorization' &&
+              role.name !== 'admin'
           );
-
-          console.log('ROLES');
-          console.log(this.roles);
 
         },
 
@@ -127,6 +133,13 @@ export class EmployeeManagementComponent
 
   }
 
+  // Check if a manager already exists (excluding the user being edited)
+  get managerExists(): boolean {
+    return this.employees.some(
+      e => e.roleName === 'manager' && e.id !== this.selectedUserId
+    );
+  }
+
   loadDepartments(): void {
 
     this.userService.getDepartments()
@@ -137,6 +150,28 @@ export class EmployeeManagementComponent
           this.departments = response;
 
           console.log(response);
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+        }
+
+      });
+
+  }
+
+  loadDesignations(): void {
+
+    this.designationService.getDesignations()
+      .subscribe({
+
+        next: (response) => {
+
+          // Only show active designations in the form dropdown
+          this.designations = response.filter(d => d.isActive);
 
         },
 
@@ -190,7 +225,7 @@ export class EmployeeManagementComponent
 
     phoneNumber: this.phoneNumber,
 
-    designation: this.designation,
+    designationId: this.designationId,
 
     temporaryPassword: this.temporaryPassword,
 
@@ -289,7 +324,7 @@ export class EmployeeManagementComponent
 
     this.phoneNumber = user.phoneNumber;
 
-    this.designation = user.designation;
+    this.designationId = user.designationId;
 
     this.role = user.roleName;
 
@@ -312,7 +347,7 @@ export class EmployeeManagementComponent
 
         phoneNumber: this.phoneNumber,
 
-        designation: this.designation,
+        designationId: this.designationId,
 
         role: this.role,
 
@@ -461,7 +496,7 @@ export class EmployeeManagementComponent
 
     this.phoneNumber = '';
 
-    this.designation = '';
+    this.designationId = '';
 
     this.temporaryPassword = '';
 
@@ -557,7 +592,7 @@ export class EmployeeManagementComponent
       isValid = false;
     }
 
-    if (!this.designation.trim()) {
+    if (!this.designationId) {
 
       this.designationError = 'Designation is required';
 

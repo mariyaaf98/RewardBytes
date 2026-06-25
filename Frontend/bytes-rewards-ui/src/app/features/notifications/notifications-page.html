@@ -1,0 +1,118 @@
+<div class="flex min-h-screen bg-[#F0F2F5]">
+
+  <app-sidebar [workspaceTitle]="workspaceTitle" [menuItems]="activeMenu"></app-sidebar>
+
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <div class="h-[64px] border-b border-slate-200 bg-white px-6 flex items-center shrink-0">
+      <app-topbar></app-topbar>
+    </div>
+
+    <div class="px-6 sm:px-10 py-8 flex-1">
+
+      <!-- HEADER -->
+      <div class="flex items-start justify-between mb-8">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Notifications</h1>
+          <p class="text-slate-500 text-lg mt-2">Stay up to date with rewards, appreciations and updates.</p>
+        </div>
+        @if (unreadCount() > 0) {
+          <button (click)="markAllRead()"
+            class="h-10 px-5 rounded-xl border border-slate-200 text-slate-700 text-sm font-semibold
+                   hover:bg-slate-50 transition shrink-0">
+            Mark all as read
+          </button>
+        }
+      </div>
+
+      <!-- FILTER TABS + COUNT -->
+      <div class="flex items-center gap-3 mb-6">
+        <button (click)="setFilter('all')"
+          class="px-5 py-2 rounded-xl text-sm font-semibold border transition"
+          [class]="activeFilter() === 'all'
+            ? 'bg-[#0d1a2e] text-white border-[#0d1a2e]'
+            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'">
+          All
+          <span class="ml-1.5 text-xs">({{ notifications().length }})</span>
+        </button>
+        <button (click)="setFilter('unread')"
+          class="px-5 py-2 rounded-xl text-sm font-semibold border transition"
+          [class]="activeFilter() === 'unread'
+            ? 'bg-[#0d1a2e] text-white border-[#0d1a2e]'
+            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'">
+          Unread
+          @if (unreadCount() > 0) {
+            <span class="ml-1.5 bg-red-500 text-white text-[10px] font-bold
+                         px-1.5 py-0.5 rounded-full">{{ unreadCount() }}</span>
+          }
+        </button>
+      </div>
+
+      <!-- LOADING -->
+      @if (isLoading()) {
+        <div class="flex items-center justify-center py-32">
+          <div class="w-10 h-10 border-4 border-slate-200 border-t-[#0d1a2e] rounded-full animate-spin"></div>
+        </div>
+      }
+
+      <!-- EMPTY -->
+      @else if (filtered().length === 0) {
+        <div class="flex flex-col items-center justify-center py-28 text-center gap-4
+                    bg-white rounded-2xl border border-slate-100 shadow-sm">
+          <div class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center text-4xl">🔔</div>
+          <h3 class="text-xl font-semibold text-slate-700">
+            {{ activeFilter() === 'unread' ? 'All caught up!' : 'No notifications yet' }}
+          </h3>
+          <p class="text-slate-400 text-sm max-w-xs">
+            {{ activeFilter() === 'unread'
+              ? 'You have no unread notifications.'
+              : 'Notifications will appear here when you receive rewards, appreciations or updates.' }}
+          </p>
+        </div>
+      }
+
+      <!-- LIST -->
+      @else {
+        <div class="space-y-3">
+          @for (n of filtered(); track n.id) {
+            <div
+              (click)="markOneRead(n)"
+              class="flex items-start gap-4 rounded-2xl border p-5 transition-all cursor-pointer group"
+              [class]="n.isRead
+                ? 'bg-white border-slate-100 hover:border-slate-200 hover:shadow-sm'
+                : 'border-slate-200 shadow-sm ' + getBgColor(n.type)">
+
+              <!-- icon -->
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0"
+                   [class]="n.isRead ? 'bg-slate-100' : 'bg-white shadow-sm'">
+                {{ getIcon(n.type) }}
+              </div>
+
+              <!-- content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-3">
+                  <p class="text-sm leading-tight"
+                     [class]="n.isRead ? 'font-medium text-slate-700' : 'font-bold text-slate-900'">
+                    {{ n.title }}
+                  </p>
+                  <!-- unread dot -->
+                  @if (!n.isRead) {
+                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 mt-1"></div>
+                  }
+                </div>
+                <p class="text-sm text-slate-500 mt-1 leading-relaxed">{{ n.message }}</p>
+                <p class="text-[11px] text-slate-400 mt-2 flex items-center gap-1.5">
+                  <span>{{ n.createdAt | timeAgo }}</span>
+                  <span class="text-slate-300">·</span>
+                  <span>{{ n.createdAt | date:'dd MMM yyyy, h:mm a' }}</span>
+                </p>
+              </div>
+
+            </div>
+          }
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

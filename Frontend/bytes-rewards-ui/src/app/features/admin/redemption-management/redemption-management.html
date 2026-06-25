@@ -116,6 +116,7 @@
               <thead>
                 <tr class="bg-slate-50 border-b border-slate-200">
                   <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Reward</th>
+                  <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Requested By</th>
                   <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Bytes</th>
                   <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Date</th>
                   <th class="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400">Status</th>
@@ -124,8 +125,10 @@
               </thead>
               <tbody class="divide-y divide-slate-100">
                 @for (r of filtered(); track r.redemptionId) {
-                  <tr class="hover:bg-slate-50 transition-colors">
+                  <tr class="hover:bg-slate-50 transition-colors"
+                    [class.bg-amber-50]="r.status === 'Pending'">
 
+                    <!-- REWARD -->
                     <td class="px-6 py-4">
                       <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-lg shrink-0">🎁</div>
@@ -133,6 +136,17 @@
                       </div>
                     </td>
 
+                    <!-- REQUESTED BY (employee) -->
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full bg-[#0d1a2e] text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                          {{ getInitials(r.userName) }}
+                        </div>
+                        <span class="text-sm font-medium text-slate-900">{{ r.userName }}</span>
+                      </div>
+                    </td>
+
+                    <!-- BYTES -->
                     <td class="px-6 py-4">
                       @if (r.status === 'Rejected') {
                         <div>
@@ -144,10 +158,12 @@
                       }
                     </td>
 
+                    <!-- DATE -->
                     <td class="px-6 py-4 text-slate-500 text-sm whitespace-nowrap">
                       {{ r.redeemedAt | date:'dd MMM yyyy' }}
                     </td>
 
+                    <!-- STATUS -->
                     <td class="px-6 py-4">
                       <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
                         [class]="statusClass(r.status)">
@@ -155,6 +171,7 @@
                       </span>
                     </td>
 
+                    <!-- ACTIONS -->
                     <td class="px-6 py-4">
                       @if (nextStatuses(r.status).length > 0) {
                         <div class="flex items-center gap-2">
@@ -162,10 +179,12 @@
                             <button
                               (click)="updateStatus(r.redemptionId, s)"
                               [disabled]="updatingId === r.redemptionId"
-                              class="h-8 px-3 rounded-lg text-xs font-semibold transition disabled:opacity-50"
+                              class="h-8 px-4 rounded-lg text-xs font-semibold transition disabled:opacity-50"
                               [class]="s === 'Rejected'
                                 ? 'border border-red-200 text-red-500 hover:bg-red-50'
-                                : 'border border-emerald-200 text-emerald-600 hover:bg-emerald-50'">
+                                : s === 'Approved'
+                                  ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                                  : 'border border-emerald-200 text-emerald-600 hover:bg-emerald-50'">
                               @if (updatingId === r.redemptionId) { … } @else { {{ s }} }
                             </button>
                           }

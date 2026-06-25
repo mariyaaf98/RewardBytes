@@ -11,6 +11,8 @@ using BytesRewards.Service.Wallets.Domain;
 
 using BytesRewards.Service.RewardsCatalog.Domain;
 using BytesRewards.Service.Redemptions.Domain;
+using BytesRewards.Service.Designations.Domain;
+using BytesRewards.Service.Notifications.Domain;
 
 namespace BytesRewards.Service.Infrastructure;
 
@@ -34,6 +36,10 @@ public class ApplicationDbContext(
     public DbSet<RewardItem> RewardItems=> Set<RewardItem>();
 
     public DbSet<Redemption> Redemptions => Set<Redemption>();
+
+    public DbSet<Designation> Designations => Set<Designation>();
+
+    public DbSet<Notification> Notifications => Set<Notification>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

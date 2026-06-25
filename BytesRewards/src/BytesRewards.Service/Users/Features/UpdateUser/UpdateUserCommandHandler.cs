@@ -32,7 +32,7 @@ public sealed class UpdateUserCommandHandler(
 
         user.PhoneNumber = request.PhoneNumber;
 
-        user.Designation = request.Designation;
+        user.DesignationId = request.DesignationId;
 
         user.DepartmentId = request.DepartmentId;
 

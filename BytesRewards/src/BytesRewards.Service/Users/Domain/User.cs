@@ -1,6 +1,7 @@
 using AppWeaver.DomainAbstraction.Aggregates;
 
 using BytesRewards.Service.Departments.Domain;
+using BytesRewards.Service.Designations.Domain;
 
 using BytesRewards.Service.Common;
 
@@ -18,8 +19,6 @@ public class User : BaseEntity, IAggregateRoot
 
     public string PhoneNumber { get; set; } = string.Empty;
 
-    public string Designation { get; set; } = string.Empty;
-
     public string ProfileImageUrl { get; set; } = string.Empty;
 
     public bool IsActive { get; set; }
@@ -29,4 +28,8 @@ public class User : BaseEntity, IAggregateRoot
     public Guid DepartmentId { get; set; }
 
     public Department Department { get; set; } = null!;
+
+    public Guid DesignationId { get; set; }
+
+    public Designation Designation { get; set; } = null!;
 }

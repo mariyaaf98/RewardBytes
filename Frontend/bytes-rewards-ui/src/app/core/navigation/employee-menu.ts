@@ -38,6 +38,10 @@ export const EMPLOYEE_MENU = [
         route: '/rewards'
       },
       {
+        label: 'My Rewards',
+        route: '/employee/my-rewards'
+      },
+      {
         label: 'My Redemptions',
         route: '/redemptions'
       }
