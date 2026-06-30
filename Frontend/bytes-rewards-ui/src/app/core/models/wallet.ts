@@ -9,6 +9,7 @@ export interface LedgerEntry {
   awardedBy: string;
   reason: string;
   awardedAt: string;
+  entryType: 'Reward' | 'Refund';
 }
 
 // Unified transaction for the full history view

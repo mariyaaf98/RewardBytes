@@ -17,7 +17,6 @@ public sealed class GetRewardItemsQueryHandler(
         CancellationToken ct)
     {
         return await context.RewardItems
-            .Where(x => x.IsActive)
             .OrderBy(x => x.Name)
             .Select(x => new RewardItemResponse
             {

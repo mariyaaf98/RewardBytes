@@ -70,20 +70,20 @@
             </div>
 
             <div class="pb-1">
-              <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+              <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight">
                 {{ profile()!.firstName }} {{ profile()!.lastName }}
               </h1>
-              <p class="text-slate-500 text-sm mt-0.5">{{ profile()!.designationName }}</p>
+              <p class="text-slate-300 text-sm mt-0.5">{{ profile()!.designationName }}</p>
               <div class="flex items-center gap-2 mt-2 flex-wrap">
                 <span class="px-3 py-1 rounded-full text-xs font-bold capitalize"
                   [class]="getRoleBadgeStyle()">{{ role() }}</span>
                 @if (profile()!.isActive) {
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-200 text-xs font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
                   </span>
                 } @else {
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-600 text-xs font-semibold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Inactive
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/30 text-red-200 text-xs font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Inactive
                   </span>
                 }
               </div>
@@ -92,8 +92,8 @@
 
           <!-- edit quick-action -->
           <button (click)="openEdit(); setSection('details')"
-            class="h-10 px-5 rounded-xl bg-[#0d1a2e] text-white text-sm font-semibold
-                   hover:bg-[#1a3a5c] transition shadow shrink-0 self-end sm:self-auto">
+            class="h-10 px-5 rounded-xl bg-white/20 text-white text-sm font-semibold
+                   hover:bg-white/30 transition shadow shrink-0 self-end sm:self-auto border border-white/20">
             ✏️ Edit Profile
           </button>
         </div>
@@ -109,6 +109,7 @@
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
               <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Account Info</h3>
               <div class="space-y-3">
+                @if (role() !== 'manager') {
                 <div class="flex items-center gap-3">
                   <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">✉️</div>
                   <div class="min-w-0">
@@ -116,6 +117,7 @@
                     <p class="text-sm text-slate-900 font-medium truncate">{{ profile()!.email }}</p>
                   </div>
                 </div>
+                }
                 <div class="flex items-center gap-3">
                   <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">🪪</div>
                   <div>
@@ -238,10 +240,12 @@
                         <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Last Name</p>
                         <p class="text-base font-semibold text-slate-900">{{ profile()!.lastName }}</p>
                       </div>
+                      @if (role() !== 'manager') {
                       <div class="space-y-1">
                         <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email</p>
                         <p class="text-base font-semibold text-slate-900 break-all">{{ profile()!.email }}</p>
                       </div>
+                      }
                       <div class="space-y-1">
                         <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Phone</p>
                         <p class="text-base font-semibold text-slate-900">{{ profile()!.phoneNumber || '—' }}</p>

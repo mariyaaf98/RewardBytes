@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar';
 import { TopbarComponent } from '../../../shared/components/topbar/topbar';
+import { PieChartComponent, PieSlice } from '../../../shared/components/pie-chart/pie-chart';
 import { ADMIN_MENU } from '../../../core/navigation/admin-menu';
 
 import { UserService } from '../../../core/services/user';
@@ -35,7 +36,7 @@ interface DeptStat {
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent],
+  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent, PieChartComponent],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })
@@ -138,7 +139,28 @@ export class AdminDashboardComponent implements OnInit {
     return stats.sort((a, b) => b.bytesAwarded - a.bytesAwarded);
   });
 
-  // ── Lifecycle ─────────────────────────────────────────────────
+  // ── Pie chart slices for bytes awarded per department ─────────
+  readonly DEPT_COLORS = [
+    '#10b981', '#3b82f6', '#f59e0b', '#8b5cf6',
+    '#ef4444', '#06b6d4', '#f97316', '#ec4899',
+    '#84cc16', '#6366f1'
+  ];
+
+  readonly bytesPieSlices = computed<PieSlice[]>(() =>
+    this.deptStats().map((d, i) => ({
+      label: d.name,
+      value: d.bytesAwarded,
+      color: this.DEPT_COLORS[i % this.DEPT_COLORS.length]
+    }))
+  );
+
+  readonly apprPieSlices = computed<PieSlice[]>(() =>
+    this.deptStats().map((d, i) => ({
+      label: d.name,
+      value: d.appreciations,
+      color: this.DEPT_COLORS[i % this.DEPT_COLORS.length]
+    }))
+  );
   ngOnInit(): void {
     let loaded = 0;
     const done = () => { if (++loaded >= 5) this.isLoading.set(false); };

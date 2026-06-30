@@ -32,6 +32,8 @@ export class RewardItemManagementComponent implements OnInit {
   readonly searchText = signal('');
   readonly viewMode   = signal<ViewMode>('table');
 
+  readonly selectedStatus = signal<'all' | 'active' | 'inactive'>('all');
+
   // Panel (slide-over for add/edit)
   isPanelOpen = false;
   isEditMode  = false;
@@ -51,6 +53,10 @@ export class RewardItemManagementComponent implements OnInit {
   productCodeError   = '';
   requiredBytesError = '';
 
+  // Inline upload feedback (shown inside the modal)
+  uploadError   = '';
+  uploadSuccess = '';
+
   // Feedback
   alertMessage = '';
   alertType: 'success' | 'error' = 'success';
@@ -66,9 +72,15 @@ export class RewardItemManagementComponent implements OnInit {
 
   // ── Derived ───────────────────────────────────────────────────
   readonly filtered = computed(() => {
-    const q = this.searchText().toLowerCase().trim();
-    if (!q) return this.items();
-    return this.items().filter(i =>
+    const q      = this.searchText().toLowerCase().trim();
+    const status = this.selectedStatus();
+    let list     = this.items();
+
+    if (status === 'active')   list = list.filter(i => i.isActive);
+    if (status === 'inactive') list = list.filter(i => !i.isActive);
+
+    if (!q) return list;
+    return list.filter(i =>
       i.name.toLowerCase().includes(q) ||
       i.productCode.toLowerCase().includes(q) ||
       i.description.toLowerCase().includes(q)
@@ -100,7 +112,9 @@ export class RewardItemManagementComponent implements OnInit {
     this.isEditMode = false; this.selectedId = '';
     this.name = ''; this.productCode = ''; this.description = '';
     this.requiredBytes = null; this.imageUrl = ''; this.imagePreview = ''; this.isActive = true;
-    this.clearErrors(); this.isPanelOpen = true;
+    this.clearErrors();
+    this.uploadError = ''; this.uploadSuccess = '';
+    this.isPanelOpen = true;
   }
 
   openEdit(item: RewardItem): void {
@@ -108,7 +122,9 @@ export class RewardItemManagementComponent implements OnInit {
     this.name = item.name; this.productCode = item.productCode;
     this.description = item.description; this.requiredBytes = item.requiredBytes;
     this.imageUrl = item.imageUrl; this.imagePreview = item.imageUrl; this.isActive = item.isActive;
-    this.clearErrors(); this.isPanelOpen = true;
+    this.clearErrors();
+    this.uploadError = ''; this.uploadSuccess = '';
+    this.isPanelOpen = true;
   }
 
   closePanel(): void {
@@ -212,11 +228,7 @@ export class RewardItemManagementComponent implements OnInit {
   }
 
   private prepareImage(file: File): void {
-    if (file.size > 2 * 1024 * 1024) {
-      this.toast('Image must be under 2 MB.', 'error'); return;
-    }
     this._pendingImageFile = file;
-    // local preview
     const reader = new FileReader();
     reader.onload = e => { this.imagePreview = e.target?.result as string; };
     reader.readAsDataURL(file);
@@ -234,17 +246,22 @@ export class RewardItemManagementComponent implements OnInit {
       this.doSave(); return;
     }
 
+    this.uploadError   = '';
+    this.uploadSuccess = '';
+
     this.uploadService.uploadImage(this._pendingImageFile).subscribe({
       next: url => {
         this.imageUrl          = url;
         this._pendingImageFile = null;
         this.imagePreview      = url;
+        this.uploadSuccess     = '✓ Image uploaded successfully.';
         this.doSave();
       },
       error: err => {
-        this.isSaving = false;
-        const msg = err.error?.errors?.[0]?.message ?? err.error?.detail ?? 'Image upload failed.';
-        this.toast(msg, 'error');
+        this.isSaving      = false;
+        this.uploadError   = err.error?.errors?.[0]?.message
+                          ?? err.error?.detail
+                          ?? 'Image upload failed. Please try a different image.';
       }
     });
   }
@@ -260,5 +277,7 @@ export class RewardItemManagementComponent implements OnInit {
   }
 
   closeErrorModal(): void {
-}
+    this.showErrorModal = false;
+    this.errorMessage   = '';
+  }
 }

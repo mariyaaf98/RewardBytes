@@ -13,7 +13,7 @@ export const EMPLOYEE_MENU = [
   {
     label: 'Dashboard',
     icon: LayoutDashboard,
-    route: '/'
+    route: '/employee'
   },
   {
     label: 'Recognize',

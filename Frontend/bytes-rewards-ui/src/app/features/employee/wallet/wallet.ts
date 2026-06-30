@@ -130,13 +130,17 @@ export class WalletComponent implements OnInit {
     const merge = () => {
       if (++loaded < 2) return;
 
-      // Build credit transactions
+      // Build credit transactions (rewards + refunds)
       const creditTxns: Transaction[] = credits.map(e => ({
         id:       e.rewardId,
-        type:     'credit',
-        title:    `Recognition from ${e.awardedBy}`,
-        subtitle: e.rewardCategoryName || 'Reward',
-        note:     e.reason,
+        type:     'credit' as const,
+        title:    e.entryType === 'Refund'
+                    ? `Refund: ${e.reason.replace('Refund for rejected redemption: ', '')}`
+                    : `Recognition from ${e.awardedBy}`,
+        subtitle: e.entryType === 'Refund'
+                    ? 'Redemption Refund'
+                    : (e.rewardCategoryName || 'Reward'),
+        note:     e.entryType === 'Refund' ? '' : e.reason,
         bytes:    e.bytes,
         date:     e.awardedAt
       }));

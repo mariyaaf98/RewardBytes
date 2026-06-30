@@ -31,8 +31,14 @@ export class CreateAppreciationComponent implements OnInit {
     inject(AppreciationService);
 
   ngOnInit(): void {
-    this.loadUsers();
-
+    // Load current user ID first so we can exclude them from the dropdown
+    this.userService.getCurrentUser().subscribe({
+      next: user => {
+        this.currentUserId = user.id;
+        this.loadUsers();
+      },
+      error: () => this.loadUsers()
+    });
   }
 
 
@@ -68,18 +74,17 @@ export class CreateAppreciationComponent implements OnInit {
 
         next: users => {
 
-          console.log(users);
+          // Exclude current user from the list entirely
+          this.users = users.filter(u => u.id !== this.currentUserId);
 
-          this.users = users;
-
-          this.filteredUsers = users;
+          this.filteredUsers = this.users;
 
         },
 
         error: error => {
 
           this.errorMessage =
-            error.error.detail;
+            error.error?.detail ?? 'Failed to load employees.';
 
           this.showErrorModal = true;
 
@@ -123,6 +128,17 @@ export class CreateAppreciationComponent implements OnInit {
 
       this.errorMessage =
         'Please select an employee and enter a message.';
+
+      this.showErrorModal = true;
+
+      return;
+
+    }
+
+    // Extra guard — should never happen since self is removed from list
+    if (this.selectedUserId === this.currentUserId) {
+
+      this.errorMessage = "You can't appreciate yourself. Select a colleague.";
 
       this.showErrorModal = true;
 

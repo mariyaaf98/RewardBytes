@@ -28,9 +28,12 @@ public sealed class GetNotificationsEndpoint(ApplicationDbContext context)
             return;
         }
 
+        // Try to find user by KeycloakUserId
         var user = await context.Users
             .FirstOrDefaultAsync(x => x.KeycloakUserId == keycloakId, ct);
 
+        // If no User row exists (e.g. admin created only in Keycloak, not in Users table)
+        // return empty — notifications require a User record to receive them
         if (user is null)
         {
             Response = [];

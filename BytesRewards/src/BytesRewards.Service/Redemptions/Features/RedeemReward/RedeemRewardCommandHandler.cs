@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AppWeaver.Mediator.Interfaces;
 using AppWeaver.Results;
 using BytesRewards.Service.Infrastructure;
+using BytesRewards.Service.Infrastructure.Security.Keycloak;
 using BytesRewards.Service.Notifications.Services;
 using BytesRewards.Service.Redemptions.Domain;
 
@@ -9,7 +10,8 @@ namespace BytesRewards.Service.Redemptions.Features.RedeemReward;
 
 public sealed class RedeemRewardCommandHandler(
     ApplicationDbContext context,
-    NotificationService notifications)
+    NotificationService notifications,
+    IKeycloakAdminService keycloakAdminService)
     : ICommandHandler<RedeemRewardCommand, Result<Guid>>
 {
     public async ValueTask<Result<Guid>> Handle(
@@ -50,22 +52,54 @@ public sealed class RedeemRewardCommandHandler(
             message: $"Your redemption request for \"{rewardItem.Name}\" " +
                      $"({rewardItem.RequiredBytes} bytes) is pending admin approval.");
 
-        // ── Notify all admins — broadcast to all except the employee ──
+        // ── Notify admins only ───────────────────────────────────
         var employee = await context.Users
             .Where(u => u.Id == request.UserId)
             .Select(u => new { FullName = u.FirstName + " " + u.LastName })
             .FirstOrDefaultAsync(ct);
 
-        await notifications.CreateForAllUsersExceptAsync(
-            excludeUserIds: [request.UserId],
-            type:           "NewRedemptionRequest",
-            title:          $"🛒 New redemption request",
-            message:        $"{employee?.FullName ?? "An employee"} requested \"{rewardItem.Name}\" " +
-                            $"({rewardItem.RequiredBytes} bytes). Pending your approval.",
-            ct:             ct);
+        var adminIds = await GetAdminUserIdsAsync(ct);
+
+        notifications.CreateForUsers(
+            userIds: adminIds,
+            type:    "NewRedemptionRequest",
+            title:   $"🛒 New redemption request",
+            message: $"{employee?.FullName ?? "An employee"} requested \"{rewardItem.Name}\" " +
+                     $"({rewardItem.RequiredBytes} bytes). Pending your approval.");
 
         await context.SaveChangesAsync(ct);
 
         return Result<Guid>.Ok(redemption.Id);
+    }
+
+    /// <summary>
+    /// Resolves all user IDs whose Keycloak role is "admin".
+    /// Falls back to an empty list if Keycloak is unavailable.
+    /// </summary>
+    private async Task<List<Guid>> GetAdminUserIdsAsync(CancellationToken ct)
+    {
+        var users = await context.Users
+            .Where(u => u.IsActive && u.KeycloakUserId != string.Empty)
+            .Select(u => new { u.Id, u.KeycloakUserId })
+            .ToListAsync(ct);
+
+        string token;
+        try   { token = await keycloakAdminService.GetAdminTokenAsync(ct); }
+        catch { return []; }
+
+        var adminIds = new List<Guid>();
+        foreach (var user in users)
+        {
+            try
+            {
+                var role = await keycloakAdminService
+                    .GetUserRoleAsync(token, user.KeycloakUserId, ct);
+                if (string.Equals(role, "admin", StringComparison.OrdinalIgnoreCase))
+                    adminIds.Add(user.Id);
+            }
+            catch { /* skip if role lookup fails for this user */ }
+        }
+
+        return adminIds;
     }
 }

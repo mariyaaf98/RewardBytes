@@ -300,23 +300,24 @@
 
   <div class="bg-white rounded-3xl w-[450px] p-6 shadow-xl">
 
-    <h3 class="text-xl font-bold text-red-600">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center text-2xl shrink-0">
+        {{ errorMessage.includes("yourself") ? '🙅' : '⚠️' }}
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">
+        {{ errorMessage.includes("yourself") ? "Can't appreciate yourself" : "Something went wrong" }}
+      </h3>
+    </div>
 
-      Error
-
-    </h3>
-
-    <p class="mt-4 text-slate-600">
-
+    <p class="text-slate-600">
       {{ errorMessage }}
-
     </p>
 
     <div class="mt-6 flex justify-end">
 
       <button
         (click)="closeErrorModal()"
-        class="px-5 py-2 rounded-xl bg-red-500 text-white">
+        class="px-5 py-2 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition">
 
         OK
 

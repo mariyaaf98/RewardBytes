@@ -17,25 +17,21 @@ public sealed class CreateRewardCommandHandler(
         CreateRewardCommand request,
         CancellationToken ct)
     {
-        // Snapshot both bytes AND category name at creation time
-        // so future admin edits to the category never change history.
-        var category =
-            await context.RewardCategories
-                .Where(x => x.Id == request.RewardCategoryId)
-                .Select(x => new { x.Bytes, x.Name })
-                .FirstOrDefaultAsync(ct);
+        // Snapshot category, sender, recipient names
+        var category = await context.RewardCategories
+            .Where(x => x.Id == request.RewardCategoryId)
+            .Select(x => new { x.Bytes, x.Name })
+            .FirstOrDefaultAsync(ct);
 
-        var fromUser =
-            await context.Users
-                .Where(x => x.Id == request.FromUserId)
-                .Select(x => new { FullName = x.FirstName + " " + x.LastName })
-                .FirstOrDefaultAsync(ct);
+        var fromUser = await context.Users
+            .Where(x => x.Id == request.FromUserId)
+            .Select(x => new { FullName = x.FirstName + " " + x.LastName })
+            .FirstOrDefaultAsync(ct);
 
-        var toUser =
-            await context.Users
-                .Where(x => x.Id == request.ToUserId)
-                .Select(x => new { FullName = x.FirstName + " " + x.LastName })
-                .FirstOrDefaultAsync(ct);
+        var toUser = await context.Users
+            .Where(x => x.Id == request.ToUserId)
+            .Select(x => new { FullName = x.FirstName + " " + x.LastName })
+            .FirstOrDefaultAsync(ct);
 
         var reward = new Reward
         {
@@ -52,32 +48,27 @@ public sealed class CreateRewardCommandHandler(
         };
 
         context.Rewards.Add(reward);
-        await context.SaveChangesAsync(ct);
 
         // ── Wallet ──────────────────────────────────────────────
-        var wallet =
-            await context.Wallets
-                .FirstOrDefaultAsync(
-                    x => x.UserId == request.ToUserId,
-                    ct);
+        var wallet = await context.Wallets
+            .FirstOrDefaultAsync(x => x.UserId == request.ToUserId, ct);
 
         if (wallet is null)
         {
-            wallet = new Wallet
+            context.Wallets.Add(new Wallet
             {
                 Id             = Guid.NewGuid(),
                 UserId         = request.ToUserId,
                 AvailableBytes = reward.Bytes,
                 CreatedAt      = DateTime.UtcNow
-            };
-            context.Wallets.Add(wallet);
+            });
         }
         else
         {
             wallet.AvailableBytes += reward.Bytes;
         }
 
-        // ── Notification to recipient (employee) ───────────────
+        // ── Notifications ───────────────────────────────────────
         notifications.Create(
             userId:  request.ToUserId,
             type:    "RewardReceived",
@@ -85,7 +76,6 @@ public sealed class CreateRewardCommandHandler(
             message: $"{reward.FromUserName} awarded you {reward.Bytes} bytes " +
                      $"for \"{reward.RewardCategoryName}\". Reason: {reward.Reason}");
 
-        // ── Confirmation to the manager who sent it ─────────────
         notifications.Create(
             userId:  request.FromUserId,
             type:    "RewardSent",
@@ -93,9 +83,6 @@ public sealed class CreateRewardCommandHandler(
             message: $"You awarded {reward.Bytes} bytes ({reward.RewardCategoryName}) " +
                      $"to {reward.ToUserName}. Reason: {reward.Reason}");
 
-        // ── Broadcast recognition to ALL other users ────────────
-        // Everyone sees who got recognised — builds a culture of visibility.
-        // Excludes: the manager (already notified) and the recipient (already notified).
         await notifications.CreateForAllUsersExceptAsync(
             excludeUserIds: [request.FromUserId, request.ToUserId],
             type:           "TeamRecognition",
@@ -104,6 +91,7 @@ public sealed class CreateRewardCommandHandler(
                             $"({reward.RewardCategoryName}) to {reward.ToUserName}.",
             ct:             ct);
 
+        // ── Single atomic save — reward + wallet + notifications ─
         await context.SaveChangesAsync(ct);
 
         return Result<Guid>.Ok(reward.Id);

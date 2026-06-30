@@ -152,7 +152,11 @@ export class RewardsComponent implements OnInit {
   loadItems(): void {
     this.isLoading.set(true);
     this.catalogService.getRewardItems().subscribe({
-      next: (data) => { this.items.set(data); this.isLoading.set(false); },
+      next: (data) => {
+        // Employee and manager only see active items
+        this.items.set(data.filter(i => i.isActive));
+        this.isLoading.set(false);
+      },
       error: (err) => { this.error.set(err.error?.detail ?? 'Failed to load rewards.'); this.isLoading.set(false); }
     });
   }

@@ -99,4 +99,8 @@ export class UserService {
     return this.http.get<UserLookup[]>(`${this.apiUrl}/lookup`);
   }
 
+  ensureCurrentUser(): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/me/ensure`, {});
+  }
+
 }

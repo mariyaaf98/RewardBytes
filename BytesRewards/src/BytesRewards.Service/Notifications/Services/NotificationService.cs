@@ -25,6 +25,32 @@ public sealed class NotificationService(ApplicationDbContext context)
         });
     }
 
+    // ── Explicit list of user IDs ────────────────────────────────
+    /// <summary>
+    /// Creates a notification for each user ID in the provided list.
+    /// </summary>
+    public void CreateForUsers(
+        IEnumerable<Guid> userIds,
+        string            type,
+        string            title,
+        string            message)
+    {
+        var now = DateTime.UtcNow;
+        foreach (var uid in userIds)
+        {
+            context.Notifications.Add(new Notification
+            {
+                Id        = Guid.NewGuid(),
+                UserId    = uid,
+                Type      = type,
+                Title     = title,
+                Message   = message,
+                IsRead    = false,
+                CreatedAt = now
+            });
+        }
+    }
+
     // ── All active users except specified ones ───────────────────
     /// <summary>
     /// Creates one notification row for every active user,
